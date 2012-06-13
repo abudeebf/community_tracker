@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :gender, :last_name, :password
-  attr_accessible :email, :first_name, :gender, :last_name, :password
   validates_presence_of :first_name ,:message =>" is required"
   validates_presence_of :last_name ,:message =>" is required"
    validates_presence_of :email,:message => " is required"

@@ -4,9 +4,9 @@
   <tr>
     <th>First name</th>
     <th>Last name</th>
+    <th>Gender</th>
     <th>Email</th>
     <th>Password</th>
-    <th>Gender</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,12 +16,12 @@
   <tr>
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
+    <td><%= user.gender %></td>
     <td><%= user.email %></td>
     <td><%= user.password %></td>
-    <td><%= user.gender %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
