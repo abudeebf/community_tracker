@@ -1,4 +1,12 @@
 HourTracker::Application.routes.draw do
+  get "static_pages/home"
+
+  get "static_pages/aboutus"
+
+  get "static_pages/stories"
+
+  get "static_pages/signup"
+
   resources :users
 
   resources :branchtests
