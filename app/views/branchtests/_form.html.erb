@@ -1,0 +1,25 @@
+<%= form_for(@branchtest) do |f| %>
+  <% if @branchtest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@branchtest.errors.count, "error") %> prohibited this branchtest from being saved:</h2>
+
+      <ul>
+      <% @branchtest.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :branch %><br />
+    <%= f.text_field :branch %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
