@@ -1,11 +1,11 @@
-<h2> User profile <h2>
+<h2> <%= @user.last_name %> profile <h2>
 <p id="notice"><%= notice %></p>
-
+ <%= link_to image_tag("user.png",alt: "Communiy helper")%>
 <p>
   <b>First name:</b>
   <%= @user.first_name %>
 </p>
-
+ 
 <p>
   <b>Last name:</b>
   <%= @user.last_name %>
