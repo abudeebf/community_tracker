@@ -1,14 +1,10 @@
 HourTracker::Application.routes.draw do
   resources :users
-
-  get "static_pages/home"
-
-  get "static_pages/aboutus"
-
-  get "static_pages/stories"
-
-  get "static_pages/signup"
-
+    match '/aboutus', to: 'static-Pages#aboutus'
+     match '/stories', to: 'static-Pages#stories'
+     match '/signup', to: 'users#new'
+   root to:'static-Pages#home'
+  
   resources :branchtests
 
   resources :events
