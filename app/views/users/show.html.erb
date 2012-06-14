@@ -1,3 +1,4 @@
+<h2> User profile <h2>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -26,5 +27,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Edit my profile', edit_user_path(@user) ,class: "btn btn-small btn-primay" %> |
+<%= link_to 'Create Group', newgroup_path ,class: "btn btn-small btn-primay" %>

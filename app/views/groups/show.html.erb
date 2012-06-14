@@ -1,3 +1,4 @@
+<h2> <%= @group.name %> profile</h2>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -16,5 +17,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<%= link_to 'Edit', edit_group_path(@group), class: "btn btn-small btn-primay" %> |
+<%= link_to 'Create Event', newevent_path ,class: "btn btn-small btn-primay"%>
