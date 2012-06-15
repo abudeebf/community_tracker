@@ -1,4 +1,9 @@
 @import "bootstrap";
+@mixin box_sizing {
+    -maz-box-sizing:border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 /* universal */
 html {
 	overflow-y: scroll;
@@ -85,4 +90,12 @@ html {
         margin-left: 10px;
           }
        }
-   
+   /* micellaneous */
+   debug_dump{
+    clear: both;
+    float: left;
+    width: 100%;
+    margin-top:45px;
+    @include box_sizing;
+    
+   }
