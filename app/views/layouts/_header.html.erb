@@ -1,15 +1,46 @@
 <header class="navbar navbar-fixed-top">
-	<div class="navbar-inner">
-		<%= link_to "Community Tracker",root_path,id: "logo" %>
+  <div class="navbar-inner">
+    <%= link_to "Community Tracker",root_path, class: "brand" %>
     <div class="container">
-		<nav>
-			<ul class ="nav pull-right">
-			      <li><%= link_to "Home", root_path%></li>
-            <li><%= link_to "about us", aboutus_path%></li>
-            <li><%= link_to "Stories", stories_path%></li>
-            <li><%= link_to "Sign In", "#"%></li>
-        </ul>
-		</nav>
-  </nav>
+    <nav>
+      <ul class ="nav pull-right">
+            <li> <%= form_tag('/', :class => 'form-search', :method => 'get') do %>
+            <%= text_field_tag :image_url, @url, :class => 'image-url' %>
+           <%= submit_tag "Search", :class => 'btn btn-large btn-primary' %>
+  <% end %>
+   </li>
+			      <li><%= link_to "Home", root_path ,class: "links" %></li>
+            <li><%= link_to "about us", aboutus_path ,class: "links"%></li>
+            <li><%= link_to "Stories", stories_path ,class: "links"%></li>
+             <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Sign In <b class="caret"></b>
+              </a> 
+              <ul class="dropdown-menu">
+                <li>
+                  <div>
+                  <%= form_tag %>
+                  <fieldset>
+                    <legend  style = "color: #8c677f" >Please Log in</legend>
+                  <div>
+                  <label style = "color: #8c677f" for="email">Email:</label>
+                    <%= text_field_tag  :email,params[:email],  :autofocus => true, :class => "login" %>
+                  </div>
+                  <div>
+                  <label style = "color: #8c677f" for ="password">Password:</label>
+                    <%= password_field_tag :password,params[:password], :class => "login" %>
+                  </div>
+                  <div>
+                    <%=submit_tag "Log in" ,class: 'btn  btn-primary' %>
+                  </div>
+                   </fieldset>
+                 </form>
+                </div>
+                </li>
+              </ul>
+            </li>
+              </ul>
+      </nav>
 	</div>
+</div>
 </header>
