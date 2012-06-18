@@ -3,7 +3,7 @@ HourTracker::Application.routes.draw do
     match '/aboutus', to: 'static-Pages#aboutus'
      match '/stories', to: 'static-Pages#stories'
      match '/signup', to: 'users#new'
-     
+      
    root to:'static-Pages#home'
    match '/newgroup', to: 'groups#new'
   match 'newevent',to:'events#new'
