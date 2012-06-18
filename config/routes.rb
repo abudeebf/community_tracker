@@ -1,10 +1,10 @@
 HourTracker::Application.routes.draw do
   resources :sessions, only:[:new,:create,:destroy]
   resources :users
-   match '/aboutus', to: 'static-pages#aboutus'
-   match '/stories', to: 'static-pages#stories'
+   match '/aboutus', to: 'static_pages#aboutus'
+   match '/stories', to: 'static_pages#stories'
    match '/signup', to: 'users#new'
-   root to: 'static-pages#home'
+   root to: 'static_pages#home'
    match '/newgroup', to: 'groups#new'
    match '/newevent',to:'events#new'
    resources :branchtests
