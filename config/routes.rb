@@ -1,16 +1,16 @@
 HourTracker::Application.routes.draw do
+  resources :sessions, only:[:new,:create,:destroy]
   resources :users
-    match '/aboutus', to: 'static-Pages#aboutus'
-     match '/stories', to: 'static-Pages#stories'
-     match '/signup', to: 'users#new'
-      
-   root to:'static-Pages#home'
+   match '/aboutus', to: 'static-pages#aboutus'
+   match '/stories', to: 'static-pages#stories'
+   match '/signup', to: 'users#new'
+   root to: 'static-pages#home'
    match '/newgroup', to: 'groups#new'
-  match 'newevent',to:'events#new'
-  resources :branchtests
-
-  resources :events
-
+   match '/newevent',to:'events#new'
+   resources :branchtests
+   resources :events
+   match '/signin', to: 'sessions#new'
+   match '/signout' ,to: 'sessions#destroy'
   resources :groups
 
   # The priority is based upon order of creation:
