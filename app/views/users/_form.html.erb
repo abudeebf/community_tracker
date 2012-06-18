@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div class="span6 offset3">
+  <div class="span9 offset3">
 <%= form_for(@user) do |f| %>
   <%=render "shared/error_messages"%>
     <%= f.label :first_name %><br />
@@ -9,8 +9,8 @@
     <%= f.text_field :last_name %>
   <p>Gender</p> 
     <% [ 'Female', 'Male', 'Other'].each do |gender| %> 
-      <%= radio_button_tag @gender, gender %> 
-       <%= gender.humanize %> 
+      <%= f.radio_button  :gender , gender %> 
+       <%= f.label :gender , gender.humanize   %> 
     <% end %> 
 <br>
     <%= f.label :email %><br />

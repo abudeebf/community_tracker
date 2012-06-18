@@ -28,9 +28,6 @@
               </ul>
             </li>
           <% else %>
-
-             <li><%= link_to "SignIn", signin_path ,class: "links"%></li>
-           <% end %>
              <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Sign In <b class="caret"></b>
@@ -38,26 +35,23 @@
               <ul class="dropdown-menu">
                 <li>
                   <div>
-                  <%= form_tag %>
-                  <fieldset>
-                    <legend  style = "color: #8c677f" >Please Log in</legend>
-                  <div>
-                  <label style = "color: #8c677f" for="email">Email:</label>
-                    <%= text_field_tag  :email,params[:email],  :autofocus => true, :class => "login" %>
-                  </div>
-                  <div>
-                  <label style = "color: #8c677f" for ="password">Password:</label>
-                    <%= password_field_tag :password,params[:password], :class => "login" %>
-                  </div>
-                  <div>
-                    <%=submit_tag "Log in" ,class: 'btn  btn-primary' %>
-                  </div>
-                   </fieldset>
-                 </form>
+                  
+    <%= form_for(:session, url: sessions_path) do |f| %>
+
+      <%= f.label :email ,class: "textcolor"  %>
+      <%= f.text_field :email , class: "login"   %>
+
+      <%= f.label :password , class: "textcolor"%>
+      <%= f.password_field :password ,class: "login" %>
+
+      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+    <% end %>
                 </div>
                 </li>
               </ul>
             </li>
+              
+           <% end %>
               </ul>
       </nav>
 	</div>
