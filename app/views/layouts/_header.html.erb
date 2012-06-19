@@ -7,21 +7,20 @@
             <li> <%= form_tag('/', :class => 'form-search', :method => 'get') do %>
             <%= text_field_tag :image_url, @url, :class => 'image-url' %>
            <%= submit_tag "Search", :class => 'btn btn-large btn-primary' %>
-  <% end %>
-   </li>
+           <% end %>
+           </li>
 			      <li><%= link_to "Home", root_path ,class: "links" %></li>
             <li><%= link_to "about us", aboutus_path ,class: "links"%></li>
             <li><%= link_to "Stories", stories_path ,class: "links"%></li>
             <% if signed_in? %>
-            <li><%= link_to "Users", '#' %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Profile", current_user %></li>
+                <li><%= link_to "Profile", user_path(current_user) %></li>
                 <li><%= link_to "Settings", '#' %></li>
-                <li class="divider"></li>
+                <li class="divider" color="#fff"></li>
                 <li>
                   <%= link_to "Sign out", signout_path, method: "delete" %>
                 </li>
@@ -35,25 +34,20 @@
               <ul class="dropdown-menu">
                 <li>
                   <div>
-                  
-    <%= form_for(:session, url: sessions_path) do |f| %>
-
-      <%= f.label :email ,class: "textcolor"  %>
-      <%= f.text_field :email , class: "login"   %>
-
-      <%= f.label :password , class: "textcolor"%>
-      <%= f.password_field :password ,class: "login" %>
-
-      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
-    <% end %>
+                  <%= form_for(:session, url: sessions_path) do |f| %>
+                  <%= f.label :email ,class: "textcolor"  %>
+                  <%= f.text_field :email , class: "login"   %>
+                  <%= f.label :password , class: "textcolor"%>
+                  <%= f.password_field :password ,class: "login" %>
+                  <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+                  <% end %>
                 </div>
-                </li>
+               </li>
               </ul>
             </li>
-              
-           <% end %>
-              </ul>
-      </nav>
-	</div>
-</div>
+          <% end %>
+            </ul>
+          </nav>
+        </div>
+      </div>
 </header>

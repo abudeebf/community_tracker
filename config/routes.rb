@@ -10,7 +10,7 @@ HourTracker::Application.routes.draw do
    resources :branchtests
    resources :events
    match '/signin', to: 'sessions#new'
-   match '/signout' ,to: 'sessions#destroy'
+   match '/signout' ,to: 'sessions#destroy', via: :delete
   resources :groups
 
   # The priority is based upon order of creation:
