@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+  before_filter :signed_in_user, only:[:edit,:update]
+  before_filter :correct_user, only:[:edit,:update]
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
+   
   end
 
   # GET /users/1
@@ -34,7 +33,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    
   end
 
   # POST /users
@@ -44,6 +43,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        sign_in @user
         flash[:sucess]="your account was successfully created."
         format.html { redirect_to @user, notice: 'your account was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
@@ -61,14 +61,16 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: 'your profile was successfully updated.' }
         format.json { head :no_content }
+        sign_in @user
       else
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
+
 
   # DELETE /users/1
   # DELETE /users/1.json
@@ -81,4 +83,15 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+  def signed_in_user
+    store_location
+    redirect_to signin_path, notice:"Please Sign in." unless signed_in?  
+  end 
+
+ def correct_user
+  @user = User.find(params[:id])
+  redirect_to root_path unless current_user?(@user)
+ end
 end

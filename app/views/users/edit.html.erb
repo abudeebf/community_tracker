@@ -1,6 +1,36 @@
-<h1>Editing user</h1>
+<%= provide(:title,'Edit Profile') %>
+<h1>Update Your Profile</h1>
+<%= form_for(@user) do |f| %>
+  <%= render "shared/error_messages"%>
+  <p> Click to change</p>
+  <div class="row">
+  <aside class "span4">
+    <section>
+  <%= gravatar_for @user,100 %>
+</section>
+</aside>
+    
+</div>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  <p>Gender</p> 
+    <% [ 'Female', 'Male', 'Other'].each do |gender| %> 
+      <%= f.radio_button  :gender , gender  %> 
+       <%= f.label :gender , gender.humanize   %> 
+    <% end %> 
+<br>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+    <%= f.label :password_confirmation, "Password Confirmation" %><br />
+    <%= f.password_field :password_confirmation %>
+  <div class="actions">
+    <%= f.submit "Save changes" ,class: "btn btn-large btn-primay"%>
+    <%= link_to 'cancel', current_user %>
+    
+  </div>
+<% end %>
