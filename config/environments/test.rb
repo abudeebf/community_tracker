@@ -36,7 +36,7 @@ HourTracker::Application.configure do
   config.active_support.deprecation = :stderr
   #speed up tests by lowering Bcrypt's cost function.
   require 'bcrypt'
-  sielence_warnings do 
+  silence_warnings do 
     BCrypt::Engine::DEFAULT_COST =BCrypt::Engine::MIN_COST
   end
 end
