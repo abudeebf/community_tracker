@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 This is the community tracker product and its super awesome..
+=======
+Community Tracker :
+Nowadays, people are mentioning volunteering hours in their resumes and there is a need for a product that proves it. So, that's where Community Tracker comes into play
+ •Its a website that enables community service groups to create events, publicize it and then track the volunteer hours.
+•It will encourage users to be more active in community service by joining groups they like and participating in more volunteer services
+•This is exciting because it promotes the sense of reaching out to contribute to the community and has very exiting gamification and social elements included. Believe us, using Community Tracker you will say Volunteering has never been more fun.
+>>>>>>> 3b740273ba01b50d28c8cc9254cd06188db3338e
