@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-This is the community tracker product and its super awesome..
+Mr.tim should be here today 
 =======
 Community Tracker :
 Nowadays, people are mentioning volunteering hours in their resumes and there is a need for a product that proves it. So, that's where Community Tracker comes into play
