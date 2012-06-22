@@ -38,3 +38,16 @@
 
 <%= link_to 'Edit my profile', edit_user_path(@user) ,class: "btn btn-small btn-primay" %> |
 <%= link_to 'Create Group', newgroup_path ,class: "btn btn-small btn-primay" %>
+</div>
+
+<hr>
+
+<div class="span8">
+    <% if @user.groups.any? %>
+      <h3>Groups (<%= @user.groups.count %>)</h3>
+      <ol class="users">
+        <%= render @groups %>
+      </ol>
+    <%= will_paginate @groups %>
+    <% end %>
+  </div>

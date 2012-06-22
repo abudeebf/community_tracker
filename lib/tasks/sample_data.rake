@@ -19,5 +19,13 @@ namespace :db do
                    gender:"Female",
                    password_confirmation: password)
     end
+     users=User.all(limit: 6)
+  50.times do
+    name="brandeis"
+    tags="eduction"
+    description="eduction and community"
+    users.each {|user| user.groups.create!(name: name ,tags: tags,description: description)}
+  end
+ 
   end
 end

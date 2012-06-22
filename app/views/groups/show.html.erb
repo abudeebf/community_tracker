@@ -15,6 +15,10 @@
   <b>Description:</b>
   <%= @group.description %>
 </p>
+<p>
+	<b> Creator:</b>
+	<%= @group.user.first_name %>
+</p>
 
 
 <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-small btn-primay" %> |
