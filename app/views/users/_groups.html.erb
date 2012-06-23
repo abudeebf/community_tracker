@@ -1,0 +1,15 @@
+<aside class "span8">
+    <section>
+
+   <h3>Groups </h3>
+    <% if @user.groups.any? %>
+      <h3>Groups (<%= @user.groups.count %>)</h3>
+      <ol class="users">
+        <%= render @groups %>
+      </ol>
+    <%= will_paginate @groups %>
+    <% end %>
+
+</section>
+
+</aside>

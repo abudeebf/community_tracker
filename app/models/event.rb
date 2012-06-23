@@ -4,5 +4,5 @@ class Event < ActiveRecord::Base
   validates :description, presence: true
   validates :category, presence:true
   validates :location, presence:true
-
+  belongs_to :user
 end

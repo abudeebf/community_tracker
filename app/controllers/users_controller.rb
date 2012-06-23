@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
-  before_filter :signed_in_user, only:[:edit,:update]
-  before_filter :correct_user, only:[:edit,:update]
+  before_filter :signed_in_user, only:[:edit,:update,:destroy]
+  before_filter :correct_user, only:[:edit,:update,:destroy]
   def index
     @users = User.paginate(page: params[:page])
 
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @groups=@user.groups.paginate(page:params[:page])
+   @groups=@user.group.paginate(page:params[:page])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -84,10 +84,7 @@ class UsersController < ApplicationController
   end
 
   private
-  def signed_in_user
-    store_location
-    redirect_to signin_path, notice:"Please Sign in." unless signed_in?  
-  end 
+  
 
  def correct_user
   @user = User.find(params[:id])

@@ -1,15 +1,11 @@
 <% provide(:title,@user.first_name)%>
-
-<h2> <%= @user.last_name %> profile <h2>
-<div class="row">
   <aside class "span4">
     <section>
+ <h2> <%= @user.last_name.upcase %> PROFILE <h2>
  <h1>
   <%= gravatar_for @user,200 %>
   <% @user.first_name %>
 </h1>
-</section>
-</aside>
 <p>
   <b>First name:</b>
   <%= @user.first_name %>
@@ -38,16 +34,23 @@
 
 <%= link_to 'Edit my profile', edit_user_path(@user) ,class: "btn btn-small btn-primay" %> |
 <%= link_to 'Create Group', newgroup_path ,class: "btn btn-small btn-primay" %>
-</div>
+</section>
 
-<hr>
+</aside>
+<aside class "offset8">
+    <section>
 
-<div class="span8">
-    <% if @user.groups.any? %>
-      <h3>Groups (<%= @user.groups.count %>)</h3>
+    <% if @user.group.any? %>
+      <h3>My Groups (<%= @user.group.count %>)</h3>
       <ol class="users">
-        <%= render @groups %>
+        <%= render @user.group  %>
       </ol>
     <%= will_paginate @groups %>
     <% end %>
-  </div>
+</section>
+</aside>
+</div>
+  
+
+
+

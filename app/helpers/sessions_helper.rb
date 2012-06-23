@@ -35,4 +35,9 @@ module SessionsHelper
        redirect_to(session[:return_to] || default)
        session.delete(:return_to) # to delete the session path after redirection
      end
+     
+     def signed_in_user
+    store_location
+    redirect_to signin_path, notice:"Please Sign in." unless signed_in?  
+  end 
 end

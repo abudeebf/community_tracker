@@ -1,25 +1,26 @@
-<h2> <%= @group.name %> profile</h2>
-<p id="notice"><%= notice %></p>
+<% provide(:title,@group.name)%>
+<%= link_to 'Edit', edit_group_path(@group), class: "btn btn-small btn-primay" %> |
+<%= link_to 'Create Event', newevent_path ,class: "btn btn-small btn-primay"%> |
+<%= link_to 'Invit Member', "X", class: "btn btn-small btn-primay" %> 
+
+<aside class "span4">
+    <section>
+   <h2></h2>
+ <h2> <%= @group.name.upcase %> PROFILE</h2> 
+ <h1>
+  <%= image_tag @group.photo.url,width: "300"%>
+</h1>
+<p>
 
 <p>
-  <b>Name:</b>
-  <%= @group.name %>
-</p>
-
-<p>
-  <b>Tags:</b>
-  <%= @group.tags %>
-</p>
-
-<p>
-  <b>Description:</b>
+  <b>Description:</b> <br />
   <%= @group.description %>
 </p>
 <p>
-	<b> Creator:</b>
-	<%= @group.user.first_name %>
+	<b> Creator:</b> <br />
+	<% user=User.find(@group.memberships.find_by_member("Admin").user_id) %>
+	<%= link_to  user.first_name + " " + user.last_name ,user %>
 </p>
+</section>
+</aside>
 
-
-<%= link_to 'Edit', edit_group_path(@group), class: "btn btn-small btn-primay" %> |
-<%= link_to 'Create Event', newevent_path ,class: "btn btn-small btn-primay"%>

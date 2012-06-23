@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :gender, :last_name, :password, :password_confirmation
-  has_many :groups
   has_secure_password
+  has_many :group, :through => :memberships
+  has_many :events 
+  has_many :memberships, foreign_key:"user_id" ,dependent: :destroy
+  has_many :reverse_relationships, foreign_key:"group_id",dependent: :destroy, class_name:"memberships"
   before_save {|user|user.email=user.email.downcase}
   before_save :create_remember_token 
   validates_presence_of :first_name ,:message =>" is required",length:{maximum:12}
@@ -12,7 +15,20 @@ class User < ActiveRecord::Base
    validates_format_of  :password, :with => /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%]).{6,20})/, :message => " dose not meet password requirment"
   validates_format_of  :email, :with => /\b[A-Za-z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/
   validates :email, uniqueness: {case_senstive: false}
-  def create_remember_token
+ 
+  def joingroup!(group)
+    memberships.create!(user_id:self.id,group_id:group.id,member: "Admin")
+  end
+  def hasgroup?(group)
+    memberships.find_by_group_id(group.id)
+  end
+  def unjoingroup!(group)
+   memberships.find_by_group_id(group.id).destroy
+  end
+  def groups
+  end 
+  private
+ def create_remember_token
     self.remember_token=SecureRandom.urlsafe_base64
   end
 end
