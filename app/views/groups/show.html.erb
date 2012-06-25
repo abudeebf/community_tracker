@@ -1,15 +1,30 @@
 <% provide(:title,@group.name)%>
-<%= link_to 'Edit', edit_group_path(@group), class: "btn btn-small btn-primay" %> |
-<%= link_to 'Create Event', newevent_path ,class: "btn btn-small btn-primay"%> |
-<%= link_to 'Invit Member', "X", class: "btn btn-small btn-primay" %> 
+<% if signed_in? == false%>
+<% else %>
 
+<% if (current_user.memberships.where("group_id=? And member=?",@group.id,"Admin")).empty? ==false %>
+<%= link_to 'Edit', edit_group_path(@group), class: "btn btn-small btn-primay" %> |
+<%= link_to 'Create Event', new_group_event_path(@group) ,class: "btn btn-small btn-primay"%> |
+<%= link_to 'Invit Member', new_invitation_path, class: "btn btn-small btn-primay" %> 
+<% else %>
+<% if (current_user.memberships.where("group_id=? And member=?",@group.id,"Member")) .empty?%>
+<%= link_to 'Join Us', "#", class: "btn btn-large btn-primay" %> 
+<% end %>
+<% end %>
+<% end %>
 <aside class "span4">
     <section>
    <h2></h2>
  <h2> <%= @group.name.upcase %> PROFILE</h2> 
- <h1>
+ <% if @group.photo.url=="/photos/original/missing.png" %>
+  <%= image_tag "community2.jpg",width: "300"%>
+  <%else %>
+<h1>
   <%= image_tag @group.photo.url,width: "300"%>
 </h1>
+ <% end %>
+
+ 
 <p>
 
 <p>

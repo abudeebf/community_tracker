@@ -1,0 +1,22 @@
+<%= form_for(@invitation) do |f| %>
+  <% if @invitation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invitation.errors.count, "error") %> prohibited this invitation from being saved:</h2>
+
+      <ul>
+      <% @invitation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field center">
+    <%= f.label "please insert your members emails here" %><br />
+    <%= f.text_area :invited_members, size: "30x20" %>
+  </div>
+  
+  <div class="actions center">
+    <%= f.submit " Invite members now" , class: "btn btn-larg btn-primay" %>
+  </div>
+<% end %>

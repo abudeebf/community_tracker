@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
    @groups=@user.group.paginate(page:params[:page])
+   @events=@user.events.paginate(page:params[:page])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -43,6 +44,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+         UserMailer.registration_confirmation(@user).deliver 
         sign_in @user
         format.html { redirect_to @user, notice: 'your account was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }

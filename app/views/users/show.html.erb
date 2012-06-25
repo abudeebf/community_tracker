@@ -2,10 +2,16 @@
   <aside class "span4">
     <section>
  <h2> <%= @user.last_name.upcase %> PROFILE <h2>
+  <%= link_to 'Edit my profile', edit_user_path(@user) ,class: "btn btn-small btn-primay" %> |
+<%= link_to 'My Hour Tracker', "#" ,class: "btn btn-small btn-primay" %>|
+<%= link_to 'My Preference', "#" ,class: "btn btn-small btn-primay" %>|
+<%= link_to 'Create Group', newgroup_path ,class: "btn btn-small btn-primay" %>
  <h1>
   <%= gravatar_for @user,200 %>
   <% @user.first_name %>
 </h1>
+<br />
+<br />
 <p>
   <b>First name:</b>
   <%= @user.first_name %>
@@ -26,18 +32,18 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <b>Password:</b>
-  <%= @user.password %>
-</p>
-
-
-<%= link_to 'Edit my profile', edit_user_path(@user) ,class: "btn btn-small btn-primay" %> |
-<%= link_to 'Create Group', newgroup_path ,class: "btn btn-small btn-primay" %>
 </section>
 
 </aside>
-<aside class "offset8">
+<div class="span8">
+  <% if @user.events.any? %>
+   <h3>My Events (<%= @user.events.count %></h3>
+  <% end %>
+  <ol class="users">
+   <%= render @events %>
+ </ol>
+  </div>
+<aside class "span8">
     <section>
 
     <% if @user.group.any? %>

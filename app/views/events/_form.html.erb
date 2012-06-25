@@ -1,4 +1,4 @@
-<%= form_for(@event) do |f| %>
+<%= form_for([@group, @group.events.build]) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -13,19 +13,20 @@
 
   <div class="field">
     <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.text_field :title , width: "750px"%>
   </div>
   <div class="field">
     <%= f.label :category %><br />
-    <%= f.text_field :category %>
+   <%= f.select :category, options_for_select([["Children", "c"], ["Homeless", "h"],["Elderly", "e"],["Education","e"],["Environment","e"],["Other","o"]]) %> 
   </div>
+  
   <div class="field">
     <%= f.label :starttime %><br />
-    <%= f.datetime_select :starttime %>
+   <%= f.datetime_select :starttime, :order => [:day, :month, :year, :hour,:minute] %>
   </div>
   <div class="field">
     <%= f.label :endtime %><br />
-    <%= f.datetime_select :endtime %>
+    <%= f.datetime_select :endtime, :order => [:day, :month, :year, :hour,:minute], :width => 2 %>
   </div>
   <div class="field">
     <%= f.label :location %><br />
@@ -33,9 +34,9 @@
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_area :description ,rows: 10 %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save ", class: "btn btn-large btn-primay" %>
   </div>
 <% end %>

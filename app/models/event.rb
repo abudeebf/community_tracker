@@ -4,5 +4,9 @@ class Event < ActiveRecord::Base
   validates :description, presence: true
   validates :category, presence:true
   validates :location, presence:true
+   validates :user_id , presence: true 
+   validates :group_id , presence: true
   belongs_to :user
+  belongs_to :group
+  default_scope order: 'events.created_at DESC'
 end
