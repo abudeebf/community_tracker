@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
     @group = Group.find(params[:id])
-
+    @events= @group.events.paginate(page:params[:page])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @group }

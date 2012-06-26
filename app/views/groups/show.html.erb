@@ -2,7 +2,7 @@
 <% if signed_in? == false%>
 <% else %>
 
-<% if (current_user.memberships.where("group_id=? And member=?",@group.id,"Admin")).empty? ==false %>
+<% if (current_user.memberships.where("group_id=? And member=?",@group.id,"Creator")).empty? == false || (current_user.memberships.where("group_id=? And member=?",@group.id,"Admin")).empty? ==false %>
 <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-small btn-primay" %> |
 <%= link_to 'Create Event', new_group_event_path(@group) ,class: "btn btn-small btn-primay"%> |
 <%= link_to 'Invit Member', new_invitation_path, class: "btn btn-small btn-primay" %> 
@@ -17,25 +17,28 @@
    <h2></h2>
  <h2> <%= @group.name.upcase %> PROFILE</h2> 
  <% if @group.photo.url=="/photos/original/missing.png" %>
-  <%= image_tag "community2.jpg",width: "300"%>
+  <%= image_tag "community.jpg",width: "200"%>
   <%else %>
 <h1>
   <%= image_tag @group.photo.url,width: "300"%>
 </h1>
  <% end %>
-
- 
-<p>
-
-<p>
   <b>Description:</b> <br />
   <%= @group.description %>
 </p>
 <p>
 	<b> Creator:</b> <br />
-	<% user=User.find(@group.memberships.find_by_member("Admin").user_id) %>
+	<% user=User.find(@group.memberships.find_by_member("Creator").user_id) %>
 	<%= link_to  user.first_name + " " + user.last_name ,user %>
 </p>
 </section>
+    <section>
+  <% if @group.events.any? %>
+   <h3>Group Events (<%= @group.events.count %>)</h3>
+  <% end %>
+  <ol class="users">
+   <%= render @events %>
+ </ol>
+  </section>
 </aside>
 

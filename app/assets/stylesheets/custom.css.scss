@@ -2,7 +2,10 @@
 @import "bootstrap";
 
 
-
+input
+{
+  size: 100;
+}
 @mixin box_sizing {
     -maz-box-sizing:border-box;
     -webkit-box-sizing: border-box;
@@ -380,7 +383,7 @@ aside {
   display: block;
 }
 .timestamp {
-  color: #fff;
+  color: $grayLight;
 }
 .gravatar {
   float: left;

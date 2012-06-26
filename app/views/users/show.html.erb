@@ -1,18 +1,21 @@
 <% provide(:title,@user.first_name)%>
+<table >
+  <tr>
+    <td>
   <aside class "span4">
     <section>
  <h2> <%= @user.last_name.upcase %> PROFILE <h2>
   <%= link_to 'Edit my profile', edit_user_path(@user) ,class: "btn btn-small btn-primay" %> |
 <%= link_to 'My Hour Tracker', "#" ,class: "btn btn-small btn-primay" %>|
+<%= link_to 'community Carma', "#" ,class: "btn btn-small btn-primay" %>|
 <%= link_to 'My Preference', "#" ,class: "btn btn-small btn-primay" %>|
 <%= link_to 'Create Group', newgroup_path ,class: "btn btn-small btn-primay" %>
  <h1>
   <%= gravatar_for @user,200 %>
   <% @user.first_name %>
 </h1>
+<h3> User card </h3>
 <br />
-<br />
-<p>
   <b>First name:</b>
   <%= @user.first_name %>
 </p>
@@ -35,28 +38,40 @@
 </section>
 
 </aside>
-<div class="span8">
+</td>
+<td>
+  <br />
+  <br />
+  <aside class "span4">
+    <section style="margin-left:50px">
+      <br />
+       <% if @user.groups.any? %>
+      <h3 >My Groups (<%= @user.groups.count %>)</h3>
+      <br />
+      <ol class="users">
+        <%= render @user.groups  %>
+      </ol>
+    <%= will_paginate @groups %>
+    <% end %>
+  </section>
+</aside>
+</tr>
+<tr>
+<td>
+  <aside class "span4">
+    <section>
   <% if @user.events.any? %>
-   <h3>My Events (<%= @user.events.count %></h3>
+   <h3>My Events (<%= @user.events.count %>)</h3>
   <% end %>
   <ol class="users">
    <%= render @events %>
  </ol>
-  </div>
-<aside class "span8">
-    <section>
-
-    <% if @user.group.any? %>
-      <h3>My Groups (<%= @user.group.count %>)</h3>
-      <ol class="users">
-        <%= render @user.group  %>
-      </ol>
-    <%= will_paginate @groups %>
-    <% end %>
-</section>
+  </section>
 </aside>
-</div>
-  
+</td>
+</tr>
+
+  </table>
 
 
 

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :gender, :last_name, :password, :password_confirmation
   has_secure_password
-  has_many :group, :through => :memberships
+  has_many :groups, :through => :memberships
   has_many :events , dependent: :destroy
   has_many :sent_invitations, :class_name => "Inviation",:foreign_key=> 'sender_id'
   has_many :memberships, foreign_key:"user_id" ,dependent: :destroy
@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
       UserMailer.password_reset(self).deliver
   end
   def joingroup!(group)
-    memberships.create!(user_id:self.id,group_id:group.id,member: "Admin")
+    memberships.create!(user_id:self.id,group_id:group.id,member: "Creator")
   end
   def hasgroup?(group)
     memberships.find_by_group_id(group.id)
@@ -32,8 +32,7 @@ class User < ActiveRecord::Base
   def unjoingroup!(group)
    memberships.find_by_group_id(group.id).destroy
   end
-  def groups
-  end 
+
   private
  def create_remember_token
     self.remember_token=SecureRandom.urlsafe_base64
