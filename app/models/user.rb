@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :groups, :through => :memberships
   has_many :events , dependent: :destroy
-  has_many :sent_invitations, :class_name => "Inviation",:foreign_key=> 'sender_id'
   has_many :memberships, foreign_key:"user_id" ,dependent: :destroy
   has_many :reverse_relationships, foreign_key:"group_id",dependent: :destroy, class_name:"memberships"
   before_save {|user|user.email=user.email.downcase}

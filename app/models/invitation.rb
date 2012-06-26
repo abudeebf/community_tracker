@@ -1,6 +1,6 @@
 class Invitation < ActiveRecord::Base
   attr_accessible :invited_members, :sender_id, :sent_at ,:token
-  belongs_to :sender, :class_name =>'User'
+  belongs_to :sender, :class_name =>'Group'
   has_many :recipient, :class_name =>'User'
   validates_presence_of :invited_members
   validate :recipient_is_not_registered
