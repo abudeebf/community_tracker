@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624222838) do
+ActiveRecord::Schema.define(:version => 20120626171155) do
 
   create_table "branchtests", :force => true do |t|
     t.string   "name"
@@ -27,10 +27,13 @@ ActiveRecord::Schema.define(:version => 20120624222838) do
     t.datetime "endtime"
     t.string   "location"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "user_id"
     t.integer  "group_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
   end
 
   create_table "groups", :force => true do |t|

@@ -9,5 +9,5 @@ class Event < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
   default_scope order: 'events.created_at DESC'
-   has_attached_file :photo,
+   has_attached_file :photo
 end

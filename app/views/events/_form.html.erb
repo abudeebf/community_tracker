@@ -36,6 +36,10 @@
     <%= f.label :description %><br />
     <%= f.text_area :description ,rows: 10 %>
   </div>
+  <div class="field">
+    <%= f.label "please add a picutre to your event" %><br />
+  <%= f.file_field :photo %>
+</div>
   <div class="actions">
     <%= f.submit "Save ", class: "btn btn-large btn-primay" %>
   </div>
