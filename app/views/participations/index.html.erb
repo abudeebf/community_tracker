@@ -1,0 +1,31 @@
+<h1>Listing participations</h1>
+
+<table>
+  <tr>
+    <th>Start time</th>
+    <th>End time</th>
+    <th>User</th>
+    <th>Event</th>
+    <th>Approval</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @participations.each do |participation| %>
+  <tr>
+    <td><%= participation.start_time %></td>
+    <td><%= participation.end_time %></td>
+    <td><%= participation.user_id %></td>
+    <td><%= participation.event_id %></td>
+    <td><%= participation.approval %></td>
+    <td><%= link_to 'Show', participation %></td>
+    <td><%= link_to 'Edit', edit_participation_path(participation) %></td>
+    <td><%= link_to 'Destroy', participation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Participation', new_participation_path %>

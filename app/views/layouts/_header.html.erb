@@ -4,9 +4,9 @@
     <div class="container">
     <nav>
       <ul class ="nav pull-right">
-            <li> <%= form_tag('/', :class => 'form-search', :method => 'get') do %>
-            <%= text_field_tag :image_url, @url, :class => 'image-url' %>
-           <%= submit_tag "Search", :class => 'btn btn-large btn-primary' %>
+            <li> <%= form_tag(users_path, :class => 'form-search', :method => 'get') do %>
+            <%= text_field_tag :search, params[:search] %>
+           <%= submit_tag "Search",:name => nil, :class => 'btn btn-large btn-primary' %>
            <% end %>
            </li>
 			      <li><%= link_to "Home", root_path ,class: "links" %></li>

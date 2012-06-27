@@ -1,5 +1,7 @@
 HourTracker::Application.routes.draw do
 
+  resources :participations
+
   resources :invitations
   resources :sessions, only:[:new,:create,:destroy]
   resources :users
@@ -7,6 +9,7 @@ HourTracker::Application.routes.draw do
    match '/stories', to: 'static_pages#stories'
    match '/signup/', to: 'users#new'
    match '/signup/:invitation_id', to: 'users#new', as: "new_signup_invitation"
+ 
    root to: 'static_pages#home'
    match '/newgroup', to: 'groups#new'
    match '/newevent',to:'events#new'
@@ -19,6 +22,9 @@ HourTracker::Application.routes.draw do
   resources :password_resets
   resources :groups do
     resources :events
+  end
+  resources :events do
+    resources :participations
   end
   resources :groups do 
     resources :invitations, only: [:new ,:create]

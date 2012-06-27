@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only:[:edit,:update,:destroy]
   before_filter :correct_user, only:[:edit,:update,:destroy]
   def index
-    @users = User.paginate(page: params[:page])
+
+    @users = User.find(:all, :conditions => ['first_name LIKE ? or last_name LIKE ? ', "%#{params[:search]}%","%#{params[:search]}%"])
   end
 
   # GET /users/1
@@ -62,7 +63,6 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'your profile was successfully updated.' }

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Start time:</b>
+  <%= @participation.start_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @participation.end_time %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @participation.user_id %>
+</p>
+
+<p>
+  <b>Event:</b>
+  <%= @participation.event_id %>
+</p>
+
+<p>
+  <b>Approval:</b>
+  <%= @participation.approval %>
+</p>
+
+
+<%= link_to 'Edit', edit_participation_path(@participation) %> |
+<%= link_to 'Back', participations_path %>

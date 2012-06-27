@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :gender, :last_name, :password, :password_confirmation
   has_secure_password
+  has_many :events, :through => :participations
+  has_many :participations, foreign_key:"user_id" ,dependent: :destroy
   has_many :groups, :through => :memberships
   has_many :events , dependent: :destroy
   has_many :memberships, foreign_key:"user_id" ,dependent: :destroy
