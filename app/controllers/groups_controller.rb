@@ -44,7 +44,7 @@ class GroupsController < ApplicationController
     @group = Group.new(params[:group])
     respond_to do |format|
       if @group.save
-       current_user.joingroup!(@group)
+       current_user.joingroup!(@group,"Creator")
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render json: @group, status: :created, location: @group }
       else

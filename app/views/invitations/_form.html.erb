@@ -1,4 +1,4 @@
-<%= form_for(@invitation) do |f| %>
+<%= form_for([@group, @group.sent_invitations.build]) do |f| %>
   <% if @invitation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@invitation.errors.count, "error") %> prohibited this invitation from being saved:</h2>

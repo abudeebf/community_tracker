@@ -1,6 +1,7 @@
 class InvitationsController < ApplicationController
   # GET /invitations
   # GET /invitations.json
+  before_filter :load_current_group, only: [:new, :create]
   def index
    
   end
@@ -31,13 +32,18 @@ class InvitationsController < ApplicationController
   # POST /invitations.json
   def create
     @invitation = Invitation.new(params[:invitation])
-    UserMailer.invitation(@invitation,signup_url(@invitation.token)).deliver
-    @invitation.sender_id=current_user
+emails=@invitation.invited_members.split()
+ 
+    @invitation.update_attribute(:sent_at,Time.now)
+    @invitation.sender_id=@group
       if @invitation.save
+        emails.each {|x| 
+    UserMailer.invitation(x,new_signup_invitation_url(@invitation),@group).deliver 
+    }
         flash[:notice]="Thank you, Invitation sent"
-        redirect_to group
+        redirect_to @group
       else
-        render :action =>new 
+        render :new
     end
   end
 
@@ -45,7 +51,7 @@ class InvitationsController < ApplicationController
   # PUT /invitations/1.json
   def update
     @invitation = Invitation.find(params[:id])
-
+    
     respond_to do |format|
       if @invitation.update_attributes(params[:invitation])
         format.html { redirect_to @invitation, notice: 'Invitation was successfully updated.' }
@@ -68,4 +74,7 @@ class InvitationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def load_current_group
+      @group = Group.find(params[:group_id])
+    end
 end

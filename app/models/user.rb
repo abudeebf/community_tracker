@@ -22,8 +22,8 @@ class User < ActiveRecord::Base
       save!
       UserMailer.password_reset(self).deliver
   end
-  def joingroup!(group)
-    memberships.create!(user_id:self.id,group_id:group.id,member: "Creator")
+  def joingroup!(group,member)
+    memberships.create!(user_id:self.id,group_id:group,member:member)
   end
   def hasgroup?(group)
     memberships.find_by_group_id(group.id)

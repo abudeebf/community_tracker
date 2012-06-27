@@ -9,10 +9,9 @@ class UserMailer < ActionMailer::Base
   	@user=user
   	mail(:to => user.email, :subject => "Password reset")  
 end
-def invitation(invitation, signup_url)
-	@inviation=invitation
+def invitation(invitation, signup_url,group)
+	@group=group
   @signup_url=signup_url
-  mail(:to => invitation.invited_members, :subject => "Invitation")  
-	invitation.update_attribute(:sent_at,Time.now)
+  mail(:to => invitation, :subject => "Invitation")  
 end
 end 

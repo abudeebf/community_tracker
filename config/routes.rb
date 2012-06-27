@@ -1,12 +1,12 @@
 HourTracker::Application.routes.draw do
 
   resources :invitations
-
   resources :sessions, only:[:new,:create,:destroy]
   resources :users
    match '/aboutus', to: 'static_pages#aboutus'
    match '/stories', to: 'static_pages#stories'
    match '/signup/', to: 'users#new'
+   match '/signup/:invitation_id', to: 'users#new', as: "new_signup_invitation"
    root to: 'static_pages#home'
    match '/newgroup', to: 'groups#new'
    match '/newevent',to:'events#new'
@@ -17,10 +17,13 @@ HourTracker::Application.routes.draw do
   resources :groups
   #match '/password_reset',to:'password_rests#new'
   resources :password_resets
-
   resources :groups do
     resources :events
   end
+  resources :groups do 
+    resources :invitations, only: [:new ,:create]
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

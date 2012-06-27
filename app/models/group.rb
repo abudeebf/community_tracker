@@ -1,7 +1,7 @@
 class Group < ActiveRecord::Base
   attr_accessible :description, :name, :tags, :photo
   has_attached_file :photo
-  has_many :sent_invitations, :class_name => "Inviation",:foreign_key=> 'sender_id'
+  has_many :sent_invitations, :class_name => "Invitation",:foreign_key=> 'sender_id'
   validates :description, presence: true
   validates :name , presence: true ,length:{maximum:50}
    validates :tags, presence: true

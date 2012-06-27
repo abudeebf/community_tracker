@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+  before_filter :retrive_user , only:[:new]
   before_filter :signed_in_user, only:[:edit,:update,:destroy]
   before_filter :correct_user, only:[:edit,:update,:destroy]
   def index
     @users = User.paginate(page: params[:page])
-
-   
   end
 
   # GET /users/1
@@ -45,7 +44,11 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
          UserMailer.registration_confirmation(@user).deliver 
-        sign_in @user
+         sign_in @user
+         if !session[:group_id].nil?
+         @user.joingroup!(session[:group_id] ,"Member")  
+         session.delete(:group_id)
+       end
         format.html { redirect_to @user, notice: 'your account was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -86,10 +89,15 @@ class UsersController < ApplicationController
   end
 
   private
-  
-
  def correct_user
   @user = User.find(params[:id])
   redirect_to root_path unless current_user?(@user)
  end
+  def retrive_user
+    if ! params[:invitation_id].nil?
+      @invitation= Invitation.find(params[:invitation_id])
+      session[:group_id]=@invitation.sender_id
+    end
+  end
+
 end

@@ -5,7 +5,7 @@
 <% if (current_user.memberships.where("group_id=? And member=?",@group.id,"Creator")).empty? == false || (current_user.memberships.where("group_id=? And member=?",@group.id,"Admin")).empty? ==false %>
 <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-small btn-primay" %> |
 <%= link_to 'Create Event', new_group_event_path(@group) ,class: "btn btn-small btn-primay"%> |
-<%= link_to 'Invit Member', new_invitation_path, class: "btn btn-small btn-primay" %> 
+<%= link_to 'Invit Member', new_group_invitation_path(@group), class: "btn btn-small btn-primay" %> 
 <% else %>
 <% if (current_user.memberships.where("group_id=? And member=?",@group.id,"Member")) .empty?%>
 <%= link_to 'Join Us', "#", class: "btn btn-large btn-primay" %> 
