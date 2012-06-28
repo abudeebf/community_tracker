@@ -7,15 +7,19 @@
  btn-primay" %>
  <% end %>
 
-<p id="notice"><%= notice %></p>
-
+<table>
+  <tr>
+    <td>
  <%= image_tag @event.photo.url %>
 
-<p>
-  <b>Title:</b>
-  <%= @event.title %>
-</p>
 
+    </td>
+  <td>
+    <aside class "span4">
+    <section style="margin-left:50px">
+      <br />
+      <br />
+  <h2>  <%= @event.title %> Event</h2>
 <p>
   <b>Category:</b>
   <%= @event.category %>
@@ -37,10 +41,15 @@
 </p>
 
 <p>
-  <b>Description:</b>
+  <h3>Event information:</h3>
   <%= @event.description %>
 </p>
-
-
+</td>
+<td>
+  </td>
+</tr>
+</table>
+</aside>
+</section>
 <%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+

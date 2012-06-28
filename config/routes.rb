@@ -9,7 +9,9 @@ HourTracker::Application.routes.draw do
    match '/stories', to: 'static_pages#stories'
    match '/signup/', to: 'users#new'
    match '/signup/:invitation_id', to: 'users#new', as: "new_signup_invitation"
- 
+ match '/users/:id/hourtracker', to:"users#hourtracker" ,as: "users_hourtracker"
+
+
    root to: 'static_pages#home'
    match '/newgroup', to: 'groups#new'
    match '/newevent',to:'events#new'
