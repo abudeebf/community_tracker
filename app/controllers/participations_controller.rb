@@ -28,7 +28,7 @@ class ParticipationsController < ApplicationController
     @participation =current_user.participations.build(start_time: @event.starttime,end_time:@event.endtime,approval:false, event_id:@event.id)
 
     x=Participation.where("event_id=? And user_id=?",@event,current_user.id)
-    if x.nil?
+    if x.nil? || x.empty?
       respond_to do |format|
       if @participation.save
         format.html { redirect_to @event, notice: 'Participation successful' }

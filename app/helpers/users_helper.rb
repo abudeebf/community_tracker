@@ -10,8 +10,13 @@ module UsersHelper
 	 if user.participations.nil? ||user.participations.empty?
 	 	x="you did not particpate yet,please participate to activate your hour tracker"
 	 else
+	 	sum=0
 	 	x=user.participations
-	 	
+	 	x.each { |y|
+         sum += (y.end_time.to_f-y.start_time.to_f)
+
+	 	}
+	 	return sum/3600
 	 end
 	end
 
