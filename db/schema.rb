@@ -52,12 +52,11 @@ ActiveRecord::Schema.define(:version => 20120627180859) do
   add_index "groups", ["user_id", "created_at"], :name => "index_groups_on_user_id_and_created_at"
 
   create_table "invitations", :force => true do |t|
-    t.text     "token"
     t.string   "invited_members"
     t.datetime "sent_at"
     t.integer  "sender_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "memberships", :force => true do |t|
@@ -67,6 +66,10 @@ ActiveRecord::Schema.define(:version => 20120627180859) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
+  add_index "memberships", ["user_id", "group_id"], :name => "index_memberships_on_user_id_and_group_id", :unique => true
+  add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
 
   create_table "participations", :force => true do |t|
     t.datetime "start_time"
@@ -83,12 +86,16 @@ ActiveRecord::Schema.define(:version => 20120627180859) do
     t.string   "last_name"
     t.string   "gender"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "password"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.string   "password_digest"
     t.string   "remember_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end
