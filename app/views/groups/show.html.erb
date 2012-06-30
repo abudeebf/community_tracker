@@ -35,6 +35,7 @@
     <section>
   <% if @group.events.any? %>
    <h3>Group Events (<%= @group.events.count %>)</h3>
+   <h3>Group total voulnteer hours is  (<%= grouphourtracker1(@group.events)%>)</h3>
   <% end %>
   <ol class="users">
    <%= render @events %>

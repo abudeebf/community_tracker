@@ -12,12 +12,12 @@ module UsersHelper
 	 else
 	 	sum=0
 	 	x=user.participations
-	 	x.each { |y|
+	 	x.each { |y| if y.approval
          sum += (y.end_time.to_f-y.start_time.to_f)
-
+          end
 	 	}
 	 	return sum/3600
 	 end
 	end
-
+   
 end

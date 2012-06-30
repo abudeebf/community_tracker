@@ -6,21 +6,16 @@
  <%= link_to "leave this event ",new_event_participation_path(@event), class: "btn btn-large 
  btn-primay" %>
  <% end %>
-
 <table>
   <tr>
     <td>
- <%= image_tag @event.photo.url %>
-
-
-    </td>
-  <td>
     <aside class "span4">
     <section style="margin-left:50px">
       <br />
       <br />
   <h2>  <%= @event.title %> Event</h2>
 <p>
+
   <b>Category:</b>
   <%= @event.category %>
 </p>
@@ -46,9 +41,60 @@
 </p>
 </td>
 <td>
-  </td>
+  <table class="table table-striped table-bordered table-condensed">
+<%= form_tag  participations_update_path, :action => "update" ,:method => :put do %>  
+  <% for part in @participations %>   
+    <%= fields_for "participations[]", part do |f| %> 
+    <div><%= f.hidden_field :user_id %></div>
+  <div><%= f.hidden_field :event_id %></div> 
+ <tr><td>  
+        <%= gravatar_for part.user,52 %>
+        <%=link_to part.user.first_name + " "+ part.user.last_name, part.user %>
+        
+        </td> 
+  <% y=false %>
+  <div class="controls">
+  <td> <% ["attend","not attend"].each do |x| %> 
+    <label class="radio inline">
+    <% if x=="attend" %>
+     <% y=true%>
+      <% else %>
+       <% y=false%>
+       <% end %>
+         <%= f.radio_button :approval, y %><%= x %> 
+          <% end %> 
+      </label> </td>
+  </div>
+   
+  <td width="10",height="10">
+
+   
+ <%= f.label :start_time %><br />
+
+   <%= f.datetime_select :start_time, :order => [:day, :month, :year, :hour,:minute] , start_year: Time.now.year,:size => 5 %>
+ </td>
+
+ <td>
+  <%= f.label :end_time %><br />
+   <%= f.datetime_select :end_time, :order => [:day, :month, :year, :hour,:minute] ,start_year: Time.now.year  %>
+    
+ </td>
+
+</tr>
+      
+      
+    <% end %>   
+  <% end %>   
+<tr>
+ <td colspan="2"><p class="cenetr"><%= submit_tag "Update",class: "btn btn-small btn-primay" %></p>  </td>  
+<% end %> 
 </tr>
 </table>
+</td>
+</tr>
+</table>
+
+
 </aside>
 </section>
 <%= link_to 'Edit', edit_event_path(@event) %> |

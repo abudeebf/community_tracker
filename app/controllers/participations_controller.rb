@@ -66,11 +66,10 @@ end
   # PUT /participations/1
   # PUT /participations/1.json
   def update
-    @participation = Participation.find(params[:id])
     
     respond_to do |format|
-      if @participation.update_attributes(params[:participation])
-        format.html { redirect_to @participation, notice: 'Participation was successfully updated.' }
+      if Participation.update(params[:participations].keys, params[:participations].values)
+        format.html { redirect_to Event.find_by_id(2), notice: 'Participation was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
