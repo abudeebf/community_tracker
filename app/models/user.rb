@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
    validates_presence_of :email,:message => " is required"
   validates_presence_of :password_confirmation ,:on => :create
   validates_presence_of :gender , :message  => " is required"
- validates_format_of  :password, :with => /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%]).{6,20})/, :message => " dose not meet password requirment",:on => :create
+ validates_format_of  :password, :with => /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#%]).{6,20})/, :message => " dose not meet password requirment",:on => :save
   validates_format_of  :email, :with => /\b[A-Za-z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/
   validates :email, uniqueness: {case_senstive: false}
   

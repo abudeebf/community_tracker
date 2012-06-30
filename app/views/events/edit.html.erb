@@ -24,12 +24,12 @@
   </div>
   
   <div class="field">
-    <%= f.label :starttime %><br />
-   <%= f.datetime_select :starttime, :order => [:day, :month, :year, :hour,:minute] %>
+      <%= f.label "Start time" %><br />
+   <%= f.datetime_select(:starttime, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %>
   </div>
   <div class="field">
-    <%= f.label :endtime %><br />
-    <%= f.datetime_select :endtime, :order => [:day, :month, :year, :hour,:minute], :width => 2 %>
+    <%= f.label "End Time" %><br />
+    <%= f.datetime_select(:endtime, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %>
   </div>
   <div class="field">
     <%= f.label :location %><br />
@@ -47,6 +47,4 @@
     <%= f.submit "Save ", class: "btn btn-large btn-primay" %>
   </div>
 <% end %>
-
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Back', @event %>

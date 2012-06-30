@@ -89,7 +89,7 @@ class UsersController < ApplicationController
   end
    def hourtracker
     @user = User.find(params[:id])
-    @participations=@user.participations.paginate(page:params[:page])
+    @participations=@user.participations.where('attend=?',true).paginate(page:params[:page])
    end
 
   private

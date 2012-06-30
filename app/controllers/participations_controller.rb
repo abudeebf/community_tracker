@@ -25,7 +25,7 @@ class ParticipationsController < ApplicationController
   # GET /participations/new.json
   def new
     @event=Event.find(params[:event_id])
-    @participation =current_user.participations.build(start_time: @event.starttime,end_time:@event.endtime,approval:false, event_id:@event.id)
+    @participation =current_user.participations.build(start_time: @event.starttime,end_time:@event.endtime,approval:false, event_id:@event.id,attend:true)
 
     x=Participation.where("event_id=? And user_id=?",@event,current_user.id)
     if x.nil? || x.empty?
@@ -47,13 +47,10 @@ class ParticipationsController < ApplicationController
 
   # GET /participations/1/edit
   def edit
-    @participation = Participation.find(params[:id])
-  
-    
-    respond_to do |format|
-      format.html { redirect_to @event }
-      format.json { head :no_content }
-  end
+   
+    @event = Event.find(params[:id])
+    @users=@event.users
+    @participations=@event.participations
 end
 
   # POST /participations
@@ -69,6 +66,7 @@ end
     
     respond_to do |format|
       if Participation.update(params[:participations].keys, params[:participations].values)
+         
         format.html { redirect_to Event.find_by_id(2), notice: 'Participation was successfully updated.' }
         format.json { head :no_content }
       else
