@@ -1,0 +1,30 @@
+<tr>
+	<td>
+		<% if participation.start_time.to_date==participation.end_time.to_date%>
+		<%= participation.start_time.to_date.strftime("%m-%d-%Y") 
+ %>
+		 <%else%>
+	From: <%= participation.start_time.to_date.strftime("%m-%d-%Y") %>
+	 To: <%=participation.end_time.to_date.strftime("%m-%d-%Y") %>
+   <%end %>
+	</td>
+<td>
+<%=link_to participation.event.title, participation.event %>
+</td>
+<td>
+<%=link_to participation.event.group.name, participation.event.group %>
+</td>
+ <td>
+
+ <%= (participation.end_time.to_f - participation.start_time.to_f)/3600 %>
+ 	</td>
+<td><%= link_to participation.event.user.first_name+" "+participation.event.user.last_name,participation.event.user%>
+	</td>
+	<td>
+		<% if participation.approval%>
+		 Yes 
+		<% else%>
+		 Not approved yet
+		<%end%>
+	</td>
+</tr>

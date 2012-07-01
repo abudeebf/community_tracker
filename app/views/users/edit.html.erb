@@ -15,11 +15,15 @@
     <%= f.text_field :first_name %>
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
-  <p>Gender</p> 
-    <% [ 'Female', 'Male', 'Other'].each do |gender| %> 
-      <%= f.radio_button  :gender , gender  %> 
-       <%= f.label :gender , gender.humanize   %> 
-    <% end %> 
+    <div class="controls" >
+   <%= f.label "Gender"  %>
+     <% ["Female","Male","Other"].each do |x| %> 
+    <label class="radio inline">
+      <%= f.radio_button :gender, x %><%= x %>  
+      </label> 
+    
+    <% end %>
+    </div> 
 <br>
     <%= f.label :email %><br />
     <%= f.text_field :email %>

@@ -6,50 +6,61 @@
  <%= link_to "leave this event ",new_event_participation_path(@event), class: "btn btn-large 
  btn-primay" %>
  <% end %>
+ <%= link_to "approve participantion ",participations_edit_path(@event), class: "btn btn-large 
+ btn-primay" %>
+ <%= link_to 'Edit', edit_event_path(@event) ,class: "btn btn-large 
+ btn-primay"%> 
 
-<table>
-  <tr>
-    <td>
- <%= image_tag @event.photo.url %>
-
-
-    </td>
-  <td>
-    <aside class "span4">
-    <section style="margin-left:50px">
+<aside class "span4">
+    <section>
       <br />
-      <br />
-  <h2>  <%= @event.title %> Event</h2>
-<p>
-  <b>Category:</b>
+      <table>
+        <tr>
+        <td colspan="3" class="center">
+ <h2> <%= @event.title.upcase %> EVENT PAGE</h2> </td>
+ </tr>
+ <tr>
+ <td  valign="top"> 
+ <% if @event.photo.url=="/photos/original/missing.png" %>
+  <%= image_tag "Help-Wanted-Sign.jpg",width: "200"%>
+  <%else %>
+<h1>
+  <%= image_tag @event.photo.url,width: "300"%>
+</h1>
+ <% end %>
+</td>
+      <td style='padding-left:15px ; width:150'>
+  <p><b>Category:</b>
   <%= @event.category %>
 </p>
-
 <p>
-  <b>Starttime:</b>
-  <%= @event.starttime %>
+  <b>Start time:</b>
+ From <%= @event.starttime.strftime("%m-%d-%Y")%>
+  
 </p>
-
 <p>
-  <b>Endtime:</b>
-  <%= @event.endtime %>
+  <b>End time:</b>
+ To <%= @event.endtime.strftime("%m-%d-%Y")%>
 </p>
-
 <p>
   <b>Location:</b>
   <%= @event.location %>
 </p>
-
 <p>
   <h3>Event information:</h3>
   <%= @event.description %>
 </p>
 </td>
-<td>
+<td padding-left:15px valign="top">
+    <% if @event.participations.any? %>
+      <h3>Event Participants (<%= @event.participations.count %>)</h3>
+      <ol class="users">
+        <%= render @users %>
+      </ol>
+      <% end %>
   </td>
 </tr>
-</table>
 </aside>
 </section>
-<%= link_to 'Edit', edit_event_path(@event) %> |
+</table>
 

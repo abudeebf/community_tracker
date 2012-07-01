@@ -1,0 +1,20 @@
+<%= form_for(part) do |f| %>
+  <div><%= f.hidden_field :user_id %></div>
+  <div><%= f.hidden_field :event_id %></div> 
+   <p> <%= part.user.first_name %></p> 
+  <% y=false %>
+  <div class="controls">
+  <% ["attend","not attend"].each do |x| %> 
+    <label class="radio inline">
+    <% if x=="attend" %>
+     <% y=true%>
+      <% else %>
+       <% y=false%>
+       <% end %>
+         <%= f.radio_button :approval, y %>  <%= x %>
+         
+  </div>
+    </label>
+<% end %>
+ 
+<% end %>

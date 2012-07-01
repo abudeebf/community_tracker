@@ -17,16 +17,17 @@
   </div>
   <div class="field">
     <%= f.label :category %><br />
-   <%= f.select :category, options_for_select([["Children", "c"], ["Homeless", "h"],["Elderly", "e"],["Education","e"],["Environment","e"],["Other","o"]]) %> 
+   <%= f.select :category, options_for_select([["Children", "Children"], ["Homeless", "Homeless"],["Elderly", "Elderly"],["Education","Education"],["Environment","Environment"],["Other","Other"]]) %> 
   </div>
   
+  
   <div class="field">
-    <%= f.label :starttime %><br />
-   <%= f.datetime_select :starttime, :order => [:day, :month, :year, :hour,:minute] %>
+      <%= f.label "Start time" %><br />
+   <%= f.datetime_select(:starttime, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %>
   </div>
   <div class="field">
-    <%= f.label :endtime %><br />
-    <%= f.datetime_select :endtime, :order => [:day, :month, :year, :hour,:minute], :width => 2 %>
+    <%= f.label "End Time" %><br />
+    <%= f.datetime_select(:endtime, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %>
   </div>
   <div class="field">
     <%= f.label :location %><br />

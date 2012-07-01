@@ -10,7 +10,8 @@ HourTracker::Application.routes.draw do
    match '/signup/', to: 'users#new'
    match '/signup/:invitation_id', to: 'users#new', as: "new_signup_invitation"
  match '/users/:id/hourtracker', to:"users#hourtracker" ,as: "users_hourtracker"
-
+ match '/events/:id/participations', to:"participations#update" ,as: "participations_update"
+match '/events/:id/participations/edit', to:"participations#edit" ,as: "participations_edit"
 
    root to: 'static_pages#home'
    match '/newgroup', to: 'groups#new'
@@ -31,7 +32,6 @@ HourTracker::Application.routes.draw do
   resources :groups do 
     resources :invitations, only: [:new ,:create]
   end
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -11,7 +11,10 @@
 <%= link_to 'My Preference', "#" ,class: "btn btn-small btn-primay" %>|
 <%= link_to 'Create Group', newgroup_path ,class: "btn btn-small btn-primay" %>
  <h1>
-  
+  </td>
+</tr>
+<tr> 
+  <td>
   <%= gravatar_for @user,200 %>
   <% @user.first_name %>
 </h1>
@@ -40,15 +43,11 @@
 
 </aside>
 </td>
-<td>
-  <br />
-  <br />
+<td valign="top">
   <aside class "span4">
-    <section style="margin-left:50px">
-      <br />
+    <section style="margin-left:50px" >
        <% if @user.groups.any? %>
       <h3 >My Groups (<%= @user.groups.count %>)</h3>
-      <br />
       <ol class="users">
         <%= render @user.groups  %>
       </ol>
