@@ -1,7 +1,9 @@
 HourTracker::Application.routes.draw do
-
   resources :participations
-
+  resources :reflections
+  match 'auth/:provider/callback', to: 'sessions#create' 
+  match 'auth/failure', to: redirect('/')
+  match 'signout', to: 'sessions#destroy', as: 'signout'
   resources :invitations
   resources :sessions, only:[:new,:create,:destroy]
   resources :users
@@ -9,10 +11,10 @@ HourTracker::Application.routes.draw do
    match '/stories', to: 'static_pages#stories'
    match '/signup/', to: 'users#new'
    match '/signup/:invitation_id', to: 'users#new', as: "new_signup_invitation"
- match '/users/:id/hourtracker', to:"users#hourtracker" ,as: "users_hourtracker"
- match '/events/:id/participations', to:"participations#update" ,as: "participations_update"
-match '/events/:id/participations/edit', to:"participations#edit" ,as: "participations_edit"
-
+   match '/users/:id/hourtracker', to:"users#hourtracker" ,as: "users_hourtracker"
+   match '/events/:id/participations', to:"participations#update" ,as: "participations_update"
+   match '/events/:id/participations/edit', to:"participations#edit" ,as: "participations_edit"
+   match '/events/:id/reflection/new' ,to: "reflections#new" ,as:'event_reflection'
    root to: 'static_pages#home'
    match '/newgroup', to: 'groups#new'
    match '/newevent',to:'events#new'
@@ -32,6 +34,10 @@ match '/events/:id/participations/edit', to:"participations#edit" ,as: "particip
   resources :groups do 
     resources :invitations, only: [:new ,:create]
   end
+  resources :events do 
+    resources :reflections
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

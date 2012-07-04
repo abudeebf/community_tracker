@@ -1,0 +1,19 @@
+<% provide(:title,@event.title + " Event Reflections")%>
+<h1> <%=@event.title%> Event Reflections </h1>
+<table>
+	<tr>
+		<td>
+		 <%= form_tag reflections_new_path, :action => "create" do%>
+            <%= text_area_tag :u_reflection, params[:u_reflection] ,rows: 15 , cols: 100%>
+            <%= hidden_field_tag :r_id,:value=> Participation.where("event_id=? And user_id=?",@event.id,current_user.id)[0] %></div>
+            <br />
+            </td>
+           </tr>
+            <tr>
+            	<td>
+           <%= submit_tag "post", :class => 'btn btn-large btn-primary' %>
+           <% end %>
+           </td>
+       </tr>
+          
+</table>

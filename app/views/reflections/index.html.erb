@@ -1,0 +1,25 @@
+<% provide(:title,'Participant Reflections') %>
+<h2><%= "Participant Reflections" + " " + Event.find(Participation.find(@reflections.first.r_id).event_id).title + " Event" %></h2>
+
+<table>
+
+<% @reflections.each do |reflection| %>
+  <tr>
+    <ul class="users">
+    <td><%=render "users/user" ,user: User.find(Participation.find(reflection.r_id ))%></td> </tr>
+    <tr>
+    <td><%= reflection.u_reflection %></td>
+   
+  </tr>
+    <tr>
+      <td><%= link_to 'link it to facebook', "#",class: "btn btn-small btn-primay" %>|
+    <%= link_to 'Edit', edit_reflection_path(reflection),class: "btn btn-small btn-primay" %>|
+    <%= link_to 'Delete', reflection, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-small btn-primay"%></td>
+  </tr>
+</ul>
+<% end %>
+</table>
+
+<br />
+
+

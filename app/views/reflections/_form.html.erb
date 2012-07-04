@@ -1,0 +1,27 @@
+<%= form_for(@reflection) do |f| %>
+  <% if @reflection.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reflection.errors.count, "error") %> prohibited this reflection from being saved:</h2>
+
+      <ul>
+      <% @reflection.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<h3>share your reflection here :</h3>
+
+  <div class="field">
+    <%= f.label :u_reflection %><br />
+    <%= f.text_area :u_reflection %>
+    <% if :r_id.nil?%>
+    <%= f.hidden_field :r_id ,:value => @part_id %>
+   <% else%>
+    <% f.hidden_field :r_id %>
+    <%end %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Post" %>
+  </div>
+<% end %>

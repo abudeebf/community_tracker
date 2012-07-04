@@ -86,9 +86,11 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
   private
 
     def load_current_group
       @group = Group.find(params[:group_id])
     end
+
 end

@@ -14,6 +14,19 @@
 	<%= content_tag(:div,value,class: "alert alert-#{key}" )%>
 	<%end%>
 <%= yield %>
+
+
+<div id="user_nav">
+  <% if current_user2 %>
+    Signed in as <strong><%= current_user2.name %></strong>!
+    <%= link_to "Sign out", signout1_path, id: "sign_out" %>
+  <% else %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+  <% end %>
+</div>
+
+
+
 </div>
 <%= render '/layouts/footer' %>
  <!-- maybe I have to remove it later-->

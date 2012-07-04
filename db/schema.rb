@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120630183909) do
+ActiveRecord::Schema.define(:version => 20120702211621) do
 
   create_table "branchtests", :force => true do |t|
     t.string   "name"
@@ -80,6 +80,23 @@ ActiveRecord::Schema.define(:version => 20120630183909) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "attend"
+  end
+
+  create_table "reflections", :force => true do |t|
+    t.integer  "r_id"
+    t.text     "u_reflection"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "reflectors", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "users", :force => true do |t|
