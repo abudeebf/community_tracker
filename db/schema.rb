@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120702211621) do
+ActiveRecord::Schema.define(:version => 20120706204330) do
 
   create_table "branchtests", :force => true do |t|
     t.string   "name"
@@ -36,8 +36,21 @@ ActiveRecord::Schema.define(:version => 20120702211621) do
     t.integer  "photo_file_size"
   end
 
-# Could not dump table "groups" because of following StandardError
-#   Unknown type 'long' for column 'phone'
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.string   "tags"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "email"
+    t.string   "location"
+    t.string   "phone"
+  end
 
   create_table "invitations", :force => true do |t|
     t.string   "invited_members"
