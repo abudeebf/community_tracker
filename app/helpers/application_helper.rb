@@ -1,4 +1,5 @@
 module ApplicationHelper
+	
 	def submit_to_popup(label, options = {})
     form_var = options[:form_id] ? "$('#{options[:form_id]}')" :
 'this.form'

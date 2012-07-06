@@ -5,10 +5,25 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only:[:edit,:update,:destroy]
   before_filter :correct_user, only:[:edit,:update,:destroy]
   def index
-
+    
+    @cat=params[:cat]
+   if params[:cat]=="People" 
+     if params[:search].empty? ||  params[:search].nil?
+      @users=User.find(:all)
+    else
     @users = User.find(:all, :conditions => ['first_name LIKE ? or last_name LIKE ? ', "%#{params[:search]}%","%#{params[:search]}%"])
+  end 
+  elsif params[:cat]=="Events"
+    @events= Event.find(:all, :conditions => ['title LIKE ? or category LIKE ? ', "%#{params[:search]}%","%#{params[:search]}%"])
+  else
+   @groups=Group.find(:all, :conditions => ['name LIKE ? ', "%#{params[:search]}%"])
+    end 
+    params[:cat]=""
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @users }
+    end
   end
-
   # GET /users/1
   # GET /users/1.json
   def show
@@ -88,8 +103,22 @@ class UsersController < ApplicationController
     end
   end
    def hourtracker
+    @types=params[:types]
+    if @types.nil? || @types.empty?
+     params[:types]="All"
+     @types="All"
+    end
     @user = User.find(params[:id])
-    @participations=@user.participations.where('attend=?',true).paginate(page:params[:page])
+    if params[:types]=="All"
+    @participations=@user.participations.paginate(page:params[:page])
+    elsif params[:types]=="Approved"
+        @participations=@user.participations.where('attend=? and approval=?',true,true).paginate(page:params[:page])
+      elsif params[:types]=="Waiting"
+         @participations=@user.participations.where('attend=? and approval=?',true,false).paginate(page:params[:page])
+       else
+        @types='not approved'
+         @participations=@user.participations.where('attend=? and approval=?',false,true).paginate(page:params[:page])
+       end
    end
 
   private

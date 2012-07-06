@@ -1,9 +1,15 @@
 <% provide(:title,'Community Tracker users')%>
-<h1> Community Tracker users</h1>
-
+<h1> Community Tracker Search result</h1>
+  
     <ul class="users">
-        <%= render @users %>
+      <% if @cat=="People"%>
 
+        <%= render @users %>
+       <% elsif @cat== "Groups" %>
+        <%= render @groups %>
+       <% elsif  @cat== "Events" %>
+       <%= render @events %>
+       <% end %>
     </ul>
   
 

@@ -1,45 +1,69 @@
-require 'spec_helper'
+require 'spec_helper' 
 
-describe "Static Pages" do
- describe "Home Page"  do
- 	it "should have the h1 'Community Tracker'" do
- 	   visit root_path
- 	    page.should have_selector('h1',text:'Community Tracker')
-    end
-    it "should have the right title" do
- 	   visit root_path
- 	    page.should have_selector('title',text:'Community Tracker |Home')
- 	end
-end 
-describe "About us"  do
- 	it "should have the h1 'About us'" do
- 	   visit aboutus_path
- 	     page.should have_selector('h1',text:'About us')
-    end
-    it "should have the right title" do
- 	   visit '/static_pages/aboutus'
- 	    page.should have_selector('title',text:'Community Tracker |About us')
- 	end
-end
-describe "Stories"  do
- 	it "should have the h1 'Stories '" do
- 	   visit stories_path
- 	    page.should have_selector('h1',text:'Stories')
-    end
-    it "should have the right title" do
- 	   visit stories_path
- 	    page.should have_selector('title',text:'Community Tracker |Stories')
- 	end
-end
-describe "Sign up"  do
- 	it "should have the h1 'Sign up'" do
- 	   visit signup_path
- 	    page.should have_selector('h1',text:'Sign up')
-    end
-    it "should have the right title" do
- 	   visit signup_path
- 	    page.should have_selector('title',text:'Community Tracker |Sign up')
- 	end
+describe "Static pages" do
 
-end 
+  subject {page}
+
+  shared_examples_for "all static pages" do
+    it { should have_selector('h1',    text: heading) }
+    it { should have_selector('title', text: full_title(page_title)) }
+  end
+
+  describe "Home page" do
+    before { visit root_path }
+    let(:heading) {'Community Tracker'}
+    let(:page_title){''}
+
+    it_should_behave_like "all static pages"
+    it {should_not have_selector('title',text:'| Home')}
+  end
+
+  describe "Help page" do
+    before {visit help_path}
+    let(:heading) {'Help'}
+    let(:page_title){'Help'}
+    it_should_behave_like "all static pages"
+  end
+
+  describe "About page" do
+    before {visit about_path}
+    let(:heading) {'About Us'}
+    let(:page_title){'About Us'}
+    it_should_behave_like "all static pages"
+  end
+
+  describe "Sign Up page" do
+    before {visit signup_path}
+    let(:heading) {'Sign up'}
+    let(:page_title){'Sign up'}
+    it_should_behave_like "all static pages"
+  end
+
+  describe "Story page" do
+    before {visit stories_path}
+    let(:heading) {'Stories'}
+    let(:page_title){'Stories'}
+    it_should_behave_like "all static pages"
+  end
+
+  describe "Contact page" do
+    before {visit contact_path}
+    let(:heading) {'Contact'}
+    let(:page_title){'Contact'}
+    it_should_behave_like "all static pages"
+  end
+
+  it "should have the right links on the layout" do
+    visit root_path
+
+    click_link "About"
+    page.should have_selector 'title', text: full_title('About Us')
+    click_link "Help"
+    page.should have_selector 'title', text: full_title('Help')
+    click_link "Contact"
+    page.should have_selector 'title', text: full_title('Contact')
+    click_link "Home"
+    click_link "Sign up now!"
+    page.should have_selector 'title', text: full_title('Sign up')
+  end
 end

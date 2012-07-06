@@ -21,10 +21,12 @@
 <td><%= link_to participation.event.user.first_name+" "+participation.event.user.last_name,participation.event.user%>
 	</td>
 	<td>
-		<% if participation.approval%>
-		 Yes 
-		<% else%>
-		 Not approved yet
+		<% if participation.approval==true && participation.attend==true %>
+		 Approved 
+		<% elsif participation.approval==false && participation.attend==true%>
+		 Waiting
+		 <%else %>
+		 Not approved
 		<%end%>
 	</td>
 </tr>

@@ -3,6 +3,7 @@ HourTracker::Application.routes.draw do
   resources :reflections
   match 'auth/:provider/callback', to: 'sessions#create' 
   match 'auth/failure', to: redirect('/')
+  match '/search_result', to: 'users#index' ,as:'userserach'
   match 'signout', to: 'sessions#destroy', as: 'signout'
   resources :invitations
   resources :sessions, only:[:new,:create,:destroy]

@@ -10,11 +10,11 @@
       </ul>
     </div>
   <% end %>
-<h3>share your reflection here :</h3>
+<h3>Inspire other by your reflection </h3>
 
   <div class="field">
-    <%= f.label :u_reflection %><br />
-    <%= f.text_area :u_reflection %>
+   <br />
+    <%= f.text_area :u_reflection, :style => "width:380px"  %>
     <% if :r_id.nil?%>
     <%= f.hidden_field :r_id ,:value => @part_id %>
    <% else%>
@@ -22,6 +22,6 @@
     <%end %>
   </div>
   <div class="actions">
-    <%= f.submit "Post" %>
+    <%= f.submit "Post your reflection ",class: "btn btn-large btn-primay" %>
   </div>
 <% end %>

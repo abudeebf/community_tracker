@@ -1,11 +1,13 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <%= link_to "Community Tracker",root_path, class: "brand" %>
+    <%= link_to "Volunteer Hours",root_path, class: "brand" %>
     <div class="container">
     <nav>
       <ul class ="nav pull-right">
-            <li> <%= form_tag(users_path, :class => 'form-search', :method => 'get') do %>
+            <li> <%= form_tag(userserach_path, :class => 'form-search', :method => 'get') do %>
+             <%= select_tag :cat, options_for_select([["People", "People"], ["Groups", "Groups"],["Events", "Events"]],:selected => @cat),{:style => 'width: 65px;font-size:10px'}  %> 
             <%= text_field_tag :search, params[:search] %>
+
            <%= submit_tag "Search",:name => nil, :class => 'btn btn-large btn-primary' %>
            <% end %>
            </li>
