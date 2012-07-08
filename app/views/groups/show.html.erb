@@ -12,26 +12,50 @@
 <% end %>
 <% end %>
 <% end %>
-<aside class "span4">
+<aside >
     <section>
-   <h2></h2>
- <h2> <%= @group.name.upcase %> PROFILE</h2> 
- <% if @group.photo.url=="/photos/original/missing.png" %>
+      <br />
+      <table>
+        <tr>
+          <td  valign="top" colspan="4"> 
+             <h2> <%= @group.name.upcase %> PROFILE</h2> 
+           </td>
+         </tr>
+         <tr>
+          <td valign="top">
+  <% if @group.photo.url=="/photos/original/missing.png" %>
   <%= image_tag "community.jpg",width: "200"%>
   <%else %>
-<h1>
-  <%= image_tag @group.photo.url,width: "300"%>
-</h1>
+  <%= image_tag @group.photo.url,width: "200"%>
  <% end %>
-  <b>Description:</b> <br />
+ <p><b>email:</b> <br />
+  <%= @group.email %>
+</p><br />
+  <b> Creator:</b> <br />
+  <p>
+  <% user=User.find(@group.memberships.find_by_member("Creator").user_id) %>
+  <%= link_to  user.first_name + " " + user.last_name ,user %>
+</p>
+</td> 
+  <td style='padding-left:15px '>
+  <p><b>Description:</b> <br />
   <%= @group.description %>
 </p>
 <p>
-	<b> Creator:</b> <br />
-	<% user=User.find(@group.memberships.find_by_member("Creator").user_id) %>
-	<%= link_to  user.first_name + " " + user.last_name ,user %>
+ <b> Address:</b><br />
+<%= @group.address %><br />
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@group.latitude}%2C#{@group.longitude}" %>
+<br />
 </p>
+
+<h3>Nearby locations</h3>
+
+</td>
 </section>
+</tr>
+<tr>
+  
+
     <section>
   <% if @group.events.any? %>
    <h3>Group Events (<%= @group.events.count %>)</h3>
@@ -41,5 +65,7 @@
    <%= render @events %>
  </ol>
   </section>
+  </tr>
 </aside>
 
+</table>

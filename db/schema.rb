@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120702211621) do
+ActiveRecord::Schema.define(:version => 20120708191804) do
 
   create_table "branchtests", :force => true do |t|
     t.string   "name"
@@ -49,6 +49,9 @@ ActiveRecord::Schema.define(:version => 20120702211621) do
     t.datetime "photo_updated_at"
     t.string   "email"
     t.string   "location"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
   end
 
   add_index "groups", ["user_id", "created_at"], :name => "index_groups_on_user_id_and_created_at"
@@ -59,6 +62,14 @@ ActiveRecord::Schema.define(:version => 20120702211621) do
     t.integer  "sender_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "locations", :force => true do |t|
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "memberships", :force => true do |t|

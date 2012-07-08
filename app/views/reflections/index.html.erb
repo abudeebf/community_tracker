@@ -2,18 +2,18 @@
 <% if !@reflections.first.nil?%>
 <h2><%= "Participant Reflections" + " " + Event.find(Participation.find(@reflections.first.r_id).event_id).title + " Event" %></h2>
 
-<table>
+
 
 <% @reflections.each do |reflection| %>
-  <tr>
-    <ul class="users">
-    <td><%=render "users/user" ,user: User.find(Participation.find(reflection.r_id ).user_id)%></td> </tr>
-    <tr>
-    <td><%= reflection.u_reflection %></td>
-   
-  </tr>
-    <tr>
-       <td> <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="" layout="button_count" show_faces="false" width="450" font=""></fb:like>
+  
+    <div class="hero-unit">
+     
+    <%=render "users/user" ,user: User.find(Participation.find(reflection.r_id ).user_id)%></td></tr>
+    
+    <%= reflection.u_reflection %>
+    <br />
+    
+   <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="" layout="button_count" show_faces="false" width="450" font=""></fb:like>
 
       <div id="fb-root"></div><!-- required by facebook -->
        <a name="fb_share" share_url="https://young-frost-4398.herokuapp.com/
@@ -22,13 +22,14 @@
         type="text/javascript">
 </script>
 
-
+   <% if current_user?(User.find(Participation.find(reflection.r_id ).user_id))%>
     <%= link_to 'Edit', edit_reflection_path(reflection),class: "btn btn-small btn-primay" %>|
-    <%= link_to 'Delete', reflection, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-small btn-primay"%></td>
-  </tr>
-</ul>
+    <%= link_to 'Delete', reflection, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-small btn-primay"%>
+   <%end %>
+   
+
+ </div>
 <% end %>
-</table>
 <% else%>
 <h2>Be the first to inspire other</h2>
 <%= link_to 'Inspire other by your Reflection',new_event_reflection_path(@event),class: "btn btn-small 

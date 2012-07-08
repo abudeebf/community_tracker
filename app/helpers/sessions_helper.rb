@@ -24,7 +24,9 @@ module SessionsHelper
        def current_user
        	@current_user ||= User.find_by_remember_token(cookies[:remember_token])
        end
-
+      def admin?(group_id)
+       (current_user.memberships.where("group_id=? And member=?",group_id,"Creator")).empty? == false || (current_user.memberships.where("group_id=? And member=?",group_id,"Admin")).empty? ==false
+      end
        def current_user?(user)
               user==current_user
        end

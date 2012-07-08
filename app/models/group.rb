@@ -1,5 +1,7 @@
 class Group < ActiveRecord::Base
-  attr_accessible :description, :name, :tags, :photo
+  attr_accessible :description, :name, :tags, :photo,:address,:email
+geocoded_by :address
+after_validation :geocode, :if => :address_changed?
   has_attached_file :photo
   has_many :sent_invitations, :class_name => "Invitation",:foreign_key=> 'sender_id'
   validates :description, presence: true

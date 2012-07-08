@@ -50,8 +50,9 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
          @group=Group.find(@event.group_id)
+          @participation =current_user.participations.build(start_time: @event.starttime,end_time:@event.endtime,approval:false, event_id:@event.id,attend:true)
   @users=@group.users
- 
+ @participation.save
   @users.each { |user|
         UserMailer.join_event(@event,event_show_url(@event),user).deliver  }
 

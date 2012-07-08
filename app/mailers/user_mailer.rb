@@ -21,6 +21,11 @@ end
     @event_url=url
     mail(:to =>@user.email,:subject => "please join this event")
 end
+def update_hourtracker(user,url)
+  @user=user
+  @url=url
+  mail(:to =>@user.email,:subject => "your volnteer hours have changed")
+  end
 end
 
 

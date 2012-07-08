@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'geocoder'
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 gem 'omniauth-facebook'
 gem 'rails', '3.2.6'

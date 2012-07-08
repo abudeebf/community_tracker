@@ -67,6 +67,9 @@ end
     respond_to do |format|
       if Participation.update(params[:participations].keys, params[:participations].values)
          @event=Event.find(params[:id])
+         @users=@event.users
+          @users.each { |user|
+        UserMailer.update_hourtracker(user,users_hourtracker_url(user)).deliver  }
         format.html { redirect_to @event, notice: 'Participation was successfully updated.' }
         format.json { head :no_content }
       else
