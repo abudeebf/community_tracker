@@ -15,11 +15,9 @@
   <div class="field">
    <br />
     <%= f.text_area :u_reflection, :style => "width:380px"  %>
-    <% if :r_id.nil?%>
-    <%= f.hidden_field :r_id ,:value => @part_id %>
-   <% else%>
-    <% f.hidden_field :r_id %>
-    <%end %>
+    <%= f.hidden_field :r_id,:value => @part_id %>
+ 
+  
   </div>
   <div class="actions">
     <%= f.submit "Post your reflection ",class: "btn btn-large btn-primay" %>

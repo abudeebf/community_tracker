@@ -2,7 +2,7 @@ class ReflectionsController < ApplicationController
   # GET /reflections
   # GET /reflections.json
   def index
-    @event=Event.find(params[:event_id])
+    @event=Event.find(params[:id])
     @participation=@event.participations
     @reflections=[]
      @participation.each do |x|
@@ -35,7 +35,7 @@ end
     @participation.each do |x|
       @part_id= x.id
     end
-    if !@part_id.nil? 
+    if !@part_id.nil? || !@part_id.empty?
     @reflection = Reflection.new()
       render action: "new" 
     else 
@@ -47,20 +47,23 @@ end
   # GET /reflections/1/edit
   def edit
     @reflection = Reflection.find(params[:id])
+    @part_id=@reflection.r_id
   end
 
   # POST /reflections
   # POST /reflections.json
   def create
- 
-    
     @reflection = Reflection.new(params[:reflection])
+     respond_to do |format|
     if @reflection.save
       @event= Event.find(Participation.find(@reflection.r_id).event_id)
-     redirect_to event_reflections_path(@event)
-      else
-      render  "new" 
+    format.html {  redirect_to reflections_to_event_path(@event),notice: 'Reflection was successfully added.' }
+   else
+       @event= Event.find(Participation.find(@reflection.r_id).event_id)
+        format.html {  redirect_to @event,notice:'you can not reflect more than one to the same event ' }
       end
+      end
+      
     end
  
 
@@ -95,4 +98,5 @@ end
       format.json { head :no_content }
     end
   end
+ 
 end

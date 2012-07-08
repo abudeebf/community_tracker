@@ -7,7 +7,7 @@
 <% @reflections.each do |reflection| %>
   <tr>
     <ul class="users">
-    <td><%=render "users/user" ,user: User.find(Participation.find(reflection.r_id ))%></td> </tr>
+    <td><%=render "users/user" ,user: User.find(Participation.find(reflection.r_id ).user_id)%></td> </tr>
     <tr>
     <td><%= reflection.u_reflection %></td>
    

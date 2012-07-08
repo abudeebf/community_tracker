@@ -10,12 +10,13 @@ HourTracker::Application.routes.draw do
   resources :users
    match '/aboutus', to: 'static_pages#aboutus'
    match '/stories', to: 'static_pages#stories'
-   match '/signup/', to: 'users#new'
+   match '/signup/', to: 'users#new' 
    match '/signup/:invitation_id', to: 'users#new', as: "new_signup_invitation"
    match '/users/:id/hourtracker', to:"users#hourtracker" ,as: "users_hourtracker"
    match '/events/:id/participations', to:"participations#update" ,as: "participations_update"
    match '/events/:id/participations/edit', to:"participations#edit" ,as: "participations_edit"
    match '/events/:id/reflection/new' ,to: "reflections#new" ,as:'event_reflection'
+   match '/events/:id/reflections'    ,to:"reflections#index",as:"reflections_to_event"
    root to: 'static_pages#home'
    match '/newgroup', to: 'groups#new'
    match '/newevent',to:'events#new'

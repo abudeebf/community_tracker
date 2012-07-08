@@ -46,4 +46,5 @@ module SessionsHelper
     store_location
     redirect_to signin_path, notice:"Please Sign in." unless signed_in?  
   end 
+ 
 end
