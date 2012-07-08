@@ -49,7 +49,12 @@ class EventsController < ApplicationController
      
     respond_to do |format|
       if @event.save
-        
+         @group=Group.find(@event.group_id)
+  @users=@group.users
+ 
+  @users.each { |user|
+        UserMailer.join_event(@event,event_show_url(@event),user).deliver  }
+
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else

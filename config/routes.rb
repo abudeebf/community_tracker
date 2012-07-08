@@ -17,6 +17,7 @@ HourTracker::Application.routes.draw do
    match '/events/:id/participations/edit', to:"participations#edit" ,as: "participations_edit"
    match '/events/:id/reflection/new' ,to: "reflections#new" ,as:'event_reflection'
    match '/events/:id/reflections'    ,to:"reflections#index",as:"reflections_to_event"
+   match '/events/:id' ,to:"events#show",as:"event_show"
    root to: 'static_pages#home'
    match '/newgroup', to: 'groups#new'
    match '/newevent',to:'events#new'

@@ -1,4 +1,4 @@
 <%= @user.first_name  + " " + @user.last_name%>,
 
-Thank you for registering! 
-<p><%= link_to "Edit Profile", edit_user_url(@user, :host => "localhost:3000") %></p>
+Thank you for registering!
+<%=edit_user_url(@user)%> to edit your profile.

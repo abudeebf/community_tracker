@@ -66,8 +66,8 @@ end
     
     respond_to do |format|
       if Participation.update(params[:participations].keys, params[:participations].values)
-         
-        format.html { redirect_to Event.find_by_id(2), notice: 'Participation was successfully updated.' }
+         @event=Event.find(params[:id])
+        format.html { redirect_to @event, notice: 'Participation was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

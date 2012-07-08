@@ -14,4 +14,13 @@ def invitation(invitation, signup_url,group)
   @signup_url=signup_url
   mail(:to => invitation, :subject => "Invitation")  
 end
-end 
+ def join_event(event,url,user)
+  @event=event
+  @group=Group.find(@event.group_id)
+    @user=user
+    @event_url=url
+    mail(:to =>@user.email,:subject => "please join this event")
+end
+end
+
+
