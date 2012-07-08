@@ -1,8 +1,7 @@
-
-<div class="row">
-  <div class="span9 offset3">
 <%= form_for(@user) do |f| %>
   <%= render "shared/error_messages"%>
+  <aside class "span5">
+    <section>
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
     <%= f.label :last_name %><br />
@@ -32,3 +31,5 @@
 <% end %>
 </div>
 </div>
+</section>
+</aside>

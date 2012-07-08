@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :signed_in_user , only:[:create,:update,:destroy]
+  before_filter :signed_in_user , only:[:new,:create,:update,:destroy]
   before_filter :load_current_group, only: [:new, :create]
   # GET /events
   # GET /events.json
