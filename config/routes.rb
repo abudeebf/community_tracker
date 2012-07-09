@@ -10,6 +10,7 @@ HourTracker::Application.routes.draw do
   resources :invitations
   resources :sessions, only:[:new,:create,:destroy]
   resources :users
+  match 'groups/:id/join', to: 'groups#join' , as:"new_group_join"
    match '/aboutus', to: 'static_pages#aboutus'
    match '/stories', to: 'static_pages#stories'
    match '/signup/', to: 'users#new' 

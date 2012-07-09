@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  audited :associated_with =>:group
   attr_accessible :email, :first_name, :gender, :last_name, :password, :password_confirmation
   has_secure_password
   has_many :events, :through => :participations

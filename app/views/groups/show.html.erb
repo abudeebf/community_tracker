@@ -8,7 +8,7 @@
 <%= link_to 'Invite Member', new_group_invitation_path(@group), class: "btn btn-small btn-primay" %> 
 <% else %>
 <% if (current_user.memberships.where("group_id=? And member=?",@group.id,"Member")) .empty?%>
-<%= link_to 'Join Us', current_user.joingroup!(:group_id, "Member"), class: "btn btn-large btn-primay" %> 
+<%= link_to 'Join Us', new_group_join_path(@group), class: "btn btn-large btn-primay" %> 
 <% end %>
 <% end %>
 <% end %>

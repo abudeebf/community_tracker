@@ -69,7 +69,7 @@ class GroupsController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
@@ -81,4 +81,17 @@ class GroupsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def join
+    @group=Group.find(params[:id])
+    respond_to do |format|
+      if  current_user.joingroup!(@group,"Member")
+        format.html { redirect_to @group, notice: 'You have successfully joined the group ' }
+        format.json { render json: @group, status: :created, location: @participation }
+      else
+       format.html { redirect_to @group, notice: 'Join not successfull' }
+        format.json { render json: @group.errors, status: :unprocessable_entity }
+      end
+     end
+  end
+
 end
