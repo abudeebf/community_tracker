@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :events, :through => :participations
   has_many :participations, foreign_key:"user_id" ,dependent: :destroy
   has_many :groups, :through => :memberships
+  has_many :pastevents, foreign_key: "user_id", dependent: :destroy
   has_many :events , dependent: :destroy
   has_many :memberships, foreign_key:"user_id" ,dependent: :destroy
   has_many :reverse_relationships, foreign_key:"group_id",dependent: :destroy, class_name:"memberships"

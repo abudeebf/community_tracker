@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120709165330) do
+ActiveRecord::Schema.define(:version => 20120709214426) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(:version => 20120709165330) do
     t.string   "name"
     t.string   "tags"
     t.string   "description"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
@@ -70,12 +70,11 @@ ActiveRecord::Schema.define(:version => 20120709165330) do
     t.datetime "photo_updated_at"
     t.string   "email"
     t.string   "location"
+    t.string   "phone"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address"
   end
-
-  add_index "groups", ["user_id", "created_at"], :name => "index_groups_on_user_id_and_created_at"
 
   create_table "invitations", :force => true do |t|
     t.string   "invited_members"
@@ -114,6 +113,18 @@ ActiveRecord::Schema.define(:version => 20120709165330) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "attend"
+  end
+
+  create_table "pastevents", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "orgname"
+    t.string   "location"
+    t.float    "hours"
+    t.string   "adminname"
+    t.string   "email"
+    t.boolean  "approval"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "reflections", :force => true do |t|
