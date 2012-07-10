@@ -1,0 +1,45 @@
+<%= form_for(@pastevent) do |f| %>
+  <% if @pastevent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pastevent.errors.count, "error") %> prohibited this pastevent from being saved:</h2>
+
+      <ul>
+      <% @pastevent.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :orgname %><br />
+    <%= f.text_field :orgname %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :hours %><br />
+    <%= f.text_field :hours %>
+  </div>
+  <div class="field">
+    <%= f.label :adminname %><br />
+    <%= f.text_field :adminname %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :approval %><br />
+    <%= f.check_box :approval %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

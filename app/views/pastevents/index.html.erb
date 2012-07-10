@@ -1,0 +1,35 @@
+<h1>Listing pastevents</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Orgname</th>
+    <th>Location</th>
+    <th>Hours</th>
+    <th>Adminname</th>
+    <th>Email</th>
+    <th>Approval</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pastevents.each do |pastevent| %>
+  <tr>
+    <td><%= pastevent.user_id %></td>
+    <td><%= pastevent.orgname %></td>
+    <td><%= pastevent.location %></td>
+    <td><%= pastevent.hours %></td>
+    <td><%= pastevent.adminname %></td>
+    <td><%= pastevent.email %></td>
+    <td><%= pastevent.approval %></td>
+    <td><%= link_to 'Show', pastevent %></td>
+    <td><%= link_to 'Edit', edit_pastevent_path(pastevent) %></td>
+    <td><%= link_to 'Destroy', pastevent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pastevent', new_pastevent_path %>

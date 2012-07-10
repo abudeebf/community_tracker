@@ -1,0 +1,2 @@
+module PasteventsHelper
+end

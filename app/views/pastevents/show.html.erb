@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @pastevent.user_id %>
+</p>
+
+<p>
+  <b>Orgname:</b>
+  <%= @pastevent.orgname %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @pastevent.location %>
+</p>
+
+<p>
+  <b>Hours:</b>
+  <%= @pastevent.hours %>
+</p>
+
+<p>
+  <b>Adminname:</b>
+  <%= @pastevent.adminname %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @pastevent.email %>
+</p>
+
+<p>
+  <b>Approval:</b>
+  <%= @pastevent.approval %>
+</p>
+
+
+<%= link_to 'Edit', edit_pastevent_path(@pastevent) %> |
+<%= link_to 'Back', pastevents_path %>
