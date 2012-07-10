@@ -26,7 +26,7 @@ class ParticipationsController < ApplicationController
   def new
     @event=Event.find(params[:event_id])
     @participation =current_user.participations.build(start_time: @event.starttime,end_time:@event.endtime,approval:false, event_id:@event.id,attend:true)
-
+    @participation.audit_comment="join Event"
     x=Participation.where("event_id=? And user_id=?",@event,current_user.id)
     if x.nil? || x.empty?
       respond_to do |format|
@@ -40,6 +40,7 @@ class ParticipationsController < ApplicationController
     end
     else
    @participation=Participation.find(x[0].id)
+   @participation.audit_comment="unjoin event"
    @participation.destroy
   redirect_to @event, notice: 'your not participaant any more' 
     end
@@ -65,7 +66,7 @@ end
   def update
     
     respond_to do |format|
-      if Participation.update(params[:participations].keys, params[:participations].values)
+      if Participation.update(params[:participations].keys, params[:participations].values,audit_comment:"confirm Hours")
          @event=Event.find(params[:id])
          @users=@event.users
           @users.each { |user|

@@ -12,4 +12,6 @@ class Event < ActiveRecord::Base
    has_attached_file :photo
    has_many :users, :through => :participations
   has_many :participations, foreign_key:"event_id" ,dependent: :destroy
+  has_associated_audits
+  audited
 end

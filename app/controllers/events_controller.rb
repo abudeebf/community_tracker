@@ -45,12 +45,12 @@ class EventsController < ApplicationController
   def create
     @event = @group.events.build(params[:event])
     @event.user = current_user
-
+    @event.audit_comment="Create Event"
      
     respond_to do |format|
       if @event.save
          @group=Group.find(@event.group_id)
-          @participation =current_user.participations.build(start_time: @event.starttime,end_time:@event.endtime,approval:false, event_id:@event.id,attend:true)
+          @participation =current_user.participations.build(start_time: @event.starttime,end_time:@event.endtime,approval:false, event_id:@event.id,attend:true,audit_comment:"join Event")
   @users=@group.users
  @participation.save
   @users.each { |user|
@@ -69,7 +69,7 @@ class EventsController < ApplicationController
   # PUT /events/1.json
   def update
     @event = Event.find(params[:event_id])
-
+  @event.audit_comment="Update Event"
     respond_to do |format|
       if @event.update_attributes(params[:event])
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -84,6 +84,7 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
     @event = Event.find(params[:id])
+    @event.audit_comment="Destroy Event"
     @event.destroy
 
     respond_to do |format|

@@ -31,12 +31,12 @@ class InvitationsController < ApplicationController
   # POST /invitations
   # POST /invitations.json
   def create
-    @invitation = Invitation.new(params[:invitation])
-emails=@invitation.invited_members.split()
- 
-    @invitation.update_attribute(:sent_at,Time.now)
-    @invitation.sender_id=@group
-      if @invitation.save
+    @invitation = Invitation.new(params[:invitation] )
+    emails=@invitation.invited_members.split()
+    @invitation.sent_at=Time.now
+    @invitation.sender_id=@group.id
+    @invitation.audit_comment="Send Invitation";
+      if @invitation.save!
         emails.each {|x| 
     UserMailer.invitation(x,new_signup_invitation_url(@invitation),@group).deliver 
     }

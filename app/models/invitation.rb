@@ -4,6 +4,10 @@ class Invitation < ActiveRecord::Base
   has_many :recipient, :class_name =>'User'
   validates_presence_of :invited_members
   validate :recipient_is_not_registered
+     audited :associated_with =>:sender
+
+
+
   # before_create :generate_token
 
  private

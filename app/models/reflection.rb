@@ -4,4 +4,6 @@ class Reflection < ActiveRecord::Base
    validates :r_id, presence: true
   validates :u_reflection, presence: true
   validates :r_id, uniqueness: {case_senstive: false} 
+   audited :associated_with =>:participations
+      
 end

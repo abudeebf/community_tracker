@@ -54,6 +54,7 @@ end
   # POST /reflections.json
   def create
     @reflection = Reflection.new(params[:reflection])
+    @reflection.audit_comment="add reflection"
      respond_to do |format|
     if @reflection.save
       @event= Event.find(Participation.find(@reflection.r_id).event_id)
@@ -71,7 +72,7 @@ end
   # PUT /reflections/1.json
   def update
     @reflection = Reflection.find(params[:id])
-
+@reflection.audit_comment="update reflection"
     respond_to do |format|
       if @reflection.update_attributes(params[:reflection])
         @event= Event.find(Participation.find(@reflection.r_id).event_id)
@@ -88,7 +89,7 @@ end
   # DELETE /reflections/1.json
   def destroy
     @reflection = Reflection.find(params[:id])
-
+@reflection.audit_comment="destroy reflection"
     @reflection.destroy
 
     respond_to do |format|

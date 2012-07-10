@@ -3,4 +3,7 @@ class Participation < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
   has_one :reflection ,foreign_key:"R_id" ,dependent: :destroy
+   audited :associated_with =>:event
+      audited :associated_with =>:user
+      has_associated_audits
 end

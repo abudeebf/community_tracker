@@ -8,6 +8,7 @@ after_validation :geocode, :if => :address_changed?
   validates :name , presence: true ,length:{maximum:50}
    validates :tags, presence: true
   has_many :users  , :through => :memberships
+    audited 
   has_associated_audits
 
  has_many :memberships, foreign_key:"group_id" ,dependent: :destroy

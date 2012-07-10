@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only:[:edit,:update,:destroy]
   before_filter :correct_user, only:[:edit,:update,:destroy]
   def index
-    
     @cat=params[:cat]
    if params[:cat]=="People" 
      if params[:search].empty? ||  params[:search].nil?
@@ -56,7 +55,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-
+@user.audit_comment="Create User"
     respond_to do |format|
       if @user.save
          UserMailer.registration_confirmation(@user).deliver 
@@ -65,6 +64,7 @@ class UsersController < ApplicationController
          @user.joingroup!(session[:group_id] ,"Member")  
          session.delete(:group_id)
        end
+       
         format.html { redirect_to @user, notice: 'your account was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -78,11 +78,14 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+     @user.audit_comment="Upadate User"
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'your profile was successfully updated.' }
         format.json { head :no_content }
+       
         sign_in @user
+
       else
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }

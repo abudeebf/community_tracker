@@ -43,10 +43,12 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(params[:group])
     respond_to do |format|
+       @Group.audit_comment="Create Group"
       if @group.save
        current_user.joingroup!(@group.id,"Creator")
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render json: @group, status: :created, location: @group }
+
       else
         format.html { render action: "new" }
         format.json { render json: @group.errors, status: :unprocessable_entity }
@@ -58,7 +60,7 @@ class GroupsController < ApplicationController
   # PUT /groups/1.json
   def update
     @group = Group.find(params[:id])
-
+     @group.audit_comment="Upadate Group"
     respond_to do |format|
       if @group.update_attributes(params[:group])
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
@@ -86,7 +88,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if  current_user.joingroup!(@group,"Member")
         format.html { redirect_to @group, notice: 'You have successfully joined the group ' }
-        format.json { render json: @group, status: :created, location: @participation }
+        format.json { render json: @group, status: :created, location: @group }
       else
        format.html { redirect_to @group, notice: 'Join not successfull' }
         format.json { render json: @group.errors, status: :unprocessable_entity }
