@@ -1,4 +1,6 @@
 HourTracker::Application.routes.draw do
+  resources :pastevents
+
   resources :locations
 
   resources :participations
