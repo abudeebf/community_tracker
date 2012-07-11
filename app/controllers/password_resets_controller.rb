@@ -8,7 +8,7 @@ class PasswordResetsController < ApplicationController
   	user.send_password_reset 
   	redirect_to root_path,:notice =>"Email sent with password reset instrctions"
   else
-       redirect_to new_password_reset_path, :alert => "Email not avilable";
+       redirect_to new_password_reset_path, :alert => "Email not available";
     end
   end
  def edit

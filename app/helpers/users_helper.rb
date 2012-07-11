@@ -7,16 +7,24 @@ module UsersHelper
 	end
 	
 	def hourtracker1(user)
-	 if user.participations.nil? ||user.participations.empty?
+	 if (user.participations.nil?||user.participations.empty?) && (user.pastevents.nil? || user.pastevents.empty? )
 	 	x="you did not particpate yet,please participate to activate your hour tracker"
 	 else
 	 	sum=0
 	 	x=user.participations
+	 	pastevents=user.pastevents
 	 	x.each { |y| if y.approval && y.attend
          sum += (y.end_time.to_f-y.start_time.to_f)
           end
 	 	}
-	 	return sum/3600
+	 	sum=sum/3600
+	 	pastevents.each { |pastevent| 
+		 	if pastevent.approval==true
+		 		sum+=pastevent.hours 
+			end
+		}
+
+	 	return sum
 	 end
 	end
    

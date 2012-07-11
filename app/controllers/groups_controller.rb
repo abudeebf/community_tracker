@@ -43,7 +43,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(params[:group])
     respond_to do |format|
-       @Group.audit_comment="Create Group"
+       @group.audit_comment="Create Group"
       if @group.save
        current_user.joingroup!(@group.id,"Creator")
         format.html { redirect_to @group, notice: 'Group was successfully created.' }

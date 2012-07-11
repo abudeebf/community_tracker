@@ -1,6 +1,26 @@
-<h1>Editing pastevent</h1>
+<h1>Approving Past Event</h1>  
+  
+<%= form_for(@pastevent, :url => pastevent_path(params[:id])) do |f| %>
+  <div class="field">
+    <%= f.label "Please confirm the hours" %><br />
+  </div>
+    <%= User.find(@pastevent.user_id).first_name + " " + User.find(@pastevent.user_id).last_name%> has requested to approve  <%= @pastevent.hours%> volunteer hours through your organization <%= @pastevent.orgname%>.
+Please approve if the request is genuine. If you think that the request is not true, please disregard. Thank you!
+ <% y=false %>
+ <div class="controls" >
+   <% ["Confirm","Reject"].each do |x| %> 
+    <label class="radio inline">
+    <% if x=="Confirm" %>
+     <% y=true%>
+      <% else %>
+       <% y=false%>
+       <% end %>
+         <%= f.radio_button :approval, y %><%= x %> 
+          <% end %> 
+      </div>
+  <div class="actions">
+    <%= f.submit "submit" ,class: "btn btn-large btn-primay"%>
+   
+  </div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @pastevent %> |
-<%= link_to 'Back', pastevents_path %>
+<%end%>

@@ -11,35 +11,37 @@
     </div>
   <% end %>
 
+  
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :orgname %><br />
+    <%= f.label "Organization Name" %><br />
     <%= f.text_field :orgname %>
   </div>
   <div class="field">
-    <%= f.label :location %><br />
+    <%= f.label "Location" %><br />
     <%= f.text_field :location %>
   </div>
   <div class="field">
-    <%= f.label :hours %><br />
+    <%= f.label "Total Volunteer Hours" %><br />
     <%= f.text_field :hours %>
   </div>
   <div class="field">
-    <%= f.label :adminname %><br />
+    <%= f.label "Organization Administrator name" %><br />
     <%= f.text_field :adminname %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label "Administrator's email" %><br />
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :approval %><br />
-    <%= f.check_box :approval %>
+    <%= f.hidden_field :approval %>
+    <br />
   </div>
+  <div class ="field">
+    <%= f.check_box :disclamer %> <b>I agree that this request to approve past volunteer hours is genuine to my best knowledge</b> 
+  </div>
+  <br />
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Add Past Event",class: "btn btn-large btn-primay"%>
   </div>
+
 <% end %>

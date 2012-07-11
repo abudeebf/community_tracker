@@ -113,15 +113,22 @@ class UsersController < ApplicationController
     end
     @user = User.find(params[:id])
     if params[:types]=="All"
-    @participations=@user.participations.paginate(page:params[:page])
+      @participations=@user.participations.paginate(page:params[:page])
+      @pastevents= @user.pastevents
     elsif params[:types]=="Approved"
-        @participations=@user.participations.where('attend=? and approval=?',true,true).paginate(page:params[:page])
-      elsif params[:types]=="Waiting"
-         @participations=@user.participations.where('attend=? and approval=?',true,false).paginate(page:params[:page])
-       else
-        @types='not approved'
-         @participations=@user.participations.where('attend=? and approval=?',false,true).paginate(page:params[:page])
-       end
+      @participations=@user.participations.where('attend=? and approval=?',true,true).paginate(page:params[:page])
+       @pastevents= @user.pastevents.where('approval=?',true)
+    elsif params[:types]=="Waiting"
+       @participations=@user.participations.where('attend=? and approval=?',true,false).paginate(page:params[:page])
+      @pastevents= @user.pastevents.where(:approval=>nil)
+    else
+      @types='not approved'
+      @participations=@user.participations.where('attend=? and approval=?',false,true).paginate(page:params[:page])
+      @pastevents= @user.pastevents.where('approval=?',false)
+    end
+
+
+
    end
 
   private

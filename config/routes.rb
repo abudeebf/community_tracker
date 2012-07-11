@@ -46,6 +46,9 @@ HourTracker::Application.routes.draw do
     resources :reflections
   end
   
+  resources :users do
+    resources :pastevents 
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
