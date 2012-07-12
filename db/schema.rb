@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710210610) do
+ActiveRecord::Schema.define(:version => 20120709214426) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(:version => 20120710210610) do
     t.string   "name"
     t.string   "tags"
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "user_id"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(:version => 20120710210610) do
     t.float    "longitude"
     t.string   "address"
   end
+
+  add_index "groups", ["user_id", "created_at"], :name => "index_groups_on_user_id_and_created_at"
 
   create_table "invitations", :force => true do |t|
     t.string   "invited_members"
@@ -125,8 +127,6 @@ ActiveRecord::Schema.define(:version => 20120710210610) do
     t.boolean  "approval"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "token"
-    t.boolean  "disclamer"
   end
 
   create_table "reflections", :force => true do |t|
