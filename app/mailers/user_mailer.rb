@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
- default :from => "info@communitytracker.com"  
+ default :from => "info@volunteerhours.org"  
   
   def registration_confirmation(user) 
      @user = user  
@@ -24,7 +24,7 @@ end
 def update_hourtracker(user,url)
   @user=user
   @url=url
-  mail(:to =>@user.email,:subject => "your volnteer hours have changed")
+  mail(:to =>@user.email,:subject => "your volunteer hours have changed")
   end
 
   def pastEventConfirmation(pastevent)
