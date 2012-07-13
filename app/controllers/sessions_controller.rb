@@ -8,6 +8,8 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
      @correct={signin: true}
+     @correct[:name]=user.first_name+" "+user.last_name
+     @correct[:events]=user.events
     else
    @correct={signin: false}
    end
