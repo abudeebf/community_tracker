@@ -1,0 +1,8 @@
+Dear <%=@pastevent.adminname%>
+
+<%= @user.first_name + " " + @user.last_name %>
+requested to approve his <%=@pastevent.hours%> volunteer hours 
+to approve
+, click the URL below.
+<%=edit_pastevent_url(@pastevent.token)%>
+if you do not know this please disgard .

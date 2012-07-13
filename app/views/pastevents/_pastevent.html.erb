@@ -1,0 +1,25 @@
+<tr>
+	<td>
+	</td>
+<td>
+ past event  
+</td>
+<td>
+<%=link_to pastevent.orgname %>
+</td>
+ <td>
+
+ <%= pastevent.hours%>
+ 	</td>
+<td><%= pastevent.adminname%>
+	</td>
+	<td>
+		<% if pastevent.approval==true %>
+		 Approved 
+		<% elsif pastevent.approval==nil %>
+		 Waiting
+		 <%else %>
+		 Not approved
+		<%end%>
+	</td>
+</tr>

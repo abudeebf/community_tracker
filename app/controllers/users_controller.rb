@@ -126,9 +126,6 @@ class UsersController < ApplicationController
       @participations=@user.participations.where('attend=? and approval=?',false,true).paginate(page:params[:page])
       @pastevents= @user.pastevents.where('approval=?',false)
     end
-
-
-
    end
 
   private
