@@ -8,6 +8,7 @@ HourTracker::Application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create' 
   match 'auth/failure', to: redirect('/')
   match '/msignin' ,to: 'sessions#mobile_signin'
+  match '/eparticipant',to: 'events#eparticipant'
   match '/search_result', to: 'users#index' ,as:'userserach'
   match 'signout', to: 'sessions#destroy', as: 'signout'
   resources :invitations

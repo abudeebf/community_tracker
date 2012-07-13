@@ -93,6 +93,16 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def eparticipant
+     @user=User.find(params[:euser])
+     @event=Event.where('user_id=? and title=?',params[:eusr],params[:eventtitle])
+     @users=@event.users
+      respond_to do |format|
+      format.json { render json: @users }
+    end
+  end
+
   
   private
 
