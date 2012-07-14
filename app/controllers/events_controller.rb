@@ -95,8 +95,8 @@ class EventsController < ApplicationController
   end
 
   def eparticipant
-
-     @event=Event.where('user_id=? and title=?',params[:eusr],params[:eventtitle])
+     
+     @event=Event.where('user_id=? and title=?',params[:euser],params[:eventtitle])
      @event.each do |event|
       @x=event
     end
