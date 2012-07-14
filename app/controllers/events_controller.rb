@@ -105,7 +105,7 @@ class EventsController < ApplicationController
      @j={user: @users}
       
       else
-         @j={user: [1,2]}
+         @j={user: 'none'}
     end
     respond_to do |format|
       format.json { render json: @j }
