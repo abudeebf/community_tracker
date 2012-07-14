@@ -95,14 +95,19 @@ class EventsController < ApplicationController
   end
 
   def eparticipant
+
      @event=Event.where('user_id=? and title=?',params[:eusr],params[:eventtitle])
      @event.each do |event|
       @x=event
     end
-
+    if !@x.nil?
      @users=@x.participations
      @j={user: @users}
-      respond_to do |format|
+      
+      else
+         @j={user: [1,2]}
+    end
+    respond_to do |format|
       format.json { render json: @j }
     end
   end
