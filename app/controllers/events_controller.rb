@@ -102,6 +102,10 @@ class EventsController < ApplicationController
     end
     if !@x.nil?
      @users=@x.participations
+     @users.each do |user|
+      user[:name]=User.find(user.user_id).first_name + " "+User.find(user.user_id).last_name
+     end
+
      @j={user: @users}
       
       else
