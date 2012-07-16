@@ -97,7 +97,7 @@ end
      if (params[:attend][i]=="true")
     @participation[0].attend=true
    else
-   participation[0].attend=false
+   @participation[0].attend=false
   end
      #@participation.start_time=params[:starttime][i]
      #@participation.end_time=params[:endttime][i]
