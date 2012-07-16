@@ -1,5 +1,31 @@
 <tr>
 	<td>
+		
+	</td>
+<td>
+ past event
+</td>
+<td>
+<%= pastevent.orgname%>
+</td>
+ <td>
+
+ <%= pastevent.hours %>
+ 	</td>
+<td><%= pastevent.adminname%>
+	</td>
+	<td>
+		<% if pastevent.approval==true %>
+		 	Approved 
+		<% elsif pastevent.approval==nil%>
+		 	Waiting
+		<% else pastevent.approval==false%>
+		 	Not Approved
+		<%end%>
+	</td>
+
+<tr>
+	<td>
 	</td>
 <td>
  past event  
