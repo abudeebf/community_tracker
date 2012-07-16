@@ -94,7 +94,7 @@ end
 
    for i in 0..params[:users].length
      @participation=Participation.find(:all, :conditions => [ "event_id = ? and user_id=?", params[:event].to_i,params[:users][i].to_i])
-     if params[:attend][i]=="true"
+     if (params[:attend[i]]=="true"
      @participation.attend=true
    else
     @participation.attend=false
