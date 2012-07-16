@@ -1,9 +1,9 @@
 <tr>
 	<td>
-		
+	<%= pastevent.start_date.to_s[0,10] + " to " +pastevent.end_date.to_s[0,10]%>
 	</td>
 <td>
- past event
+ <%= link_to 'Past Event', pastevent_path(pastevent) %>
 </td>
 <td>
 <%= pastevent.orgname%>
@@ -21,31 +21,6 @@
 		 	Waiting
 		<% else pastevent.approval==false%>
 		 	Not Approved
-		<%end%>
-	</td>
-
-<tr>
-	<td>
-	</td>
-<td>
- past event  
-</td>
-<td>
-<%=link_to pastevent.orgname %>
-</td>
- <td>
-
- <%= pastevent.hours%>
- 	</td>
-<td><%= pastevent.adminname%>
-	</td>
-	<td>
-		<% if pastevent.approval==true %>
-		 Approved 
-		<% elsif pastevent.approval==nil %>
-		 Waiting
-		 <%else %>
-		 Not approved
 		<%end%>
 	</td>
 </tr>

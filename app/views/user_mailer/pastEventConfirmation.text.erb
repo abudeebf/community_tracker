@@ -1,5 +1,5 @@
 Dear <%= @pastevent.adminname%>,
-<%= @user.first_name + " " + @user.last_name%> has requested to approve his/her <%= @pastevent.hours%> volunteer hours through your organization.
+<%= @user.first_name + " " + @user.last_name%> has requested to approve his/her <%=@pastevent.hours%> volunteer hours from <%= @pastevent.start_date.to_s[0,10] + " to " + @pastevent.end_date.to_s[0,10]%> through your organization.
 To approve the hours, please click the URL below.
 <%=edit_pastevent_url(@pastevent.token)%>
 If you think that the request is not true, please disregard the message

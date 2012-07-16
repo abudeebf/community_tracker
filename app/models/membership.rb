@@ -4,7 +4,7 @@ class Membership < ActiveRecord::Base
   belongs_to :user
   validates :user_id , presence: true
   validates :group_id ,presence: true
-    audited :associated_with =>:group
-      audited :associated_with =>:user
+  audited :associated_with =>:group
+  audited :associated_with =>:user
 
 end

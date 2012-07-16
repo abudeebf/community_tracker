@@ -31,6 +31,16 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
+    <%= f.label "Start Date" %><br />
+    <%= f.date_select(:start_date, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %>
+  </div>
+  
+  <div class="field">
+   <%= f.label "End Date" %><br />
+   <%= f.date_select(:end_date, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %>
+  </div>
+
+  <div class="field">
     <%= f.hidden_field :approval %>
     <br />
   </div>
