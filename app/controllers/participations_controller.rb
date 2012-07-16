@@ -92,7 +92,7 @@ end
   def confirm_participants
     @event=Event.find(params[:event].to_i)
 
-   (0...params[:users].length).each do  |i|
+   (0..params[:users].length).each do  |i|
      @participation=Participation.find(:all, :conditions => [ "event_id = ? and user_id=?", (params[:event]).to_i,(params[:users][i]).to_i])
   
      if (params[:attend][i]=="true")
@@ -104,8 +104,7 @@ end
      #@participation.end_time=params[:endttime][i]
      @participation[0].approval=true
      @participation[0].save!
-      
-    end 
+    
   end
 end
 end
