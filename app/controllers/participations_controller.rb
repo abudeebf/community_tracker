@@ -91,7 +91,6 @@ end
   end
   def confirm_participants
     @event=Event.find(params[:event].to_i)
-  
    for i in 0..(params[:users].length.to_i - 1)
      @participation=Participation.find(:all, :conditions => [ "event_id = ? and user_id=?", (params[:event]).to_i,(params[:users][i]).to_i])
      if (params[:attend][i]=="true")
@@ -100,7 +99,10 @@ end
       @participation[0].attend=false
     end
      @participation[0].approval=true
-     @participation[0].save!
+     if @participation[0].save!
+      user=User.find(params[:users][i])
+      UserMailer.update_hourtracker(user,users_hourtracker_url(user)).deliver 
+    end
    end
    @correct=true
    respond_to do |format|
