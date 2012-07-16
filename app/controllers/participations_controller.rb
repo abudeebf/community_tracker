@@ -93,16 +93,16 @@ end
     @event=Event.find(params[:event].to_i)
 
    for i in 0..params[:users].length
-     @participation=Participation.find(:all, :conditions => [ "event_id = ? and user_id=?", params[:event].to_i,params[:users][i].to_i])
+     @participation=Participation.find(:all, :conditions => [ "event_id = ? and user_id=?", params[:event].to_i,params[:users][i].to_i]).id
      if (params[:attend][i]=="true")
-    # @participation.attend=true
+    @participation[0].attend=true
    else
-   # @participation.attend=false
+   participation[0].attend=false
   end
      #@participation.start_time=params[:starttime][i]
      #@participation.end_time=params[:endttime][i]
-     @participation.approval=true
-    if  @participation.save!
+     @participation[0].approval=true
+    if  @participation[0].save!
        UserMailer.update_hourtracker(User.find(params[:users][i].to_i),users_hourtracker_url(User.find(params[:users][i].to_i))).deliver  
      else
       redirect to users_path
