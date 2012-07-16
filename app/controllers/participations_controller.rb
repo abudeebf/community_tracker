@@ -91,9 +91,9 @@ end
   end
   def confirm_participants
     @event=Event.find(params[:event].to_i)
-    x=params[:users].length
-    x=x-1
-   for i in (0..x)
+  
+   for i in (0...(params[:users].length))
+    
      @participation=Participation.find(:all, :conditions => [ "event_id = ? and user_id=?", (params[:event]).to_i,(params[:users][i]).to_i])
   
      if (params[:attend][i]=="true")
