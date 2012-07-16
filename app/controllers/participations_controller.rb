@@ -99,6 +99,8 @@ end
      @participation.approval=true
     if  @participation.save!
        UserMailer.update_hourtracker(User.find(params[:users][i]),users_hourtracker_url(User.find(params[:users][i]))).deliver  
+     else
+      redirect to users_path
      end
   end
 end
