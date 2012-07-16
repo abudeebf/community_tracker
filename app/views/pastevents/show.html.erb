@@ -31,9 +31,21 @@
 </p>
 
 <p>
+  <b>Start Date:</b>
+  <%= @pastevent.start_date %>
+</p>
+
+<p>
+  <b>End Date:</b>
+  <%= @pastevent.end_date %>
+</p>
+
+<p>
   <b>Approval:</b>
   <%= @pastevent.approval %>
 </p>
+
+
 
 
 <%= link_to 'Edit', edit_pastevent_path(@pastevent) %> |

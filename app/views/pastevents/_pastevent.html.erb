@@ -1,9 +1,9 @@
 <tr>
 	<td>
-		
+	<%= pastevent.start_date.to_s[0,10] + " to " +pastevent.end_date.to_s[0,10]%>
 	</td>
 <td>
- past event
+ <%= link_to 'Past Event', pastevent_path(pastevent) %>
 </td>
 <td>
 <%= pastevent.orgname%>
@@ -23,5 +23,4 @@
 		 	Not Approved
 		<%end%>
 	</td>
-	
 </tr>

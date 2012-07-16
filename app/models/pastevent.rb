@@ -1,5 +1,5 @@
 class Pastevent < ActiveRecord::Base
-  attr_accessible :adminname, :approval, :email, :hours, :location, :orgname, :disclamer
+  attr_accessible :adminname, :approval, :email, :hours, :location, :orgname, :disclamer, :start_date, :end_date
   belongs_to :user
 
   validates_presence_of :adminname ,:message =>" is required"
@@ -10,6 +10,5 @@ class Pastevent < ActiveRecord::Base
   validates_presence_of :user_id , :message  => " is required"
   validates_presence_of :disclamer , :message  => " is required"
   validates_format_of  :email, :with => /\b[A-Za-z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/
-
 end
 
