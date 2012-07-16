@@ -92,11 +92,14 @@ end
   def confirm_participants
     @event=Event.find(params[:event].to_i)
     logger.info("event info" + params[:event].inspect)
- logger.info("user info" + params[:users][0]
-.inspect)
-  
+ 
    for i in 0..params[:users].length
-     @participation=Participation.find(:all, :conditions => [ "event_id = ? and user_id=?", (params[:event]).to_i,(params[:users][i]).to_i)]
+     @participation=Participation.find(:all, :conditions => [ "event_id = ? and user_id=?", (params[:event]).to_i,(params[:users][i]).to_i])
+     logger.info("user info" + params[:users][i].inspect)
+  
+     logger.info("parti info" + @participation.inspect)
+     logger.info (i)
+  
      if (params[:attend][i]=="true")
     @participation[0].attend=true
    else
