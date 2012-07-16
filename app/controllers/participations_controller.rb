@@ -94,8 +94,8 @@ end
    for i in params[:users].length
      @participation=Participation.find(:all, :conditions => [ "event_id = ? and user_id=?", params[:event],params[:users][i]])
      @participation.attend=params[:attend][i]
-     @participation.start_time=params[:starttime][i]
-     @participation.end_time=params[:endttime][i]
+     #@participation.start_time=params[:starttime][i]
+     #@participation.end_time=params[:endttime][i]
      @participation.approval=true
     if  @participation.save!
        UserMailer.update_hourtracker(User.find(params[:users][i]),users_hourtracker_url(User.find(params[:users][i]))).deliver  
