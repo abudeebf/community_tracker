@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :category, :description, :endtime, :location, :starttime, :title,:photo
+  attr_accessible :category, :description, :endtime, :location, :starttime, :title,:photo, :recurring, :recurring_ends
   validates :title, presence: true,length:{maximum:50}
   validates :description, presence: true
   validates :category, presence:true

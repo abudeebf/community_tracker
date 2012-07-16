@@ -8,8 +8,8 @@
     <th>Endtime</th>
     <th>Location</th>
     <th>Description</th>
-    <th></th>
-    <th></th>
+    <th>Recurring</th>
+    <th>End Date</th>
     <th></th>
   </tr>
 
@@ -21,6 +21,8 @@
     <td><%= event.endtime %></td>
     <td><%= event.location %></td>
     <td><%= event.description %></td>
+    <td><%= event.recurring %></td>
+    <td><%= event.recurring_ends.to_s[0,10] %></td>
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
