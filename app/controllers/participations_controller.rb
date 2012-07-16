@@ -104,7 +104,7 @@ end
      @participation[0].approval=true
      @participation[0].save!
       
-     end
+    
   end
 end
 end
