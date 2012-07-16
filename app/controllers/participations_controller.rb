@@ -102,10 +102,8 @@ end
      #@participation.start_time=params[:starttime][i]
      #@participation.end_time=params[:endttime][i]
      @participation[0].approval=true
-    if  @participation[0].save!
-       UserMailer.update_hourtracker(User.find(params[:users][i].to_i),users_hourtracker_url(User.find(params[:users][i].to_i))).deliver  
-     else
-      redirect to users_path
+     @participation[0].save!
+      
      end
   end
 end
