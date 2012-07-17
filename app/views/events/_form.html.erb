@@ -29,16 +29,28 @@
     <%= f.label "End Time" %><br />
     <%= f.datetime_select(:endtime, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %>
   </div>
+
+  <div class="field">
+    <br />
+     <%= f.check_box :recurring%> <font color= "black">Is this a recurring event(note: recurres every week)?</font> 
+  </div>
+
+  <div class = "field">
+    <%= f.label "End Date"%>
+    <%= f.date_select(:recurring_ends, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %> 
+  </div>
+
   <div class="field">
     <%= f.label :location %><br />
     <%= f.text_field :location %>
   </div>
+  
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description ,rows: 10 %>
   </div>
   <div class="field">
-    <%= f.label "please add a picutre to your event" %><br />
+    <%= f.label "please add a picture to your event" %><br />
   <%= f.file_field :photo %>
 </div>
   <div class="actions">

@@ -44,16 +44,28 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = @group.events.build(params[:event])
+    
     @event.user = current_user
     @event.audit_comment="Create Event"
-     
+    
+    if @event.recurring
+      @event.save
+      # create the same event but with added 7 days
+      # figure out 
+      num_weeks = (((@event.recurring_ends - DateTime.now).to_f) / 604800).to_i
+      for i in 2..num_weeks
+        @event=eventChanger(@event,@group)
+        @event.save
+      end
+   else
+         
     respond_to do |format|
       if @event.save
-         @group=Group.find(@event.group_id)
+          @group=Group.find(@event.group_id)
           @participation =current_user.participations.build(start_time: @event.starttime,end_time:@event.endtime,approval:false, event_id:@event.id,attend:true,audit_comment:"join Event")
-  @users=@group.users
- @participation.save
-  @users.each { |user|
+          @users=@group.users
+          @participation.save
+          @users.each { |user|
         UserMailer.join_event(@event,event_show_url(@event),user).deliver  }
 
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -64,7 +76,7 @@ class EventsController < ApplicationController
       end
     end
   end
-
+end
   # PUT /events/1
   # PUT /events/1.json
   def update
@@ -122,5 +134,19 @@ class EventsController < ApplicationController
     def load_current_group
       @group = Group.find(params[:group_id])
     end
+    
+    def eventChanger event,group
+     recurringevent=group.events.build()
+      recurringevent.user=current_user
+      recurringevent.title=event.title
+      recurringevent.description=event.description
+      recurringevent.category=event.category
+      recurringevent.location=event.location
+      recurringevent.starttime=event.starttime+ 7.days
+      recurringevent.endtime=event.endtime + 7.days
+      return recurringevent
+    end
+
 
 end
+

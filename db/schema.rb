@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120715203351) do
+ActiveRecord::Schema.define(:version => 20120716192111) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(:version => 20120715203351) do
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
+    t.boolean  "recurring"
+    t.datetime "recurring_ends"
   end
 
   create_table "groups", :force => true do |t|
