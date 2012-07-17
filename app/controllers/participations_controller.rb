@@ -99,7 +99,7 @@ end
       @participation[0].attend=false
     end
      @participation[0].approval=true
-     @participation[0].start_time=params[:startime][i]
+     @participation[0].start_time=params[:starttime][i]
      @participation[0].end_time=params[:endtime][i]
      if @participation[0].save!
       user=User.find(params[:users][i])
