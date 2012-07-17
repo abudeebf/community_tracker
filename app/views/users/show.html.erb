@@ -6,7 +6,7 @@
     <section>
  <h2> <%= @user.last_name.upcase %> PROFILE <h2>
   <%= link_to 'Edit my profile', edit_user_path(@user) ,class: "btn btn-small btn-primay" %> |
-<%= link_to 'My Hour Tracker', users_hourtracker_path(@user) ,class: "btn btn-small btn-primay" %>|
+<%= link_to 'My hour Tracker', users_hourtracker_path(@user) ,class: "btn btn-small btn-primay" %>|
 <%= link_to "Add past voulnteer events", new_user_pastevent_path(@user) ,class: "btn btn-small btn-primay" %>
 <%= link_to 'Community Carma', "#" ,class: "btn btn-small btn-primay" %>|
 <%= link_to 'My Preference', "#" ,class: "btn btn-small btn-primay" %>|
