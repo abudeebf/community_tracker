@@ -66,11 +66,22 @@ end
   def update
     
     respond_to do |format|
-      if Participation.update(params[:participations].keys, params[:participations].values,audit_comment:"confirm Hours")
+      if Participation.update(params[:participations].keys, params[:participations].values)
          @event=Event.find(params[:id])
          @users=@event.users
           @users.each { |user|
-        UserMailer.update_hourtracker(user,users_hourtracker_url(user)).deliver  }
+        UserMailer.update_hourtracker(user,users_hourtracker_url(user)).deliver 
+         @membership=Membership.find(:all, :conditions => [ "group_id = ? and user_id=?", @event.group_id,user.id])
+         @participation=Participation.find(:all, :conditions => [ "event_id = ? and user_id=?", @event.id,user.id])
+         logger.info('Participation' + @participation.inspect)
+
+         total_hours=(@participation[0].end_time.to_f - @participation[0].start_time.to_f)/3600
+         logger.info("total hours" + total_hours.inspect)
+         if ! @membership[0].total_hours.nil?
+         total_hours+=@membership[0].total_hours 
+          end
+          @membership[0].update_attributes(total_hours: total_hours)
+         }
         format.html { redirect_to @event, notice: 'Participation was successfully updated.' }
         format.json { head :no_content }
       else

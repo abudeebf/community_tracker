@@ -1,0 +1,29 @@
+<% provide(:title,@user.first_name + " " +@user.last_name)%>
+<h1> Community Karma</h1>
+
+<%= gravatar_for @user,100 %>
+<h2 ><%=@user.first_name + " " +@user.last_name%></h2>
+
+    <table  class="table table-striped table-bordered table-condensed">
+    <tr>
+    	<th> Group
+    	</th>
+    	<th>
+    		Total volunteer hours
+    	 </th>
+    	 <th>
+    	 	Badge
+    	 </th>
+    	  </tr>
+    	 <% @membership.each do |member|%>
+    	 <tr>
+    	 <td> <%= link_to Group.find(member.group_id).name,Group.find(member.group_id)%>
+    	 </td>
+    	 <td> <%= member.total_hours%> </td>
+    	     <% if (Group.find(member.group_id).gamification && member.total_hours >0)%>
+    	     <% x=badgefinder(Group.find(member.group_id),member.total_hours)%>
+             <td> <%= x%></td>
+             <% end %>
+    	 </tr>
+    	 <% end %>
+    	</table>

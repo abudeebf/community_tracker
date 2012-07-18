@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120715203351) do
+ActiveRecord::Schema.define(:version => 20120718194439) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(:version => 20120715203351) do
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
+    t.boolean  "recurring"
+    t.datetime "recurring_ends"
   end
 
   create_table "groups", :force => true do |t|
@@ -74,6 +76,10 @@ ActiveRecord::Schema.define(:version => 20120715203351) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address"
+    t.boolean  "gamification"
+    t.integer  "gold"
+    t.integer  "silver"
+    t.integer  "bronze"
   end
 
   add_index "groups", ["user_id", "created_at"], :name => "index_groups_on_user_id_and_created_at"
@@ -98,8 +104,9 @@ ActiveRecord::Schema.define(:version => 20120715203351) do
     t.integer  "user_id"
     t.integer  "group_id"
     t.string   "member"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "total_hours"
   end
 
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"

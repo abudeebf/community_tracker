@@ -54,6 +54,13 @@
   <b>End time:</b>
  To <%= @event.endtime.strftime("%m-%d-%Y")%>
 </p>
+
+
+<% if @event.recurring?%>
+<p>  <%= "This is a Recurring Event that ends on " + @event.recurring_ends.to_s[0,10]%></p>
+<%end%>
+
+
 <p>
   <b>Location:</b>
   <%= @event.location %>

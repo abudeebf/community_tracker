@@ -47,6 +47,12 @@
 <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@group.latitude}%2C#{@group.longitude}" %>
 <br />
 </p>
+<%if @group.gamification %>
+<p><b> Gamification is a part of this Group</p></b>
+  <p>Gold Badge:<%=@group.gold%> hours.</p>
+  <p>Gold Badge:<%=@group.silver%> hours.</p>
+  <p>Gold Badge:<%=@group.bronze%> hours.</p>
+<% end %>
 
 <h3>Nearby locations</h3>
 
