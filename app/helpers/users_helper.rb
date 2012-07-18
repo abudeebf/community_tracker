@@ -27,5 +27,18 @@ module UsersHelper
 	 	return sum
 	 end
 	end
-   
+	def badgefinder(group,hours)
+		badge=""
+	  if (hours>=group.gold)
+	   badge="Gold"
+	   elsif (hours>=group.silver)
+		badge="Sliver"
+	    elsif (hours>=group.bronze)
+         badge="Bronze"
+        else
+   	     x= group.bronze-hours
+   	    badge=  x.inspect + " hours to get a badge"
+	end
+	return badge
+   end
 end

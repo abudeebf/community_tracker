@@ -32,6 +32,22 @@
     <%= f.label :description %><br />
     <%= f.text_area :description ,rows: 15 %>
   </div>
+    <div class="field">
+    <br />
+     <%= f.check_box :gamification%> <font color= "black">Is gamification part of your group?</font> 
+  </div>
+  <div >
+    <%= f.label :gold %>
+    <%= f.number_field :gold %>
+  </div>
+<div >
+    <%= f.label :silver %>
+    <%= f.number_field :silver %>
+  </div>
+  <div >
+    <%= f.label :bronze %>
+    <%= f.number_field :bronze %>
+  </div>
   
     <div>
       <%= f.label "Group Picture" %><br />

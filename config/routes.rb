@@ -21,6 +21,7 @@ HourTracker::Application.routes.draw do
    match '/signup/', to: 'users#new' 
    match '/signup/:invitation_id', to: 'users#new', as: "new_signup_invitation"
    match '/users/:id/hourtracker', to:"users#hourtracker" ,as: "users_hourtracker"
+   match '/users/:id/communitykarma', to:"users#communitykarma" ,as: "users_communitykarma"
    match '/events/:id/participations', to:"participations#update" ,as: "participations_update"
    match '/events/:id/participations/edit', to:"participations#edit" ,as: "participations_edit"
    match '/events/:id/reflection/new' ,to: "reflections#new" ,as:'event_reflection'

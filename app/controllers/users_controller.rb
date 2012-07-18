@@ -126,6 +126,12 @@ class UsersController < ApplicationController
       @participations=@user.participations.where('attend=? and approval=?',false,true).paginate(page:params[:page])
       @pastevents= @user.pastevents.where('approval=?',false)
     end
+
+   end
+
+   def communitykarma
+    @user = User.find(params[:id])
+    @membership=@user.memberships.paginate(page:params[:page])
    end
 
   private

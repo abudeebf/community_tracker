@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-  attr_accessible :description, :name, :tags, :photo,:address,:email
+  attr_accessible :description, :name, :tags, :photo,:address,:email,:gamification,:gold,:silver,:bronze
 geocoded_by :address
 after_validation :geocode, :if => :address_changed?
   has_attached_file :photo
