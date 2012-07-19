@@ -110,6 +110,8 @@ end
       @participation[0].attend=false
     end
      @participation[0].approval=true
+     @participation[0].start_time=params[:starttime][i]
+     @participation[0].end_time=params[:endtime][i]
      if @participation[0].save!
       user=User.find(params[:users][i])
       UserMailer.update_hourtracker(user,users_hourtracker_url(user)).deliver 
