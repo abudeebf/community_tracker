@@ -44,27 +44,33 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = @group.events.build(params[:event])
-    
+
+    eventurl= []
     @event.user = current_user
     @event.audit_comment="Create Event"
-    
     if @event.recurring
       @event.save
-      # create the same event but with added 7 days
-      # figure out 
+      @event2 =@event
+
+      eventurl+= [event_show_url(@event)]
+
+      aftereventsave(Group.find(@event.group_id),@event)
       num_weeks = (((@event.recurring_ends - DateTime.now).to_f) / 604800).to_i
       for i in 2..num_weeks
         @event=eventChanger(@event,@group)
         @event.save
+        aftereventsave(Group.find(@event.group_id),@event) 
+        eventurl+= [event_show_url(@event)]  
       end
+       @users.each { |user|
+      UserMailer.recurringeventemail(@event2,eventurl,user).deliver  }
+      x = num_weeks.inspect +  " Events were successfully created."
+      redirect_to @event, notice: x
    else
          
     respond_to do |format|
       if @event.save
-          @group=Group.find(@event.group_id)
-          @participation =current_user.participations.build(start_time: @event.starttime,end_time:@event.endtime,approval:false, event_id:@event.id,attend:true,audit_comment:"join Event")
-          @users=@group.users
-          @participation.save
+        aftereventsave(Group.find(@event.group_id),@event)
           @users.each { |user|
         UserMailer.join_event(@event,event_show_url(@event),user).deliver  }
 
@@ -142,10 +148,18 @@ end
       recurringevent.description=event.description
       recurringevent.category=event.category
       recurringevent.location=event.location
+      recurringevent.recurring=true
       recurringevent.starttime=event.starttime+ 7.days
       recurringevent.endtime=event.endtime + 7.days
+      recurringevent.recurring_ends=event.recurring_ends
       return recurringevent
     end
+  def aftereventsave(group,event)
+    group=Group.find(event.group_id)
+    @participation =current_user.participations.build(start_time: event.starttime,end_time:event.endtime,approval:false, event_id:event.id,attend:true,audit_comment:"join Event")
+    @participation.save
+    @users=@group.users
+  end
 
 
 end

@@ -32,6 +32,13 @@ def update_hourtracker(user,url)
     @user = User.find(pastevent.user_id)
     mail(:to =>@pastevent.email,:subject => "Please approve my volunteer hours @ www.volunteerhours.org")
   end
+  def recurringeventemail(event,url,user)
+    @event=event
+    @group=Group.find(@event.group_id)
+    @user=user
+    @event_url=url
+    mail(:to =>@user.email,:subject => "Please join this recurring event")
+  end
 
 end
 

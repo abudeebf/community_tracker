@@ -1,0 +1,9 @@
+Dear <%= @user.first_name  + " " + @user.last_name%>,
+<%=@group.name%> needs your help. Please join the following recurring <%= @event.title%> Event.
+The first day of this event is <%= @event.starttime.to_s[0,10]%> and the last date is <%= @event.recurring_ends.to_s[0,10]%>
+
+Please click the link of the event you want to join
+<%i=0%>
+<% @event_url.each do |eurl| %>
+Week <%=i+=1%> <%= eurl %>
+<% end %>
