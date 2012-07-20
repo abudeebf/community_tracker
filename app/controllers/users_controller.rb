@@ -4,13 +4,14 @@ class UsersController < ApplicationController
   before_filter :retrive_user , only:[:new]
   before_filter :signed_in_user, only:[:edit,:update,:destroy]
   before_filter :correct_user, only:[:edit,:update,:destroy]
+  before_filter :correct_user_privacy ,only:[:show]
   def index
     @cat=params[:cat]
    if params[:cat]=="People" 
      if params[:search].empty? ||  params[:search].nil?
-      @users=User.find(:all)
+      @users=User.find(:all,:conditions =>['privacy=?',false])
     else
-    @users = User.find(:all, :conditions => ['first_name LIKE ? or last_name LIKE ? ', "%#{params[:search]}%","%#{params[:search]}%"])
+    @users = User.find(:all, :conditions => ['first_name LIKE ? or last_name LIKE ? and privacy=? ', "%#{params[:search]}%","%#{params[:search]}%",false])
   end 
   elsif params[:cat]=="Events"
     @events= Event.find(:all, :conditions => ['title LIKE ? or category LIKE ? ', "%#{params[:search]}%","%#{params[:search]}%"])
@@ -139,11 +140,33 @@ class UsersController < ApplicationController
   @user = User.find(params[:id])
   redirect_to root_path unless current_user?(@user)
  end
+ def correct_user_privacy
+  @user = User.find(params[:id])
+  redirect_to root_path unless current_user?(@user)|| @user.privacy==false || groupsadmins(@user)==true
+ end
   def retrive_user
     if ! params[:invitation_id].nil?
       @invitation= Invitation.find(params[:invitation_id])
       session[:group_id]=@invitation.sender_id
     end
   end
+  def groupsadmins(user)
+    allow=false
+    if !current_user.nil?
+    user.memberships.each do |groupmember|
+      current_user.memberships.each do |membership|
+      if (membership.group_id == groupmember.group_id) && (membership.member=="Creator" || membership.member=="Admin")
+           logger.info ("Fatima")
+           allow=true
+           break
+         end
+         if allow==true
+          break
+        end
+       end
+     end 
+   end
+     return allow
+   end
 
 end

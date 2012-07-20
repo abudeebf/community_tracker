@@ -14,7 +14,9 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+
     @group = Group.find(params[:id])
+    @users=@group.users
     @events= @group.events.paginate(page:params[:page])
     respond_to do |format|
       format.html # show.html.erb
@@ -37,11 +39,12 @@ class GroupsController < ApplicationController
   def edit
     @group = Group.find(params[:id])
   end
-
+  
   # POST /groups
   # POST /groups.json
   def create
     @group = Group.new(params[:group])
+    @group.user_id= current_user.id
     respond_to do |format|
        @group.audit_comment="Create Group"
       if @group.save

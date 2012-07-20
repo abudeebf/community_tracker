@@ -15,6 +15,9 @@
     <%= f.text_field :first_name %>
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
+     <div class ="field">
+    <%= f.check_box :privacy %> <b>Do you want your profile NOT to be searchable in voulnteer hours website</b> 
+  </div>
     <div class="controls" >
    <%= f.label "Gender"  %>
      <% ["Female","Male","Other"].each do |x| %> 

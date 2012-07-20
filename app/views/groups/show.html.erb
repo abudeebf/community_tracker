@@ -58,6 +58,14 @@
 
 </td>
 </section>
+<td>
+  <% if @users.any?%>
+   <p><b> Group has <%=@users.count%> members</b></p>
+   <ol class="users">
+ <%= render @users %>
+ </ol>
+   <% end %>
+  </td>
 </tr>
 <tr>
   
@@ -71,7 +79,7 @@
    <%= render @events %>
  </ol>
   </section>
-  </tr>
+  
 </aside>
-
+</tr>
 </table>

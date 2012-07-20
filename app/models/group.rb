@@ -7,6 +7,7 @@ after_validation :geocode, :if => :address_changed?
   validates :description, presence: true
   validates :name , presence: true ,length:{maximum:50}
    validates :tags, presence: true
+   validates :user_id ,presence:true
   has_many :users  , :through => :memberships
     audited 
   has_associated_audits
