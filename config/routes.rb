@@ -17,6 +17,7 @@ HourTracker::Application.routes.draw do
   resources :users
   match 'groups/:id/join', to: 'groups#join' , as:"new_group_join"
    match '/aboutus', to: 'static_pages#aboutus'
+   match '/events/:id/update' ,to: 'events#update',as: "update_event"
    match '/stories', to: 'static_pages#stories'
    match '/signup/', to: 'users#new' 
    match '/signup/:invitation_id', to: 'users#new', as: "new_signup_invitation"

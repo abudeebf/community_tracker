@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+
     @event = Event.find(params[:id])
     @users=@event.users
     @participations=@event.participations
@@ -38,6 +39,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    
   end
 
   # POST /events
@@ -86,8 +88,9 @@ end
   # PUT /events/1
   # PUT /events/1.json
   def update
-    @event = Event.find(params[:id])
+   @event=Event.find(params[:id])
     @event.audit_comment="Update Event"
+   
     respond_to do |format|
       if @event.update_attributes(params[:event])
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
