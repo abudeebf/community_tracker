@@ -5,7 +5,10 @@
     <%= f.label "Please confirm the hours" %><br />
   </div>
     <%= User.find(@pastevent.user_id).first_name + " " + User.find(@pastevent.user_id).last_name%> has requested to approve  <%= @pastevent.hours%> volunteer hours through your organization <%= @pastevent.orgname%>.
-Please approve if the request is genuine. If you think that the request is not true, please disregard. Thank you!
+Please approve if the request is genuine. If you think that the request is not true, please disregard.If you think that the hours are not correct then please write the actual hours in the text box below Thank you!
+<label>Hours</label>
+   <%= f.text_field :hours %>
+
  <% y=false %>
  <div class="controls" >
    <% ["Confirm","Reject"].each do |x| %> 
