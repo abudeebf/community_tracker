@@ -33,12 +33,13 @@ class InvitationsController < ApplicationController
   def create
     @invitation = Invitation.new(params[:invitation] )
     emails=@invitation.invited_members.split()
+    @invitation.token = SecureRandom.urlsafe_base64
     @invitation.sent_at=Time.now
     @invitation.sender_id=@group.id
     @invitation.audit_comment="Send Invitation";
       if @invitation.save!
         emails.each {|x| 
-    UserMailer.invitation(x,new_signup_invitation_url(@invitation),@group).deliver 
+    UserMailer.invitation(x,new_signup_invitation_url(@invitation.token),@group).deliver 
     }
         flash[:notice]="Thank you, Invitation sent"
         redirect_to @group

@@ -146,7 +146,7 @@ class UsersController < ApplicationController
  end
   def retrive_user
     if ! params[:invitation_id].nil?
-      @invitation= Invitation.find(params[:invitation_id])
+      @invitation= Invitation.find_by_token!(params[:invitation_id])
       session[:group_id]=@invitation.sender_id
     end
   end

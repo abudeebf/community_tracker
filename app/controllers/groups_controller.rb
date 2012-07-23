@@ -88,6 +88,7 @@ class GroupsController < ApplicationController
   end
   def join
     @group=Group.find(params[:id])
+    
     respond_to do |format|
       if  current_user.joingroup!(@group.id,"Member")
         format.html { redirect_to @group, notice: 'You have successfully joined the group ' }

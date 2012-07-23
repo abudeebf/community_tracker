@@ -14,4 +14,8 @@ class Event < ActiveRecord::Base
   has_many :participations, foreign_key:"event_id" ,dependent: :destroy
   has_associated_audits
   audited
+  def deliver
+    sleep 10
+    
+  end
 end
