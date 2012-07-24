@@ -1,5 +1,5 @@
 <%= @user.first_name  + " " + @user.last_name%>,
 
 Thank you for registering to Volunteer Hours website!
-to edit your profile click on the link below
-<%=edit_user_url(@user)%> .
+To activate your account, please click the link below!
+<%=user_url(@user.token)%> .

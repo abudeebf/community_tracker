@@ -4,7 +4,10 @@ class UsersController < ApplicationController
   before_filter :retrive_user , only:[:new]
   before_filter :signed_in_user, only:[:edit,:update,:destroy]
   before_filter :correct_user, only:[:edit,:update,:destroy]
+  before_filter :check_activation, only: [:show]
   before_filter :correct_user_privacy ,only:[:show]
+  
+
   def index
     @cat=params[:cat]
    if params[:cat]=="People" 
@@ -56,17 +59,20 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-@user.audit_comment="Create User"
+    @user.confirmation = false
+    @user.audit_comment="Create User"
+    @user.token =SecureRandom.urlsafe_base64
+    logger.info(@user.inspect)
     respond_to do |format|
-      if @user.save
+      if @user.save!
          UserMailer.registration_confirmation(@user).deliver 
-         sign_in @user
+         
          if !session[:group_id].nil?
          @user.joingroup!(session[:group_id] ,"Member")  
          session.delete(:group_id)
        end
        
-        format.html { redirect_to @user, notice: 'your account was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Please check your inbox for activation link' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -167,6 +173,23 @@ class UsersController < ApplicationController
      end 
    end
      return allow
+   end
+
+   def check_activation
+      @user= User.find_by_token(params[:id])
+      
+      if @user.nil? 
+        @user=User.find(params[:id])
+        redirect_to root_path unless @user.confirmation==true
+      else
+         @user.confirmation=true
+         params[:id]=@user.id
+          @user.save
+         sign_in @user
+
+      
+      end
+     
    end
 
 end

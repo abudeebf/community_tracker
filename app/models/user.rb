@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   audited
   has_associated_audits
-  attr_accessible :email, :first_name, :gender, :last_name, :password, :password_confirmation,:privacy
+  attr_accessible :email, :first_name, :gender, :last_name, :password, :password_confirmation,:privacy, :confirmation, :token
   has_secure_password
   has_many :events, :through => :participations
   has_many :participations, foreign_key:"user_id" ,dependent: :destroy
