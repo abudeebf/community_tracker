@@ -64,13 +64,13 @@ class UsersController < ApplicationController
     @user.token =SecureRandom.urlsafe_base64
     logger.info(@user.inspect)
     respond_to do |format|
-      if @user.save!
+      if @user.save
          UserMailer.registration_confirmation(@user).deliver 
          
          if !session[:group_id].nil?
-         @user.joingroup!(session[:group_id] ,"Member")  
-         session.delete(:group_id)
-       end
+           @user.joingroup!(session[:group_id] ,"Member")  
+           session.delete(:group_id)
+          end
        
         format.html { redirect_to root_path, notice: 'Please check your inbox for activation link' }
         format.json { render json: @user, status: :created, location: @user }
