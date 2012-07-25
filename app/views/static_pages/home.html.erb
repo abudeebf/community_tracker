@@ -1,9 +1,67 @@
 <% provide(:title,'Home')%>
-<div class="center hero-unit">
-
-<h1>Welcome to Volunteer Hours</h1>
+<div class="container-fluid">  
+      <div class="row-fluid">  
+        <div class="span4">  
+          <div class="well sidebar-nav">  
+            <ul class="nav nav-list">  
+              <li class="nav-header">Why Volunteer Hours</li> 
+              <h5>if you are a voulnteer this website will help you join group and events easiely and then to have one off profile for all your community service</h5>
+              <li class="nav-header">Event Happining</li>  
+              <ol class="users">
+   <%= render @events %>
+ </ol>
+               
+              <li class="nav-header">Groups</li>  
+                 <ol class="users">
+   <%= render @groups %>
+ </ol>
+           </ul>  
+          </div><!--/.well -->  
+        </div><!--/span--> 
+         <div class="row"> 
+        <div class="span7">  
+            <div class="center hero-unit">
+    
+      <!-- Example row of columns -->  
+    
+          <h1>Welcome to Volunteer Hours</h1>
 <p>If you want to leave your mark as communiy Helper , this your chance!
   </p>
-<%= link_to "sign up now to help!",signup_path,class: "btn btn-large btn-primay"%>
+    <%= link_to "sign up now to help!",signup_path,class: "btn btn-large btn-primay"%>
+ 
+     
+          <div id="myCarousel" class="carousel slide">  
+            <!-- Carousel items -->  
+          <div class="carousel-inner">  
+        <div class="active item"><%= image_tag("1.jpg",alt: "Communiy Tracker" )%>
+          <div class="carousel-caption">
+         Fatima is the best
+       </div>
+        </div>  
+        <div class="item"><%= image_tag("2.jpg",alt: "Communiy Tracker"  )%>
+          <div class="carousel-caption">
+         Fatima is the best
+       </div></div>  
+        <div class="item"><%= image_tag("3.jpg",alt: "Communiy Tracker" )%>  <div class="carousel-caption">
+         Fatima is the best
+       </div></div>  
+        <div class="item"><%= image_tag("4.jpg",alt: "Communiy Tracker" )%>
+          <div class="carousel-caption">
+         Fatima is the best
+       </div></div> 
 
+ 
+  </div>  
+ 
+   </center>
+
+  <!-- Carousel nav -->  
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>  
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a> 
+</div>  
+</div>  
 </div>
+</div>
+<div>
+   </div>
+   </div>       </div>  

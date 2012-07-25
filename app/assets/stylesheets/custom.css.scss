@@ -61,7 +61,14 @@ aside {
   margin-right: 10px;
 }
 
-
+.well 
+{
+  border-top-color:#8c677f;
+  border-left-color:#8c677f;
+  border-bottom-color:#8c677f;
+   border-right-color:#8c677f;
+background-color: #d5b1a2;
+}
 .textcolor
 {
   color: #8c677f;
@@ -122,12 +129,14 @@ aside {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
+ 
    h1 {
   margin-bottom: 0;
   font-size: 3em;
   line-height: 1;
-  color: #8c677f;;
+  color: #e2ab79;;
   letter-spacing: -1px;
+  text-shadow:#000 1px 5px  10px;
 }
 p {
   font-size: 18px;
@@ -242,13 +251,13 @@ html {
     &:hover{
   color: #eee6d9;
   text-decoration: none;
-  background-color: #7b5970;
 }
    }
    .navbar .brand {
   float: left;
   display: block;
   padding: 8px 20px 12px;
+  text-shadow:#000 1px 5px  10px;
   margin-left: 20px;
   font-size: 25px;
   font-weight: 400;
@@ -420,6 +429,14 @@ aside {
   }
 }
 
+     
+  
+.nav .nav-header {  
+font-size: 18px;  
+color:#fff; 
+ text-shadow:#000 1px 5px  10px;
+
+}
 
 
 

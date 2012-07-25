@@ -10,10 +10,11 @@
 </head>
 <body>
 <%= render '/layouts/header' %>
-<div class="container">
+
 	<% flash.each do |key,value| %>
 	<%= content_tag(:div,value,class: "alert alert-#{key}" )%>
 	<%end%>
+  <div class="container"
 <%= yield %>
 
 
@@ -27,8 +28,8 @@
 </div>
 
 
-
 </div>
+
 <%= render '/layouts/footer' %>
  <!-- maybe I have to remove it later-->
  <script type="text/javascript">
@@ -38,5 +39,10 @@
 	   // Fix input element click problem 
 	    $('.dropdown input, .dropdown label').click(function(e) {    e.stopPropagation();  });});
 	</script>
+  <script type="text/javascript"> 
+  $(document).ready(function() { 
+    $('.carousel').carousel({  interval: 2000 })
+  }); 
+</script>
 </body>
 </html>
