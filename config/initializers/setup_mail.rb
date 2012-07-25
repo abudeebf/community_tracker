@@ -8,5 +8,4 @@ ActionMailer::Base.smtp_settings = {    :address              => "smtp.gmail.com
              ActionMailer::Base.default_url_options[:host] = "www.volunteerhours.org" 
          else
          	ActionMailer::Base.default_url_options[:host] = "localhost:3000" 
-         	
          end
