@@ -1,9 +1,44 @@
 <% provide(:title,'Home')%>
-<div class="center hero-unit">
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span4">
+		 <table class="table table-striped table-bordered table-condensed">
+		 	<tr>
+		 	 <td>
+		 	 	<h3> Events Happining</h3>
+		 	 </td>
+		 	</tr>
+		 	<tr>
+		 		<td>
+				 <ol class="users">
+		        	<%= render @events %>
+		         </ol>
+		 		</td>
+		 	</tr>
+		 	<tr>
+	 		<td>
+		 	 	<h3> Groups</h3>
+		 	</td>
+		 	</tr>
+		 	<tr>
+		 		<td>
+				 <ol class="users">
+		        	<%= render @groups %>
+		         </ol>
+		 		</td>
+		 	</tr>
+		 	
+		 	</tr>
+		 		
+		 </table>
+		</div>
+	<div class="span8 center firstpage">
 
 <h1>Welcome to Volunteer Hours</h1>
-<p>If you want to leave your mark as communiy Helper , this your chance!
+<p>If you want to leave your mark as community helper , this your chance!
   </p>
 <%= link_to "sign up now to help!",signup_path,class: "btn btn-large btn-primay"%>
 
+</div>
+</div>
 </div>

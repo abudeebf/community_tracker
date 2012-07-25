@@ -2,7 +2,8 @@
 class StaticPagesController < ApplicationController
 	
   def home
-
+   @events=Event.all
+   @groups=Group.all
   end
 
   def aboutus
