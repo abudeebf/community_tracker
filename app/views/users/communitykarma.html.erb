@@ -20,7 +20,8 @@
     	 <td> <%= link_to Group.find(member.group_id).name,Group.find(member.group_id)%>
     	 </td>
     	 <td> <%= member.total_hours%> </td>
-    	     <% if (Group.find(member.group_id).gamification && member.total_hours >0)%>
+            <% logger.info (member.inspect)%>
+    	     <% if (Group.find(member.group_id).gamification && (!member.total_hours.nil? && member.total_hours > 0) )%>
     	     <% x=badgefinder(Group.find(member.group_id),member.total_hours)%>
              <td> <%= x%></td>
              <% end %>
