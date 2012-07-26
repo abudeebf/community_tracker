@@ -1,78 +1,47 @@
 <% provide(:title,@user.first_name)%>
-<table >
-  <tr>
-    <td>
-  <aside class "span4">
-    <section>
- <h2> <%= @user.last_name.upcase %> PROFILE <h2>
-  <%= link_to 'Edit my profile', edit_user_path(@user) ,class: "btn btn-small btn-primay" %> |
-<%= link_to 'My hour Tracker', users_hourtracker_path(@user) ,class: "btn btn-small btn-primay" %>|
-<%= link_to "Add past voulnteer events", new_user_pastevent_path(@user) ,class: "btn btn-small btn-primay" %>
-<%= link_to 'Community Karma', users_communitykarma_path(@user) ,class: "btn btn-small btn-primay" %>|
-<%= link_to 'My Preference', "#" ,class: "btn btn-small btn-primay" %>|
-<%= link_to 'Create Group', newgroup_path ,class: "btn btn-small btn-primay" %>
- <h1>
-  </td>
-</tr>
-<tr> 
-  <td>
-  <%= gravatar_for @user,200 %>
-  <% @user.first_name %>
-</h1>
-<h3> User card </h3>
-<br />
-  <b>First name:</b>
-  <%= @user.first_name %>
-</p>
- 
-<p>
-  <b>Last name:</b>
-  <%= @user.last_name %>
-</p>
+<%=render 'users/tabup' %>
+<div class="container-fluid">  
+  <div class="row-fluid">  
+    <div class="span4">  
+      <div class="well sidebar-nav">  
+       <ul class="nav nav-list">  
+        <li class="nav-header">  <%= @user.first_name.upcase + " "+@user.last_name.upcase %> PROFILE </li><li><%= gravatar_for @user,50 %></li>
+        <li><%= @user.gender %></li>
+         <li><%= @user.email %></li>
+       </ul>
+     </div>
+  </div>
 
-<p>
-  <b>Gender:</b>
-  <%= @user.gender %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-</section>
-
-</aside>
-</td>
-<td valign="top">
-  <aside class "span4">
-    <section style="margin-left:50px" >
-       <% if @user.groups.any? %>
-      <h3 >My Groups (<%= @user.groups.count %>)</h3>
-      <ol class="users">
-        <%= render @user.groups  %>
-      </ol>
-    <%= will_paginate @groups %>
-    <% end %>
-  </section>
-</aside>
-</tr>
-<tr>
-<td>
-  <aside class "span4">
-    <section>
-  <% if @user.events.any? %>
-   <h3>My Events (<%= @user.events.count %>)</h3>
-  <% end %>
+  <div class="span6">
+ <div class="well sidebar-nav">  
+            <ul class="nav nav-list">
+               <% if @user.events.any? %>
+   <li class="nav-header">My Events (<%= @user.events.count %>)</li>
   <ol class="users">
    <%= render @events %>
- </ol>
-  </section>
-</aside>
-</td>
-</tr>
+              
+      <% end %>
+    </ul>
+      </div>
+    </div>
+  </div>
+   <div class="row-fluid"> 
+    <div class="span4">
+ <div class="well sidebar-nav"> 
+  <ul class="nav nav-list">
+   <% if @user.groups.any? %>
+            <li class="nav-header">My Groups (<%= @user.groups.count %>)</li>
+           <ol class="users">
+          <%= render @user.groups  %>
 
-  </table>
+      </ol>
+        <% end %>
+      </ul>
+  </div>
+    </div> 
+     </div>
+   </div>
+  </row>
 
 
 

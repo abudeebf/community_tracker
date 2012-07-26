@@ -9,17 +9,16 @@
     <div class="container">
       
     
-      <ul class ="nav pull-left">
+      <ul class ="nav pull-right">
             <li> <%= form_tag(userserach_path, :class => 'form-search', :method => 'get') do %>
              <%= select_tag :cat, options_for_select([["People", "People"], ["Groups", "Groups"],["Events", "Events"]],:selected => @cat),{:style => 'width: 65px;font-size:10px'}  %> 
             <%= text_field_tag :search, params[:search],class:"input-medium search-query" %>
            <button type="submit" class="btn btn-large btn-primary" name=nil>
-           <i class="icon-search icon-white"></i>
+           <i class="icon-search icon-white"></i></button>
           <% end %>
 
            </li>
-         </ul>
-         <ul class ="nav pull-right">
+         
 			      <li><%= link_to "Home", root_path ,class: "links" %></li>
             <li><%= link_to "About us", aboutus_path ,class: "links"%></li>
             <li><%= link_to "Stories", stories_path ,class: "links"%></li>

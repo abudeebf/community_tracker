@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
   # GET /groups/new.json
   def new
     @group = Group.new
-
+    @user=current_user
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @group }

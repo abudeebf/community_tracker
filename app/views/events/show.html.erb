@@ -1,90 +1,47 @@
 <%= provide(:title, @event.title) %>
-<% if signed_in? &&(current_user.participations.where("event_id=? And user_id=?",@event.id,current_user).empty?)  %>
+<% if signed_in? &&(current_user.participations.where("event_id=? And user_id=?",@event.id,current_user).empty?)  %>  
+   <% if eventExpire?(@event) %>
+    <%= link_to "Join this event ",new_event_participation_path(@event), class: "btn btn-small btn-primay" %> 
+  <% else %>  
+   <h3> This event already expired </h3>   
+   <% end %> 
+<% elsif signed_in?  %> 
+  <% if !admin?(@event.group_id)%> 
   <% if eventExpire?(@event) %>
-<%= link_to "Join this event ",new_event_participation_path(@event), class: "btn btn-small 
-   btn-primay" %>
-  <% else %>
-   <h3> This event already expired </h3>
-   <% end %>
- <% elsif signed_in?  %>
- <% if !admin?(@event.group_id)%>
- <% if eventExpire?(@event) %>
- <%= link_to "leave this event ",new_event_participation_path(@event), class: "btn btn-small 
- btn-primay"%>
- <%end%>
-  <%end%>
-  <%= link_to 'Inspire other by your Reflection',new_event_reflection_path(@event),class: "btn btn-small 
- btn-primay"%>
- <%= link_to 'Participants Reflection',reflections_to_event_path(@event),class: "btn btn-small 
- btn-primay"%> 
- <% end %>
-  <% if signed_in? %>
- <% if admin?(@event.group_id)%>
- <%= link_to "approve participation ",participations_edit_path(@event), class: "btn btn-small 
- btn-primay" %>
- <%= link_to 'Edit', edit_event_path(@event) ,class: "btn btn-small 
- btn-primay"%> 
- <%end%>
- <% end %>
-
-
-<aside class "span4">
-    <section>
-      <br />
-      <table>
-        <tr>
-        <td colspan="3" class="center">
- <h2> <%= @event.title.upcase %> EVENT PAGE</h2> </td>
- </tr>
- <tr>
- <td  valign="top"> 
- <% if @event.photo.url=="/photos/original/missing.png" %>
-  <%= image_tag "Help-Wanted-Sign.jpg",width: "200"%>
-  <%else %>
-<h1>
-  <%= image_tag @event.photo.url,width: "300"%>
-</h1>
- <% end %>
-</td>
-      <td style='padding-left:30px ; width:150'>
-  <p><b>Category:</b>
-  <%= @event.category %>
-</p>
-<p>
-  <b>Start time:</b>
- From <%= @event.starttime.to_s[0,16]%>
-  
-</p>
-<p>
-  <b>End time:</b>
- To <%= @event.endtime.to_s[0,16]%>
-</p>
-
-
-<% if @event.recurring?%>
-<p>  <%= "This is a Recurring Event that ends on " + @event.recurring_ends.to_s[0,10]%></p>
-<%end%>
-
-
-<p>
-  <b>Location:</b>
-  <%= @event.location %>
-</p>
-<p>
-  <h3>Event information:</h3>
-  <%= @event.description %>
-</p>
-</td>
-<td padding-left:15px valign="top">
-    <% if @event.participations.any? %>
-      <h3>Event Participants (<%= @event.participations.count %>)</h3>
-      <ol class="users">
-        <%= render @users %>
-      </ol>
-      <% end %>
-  </td>
-</tr>
-</aside>
-</section>
-</table>
-
+     <%= link_to "leave this event ",new_event_participation_path(@event), class: "btn btn-small  btn-primay"%> 
+    <%end%>
+    
+   <%end%>
+   <%= link_to 'Inspire other by your Reflection',new_event_reflection_path(@event),class: "btn btn-small btn-primay"%>
+      <%= link_to 'Participants Reflection',reflections_to_event_path(@event),class: "btn btn-small  btn-primay"%> 
+    <% end %> 
+        <% if signed_in? %> 
+        <% if admin?(@event.group_id)%> 
+        <%= link_to "approve participation ",participations_edit_path(@event), class: "btn btn-small  btn-primay" %> 
+        <%= link_to 'Edit', edit_event_path(@event) ,class: "btn btn-small  btn-primay"%> 
+         <%end%> 
+        <% end %>
+        <aside class "span4">   
+         <section>      <br />  
+             <table>       
+              <tr>        
+                <td colspan="3" class="center"> <h2> <%= @event.title.upcase %> EVENT PAGE</h2> </td> </tr> <tr> <td  valign="top">  
+                 <% if @event.photo.url=="/photos/original/missing.png" %>  <%= image_tag "Help-Wanted-Sign.jpg",width: "200"%> 
+                  <%else %>
+                  <h1>  <%= image_tag @event.photo.url,width: "300"%></h1> 
+                  <% end %></td>     
+                   <td style='padding-left:30px ; width:150'> 
+                    <p><b>Category:</b> 
+                     <%= @event.category %></p><p>  
+                     <b>Start time:</b> From <%= @event.starttime.to_s[0,16]%> 
+                      </p><p>  <b>End time:</b> To <%= @event.endtime.to_s[0,16]%></p>
+                      <% if @event.recurring?%><p>  <%= "This is a Recurring Event that ends on " + @event.recurring_ends.to_s[0,10]%></p>
+                      <%end%>
+                      <p>  <b>Location:</b> 
+                       <%= @event.location %></p><p>  
+                       <h3>Event information:</h3>  <%= @event.description %></p></td><td padding-left:15px valign="top"> 
+                          <% if @event.participations.any? %>   
+                             <h3>Event Participants (<%= @event.participations.count %>)</h3>      
+                             <ol class="users">        
+                              <%= render @users %>      </ol> 
+                                  <% end %>  </td></tr></table></section></aside>
