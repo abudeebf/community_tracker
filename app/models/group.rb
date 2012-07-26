@@ -12,6 +12,11 @@ after_validation :geocode, :if => :address_changed?
     audited 
   has_associated_audits
 
+  validates :email, uniqueness: {case_senstive: false}
+  validates_format_of  :email, :with => /\b[A-Za-z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/
+
+  
+
  has_many :memberships, foreign_key:"group_id" ,dependent: :destroy
   has_many :reverse_relationships, foreign_key:"user_id",dependent: :destroy, class_name:"memberships"
  has_many :events
