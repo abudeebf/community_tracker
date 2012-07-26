@@ -23,7 +23,10 @@ class Event < ActiveRecord::Base
   end
 
   def dateValidation?
-    if endtime<starttime || starttime<DateTime.now 
+    if endtime<starttime || starttime<DateTime.now.in_time_zone("Eastern Time (US & Canada)") 
+      # logger.info("****" +endtime.in_time_zone("Eastern Time (US & Canada)"))
+      # logger.info("****"+starttime)
+      # logger.info("****"+DateTime.now)
       errors.add(:starttime, 'Error with the date. Please fix it!')
     end
   end

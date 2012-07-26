@@ -17,8 +17,8 @@ class Pastevent < ActiveRecord::Base
   def dateValidation?
     if end_date<start_date
       errors.add(:end_date, 'is smaller than start date. Please fix it!')
-    elsif start_date>DateTime.now 
-      errors.add(:start_date, 'should be a past date. Please fix it!')
+    elsif start_date>DateTime.now.in_time_zone("Eastern Time (US & Canada)") 
+      errors.add(:start_date, 'should be a past date. You cannot add a future event as a past event. Please fix it!')
     end
   end
 end
