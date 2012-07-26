@@ -6,9 +6,9 @@ class Event < ActiveRecord::Base
   validates :location, presence:true
    validates :user_id , presence: true 
    validates :group_id , presence: true
-   validates :email, uniqueness: {case_senstive: false}
-   validates_format_of  :email, :with => /\b[A-Za-z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/
-  
+   
+  validate :dateValidation?
+    
   belongs_to :user
   belongs_to :group
   default_scope order: 'events.created_at DESC'
@@ -20,5 +20,11 @@ class Event < ActiveRecord::Base
   
   def deliver
     sleep 10
+  end
+
+  def dateValidation?
+    if endtime<starttime || starttime<DateTime.now 
+      errors.add(:starttime, 'Error with the date. Please fix it!')
+    end
   end
 end
