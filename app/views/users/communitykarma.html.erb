@@ -1,8 +1,10 @@
 <% provide(:title,@user.first_name + " " +@user.last_name)%>
-<h1> Community Karma</h1>
-
-<%= gravatar_for @user,100 %>
-<h2 ><%=@user.first_name + " " +@user.last_name%></h2>
+<%=render 'users/tabup' %>
+ <div class="well span8">
+<%= gravatar_for @user,60 %>
+<ul class="nav nav-list">  
+        <li class="nav-header"><%=@user.first_name + " " +@user.last_name%></li>
+</ul>
 
     <table  class="table table-striped table-bordered table-condensed">
     <tr>
@@ -20,11 +22,14 @@
     	 <td> <%= link_to Group.find(member.group_id).name,Group.find(member.group_id)%>
     	 </td>
     	 <td> <%= member.total_hours%> </td>
-            <% logger.info (member.inspect)%>
+    
     	     <% if (Group.find(member.group_id).gamification && (!member.total_hours.nil? && member.total_hours > 0) )%>
     	     <% x=badgefinder(Group.find(member.group_id),member.total_hours)%>
              <td> <%= x%></td>
+            <% else%>
+<td> </td>
              <% end %>
     	 </tr>
     	 <% end %>
     	</table>
+</div>

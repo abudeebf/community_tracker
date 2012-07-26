@@ -1,85 +1,670 @@
 <% provide(:title,@group.name)%>
-<% if signed_in? == false%>
-<% else %>
-
-<% if (current_user.memberships.where("group_id=? And member=?",@group.id,"Creator")).empty? == false || (current_user.memberships.where("group_id=? And member=?",@group.id,"Admin")).empty? ==false %>
-<%= link_to 'Edit', edit_group_path(@group), class: "btn btn-small btn-primay" %> |
-<%= link_to 'Create Event', new_group_event_path(@group) ,class: "btn btn-small btn-primay"%> |
-<%= link_to 'Invite Member', new_group_invitation_path(@group), class: "btn btn-small btn-primay" %> 
-<% else %>
-<% if (current_user.memberships.where("group_id=? And member=?",@group.id,"Member")) .empty?%>
-<%= link_to 'Join Us', new_group_join_path(@group), class: "btn btn-large btn-primay" %> 
-<% end %>
-<% end %>
-<% end %>
-<aside >
-    <section>
-      <br />
-      <table>
-        <tr>
-          <td  valign="top" colspan="4"> 
-             <h2> <%= @group.name.upcase %> PROFILE</h2> 
-           </td>
-         </tr>
-         <tr>
-          <td valign="top">
-  <% if @group.photo.url=="/photos/original/missing.png" %>
-  <%= image_tag "community.jpg",width: "200"%>
+ <%= render '/groups/tabup'%>
+</ul>
+<div class="container-fluid">  
+  <div class="row-fluid">  
+    <div class="span8">  
+      <div class="well sidebar-nav">  
+       <ul class="nav nav-list">  
+        <li class="nav-header"> 
+         <%= @group.name.upcase %> PROFILE </li>
+         <table> <tr> <td  width="50%">
+         <% if @group.photo.url=="/photos/original/missing.png" %>
+ <li> <%= image_tag "community.jpg",width: "200"%></li>
   <%else %>
-  <%= image_tag @group.photo.url,width: "200"%>
+  <li><%= image_tag @group.photo.url,width: "200"%></li>
  <% end %>
- <p><b>email:</b> <br />
-  <%= @group.email %>
-</p><br />
-  <b> Creator:</b> <br />
-  <p>
+ </td> <td>
+ <% if @group.events.any? %>
+  <table class="table table-striped table-bordered table-condensed">
+    <tr>
+      <td><%=@group.name %> Events</td>
+      <td><%=@group.name %> Total Volunteer hours</td>
+    </tr>
+    <td><%= @group.events.count %></td>
+      <td><%= grouphourtracker1(@group.events)%></td>
+  </table>
+  <%end %>
+</td> </tr>
+ </table>
+
+   <li><%= @group.email %></li>
+         <li> <b> Creator:</b><p>
   <% user=User.find(@group.memberships.find_by_member("Creator").user_id) %>
   <%= link_to  user.first_name + " " + user.last_name ,user %>
-</p>
-</td> 
-  <td style='padding-left:15px '>
-  <p><b>Description:</b> <br />
-  <%= @group.description %>
-</p>
-<p>
- <b> Address:</b><br />
-<%= @group.address %><br />
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@group.latitude}%2C#{@group.longitude}" %>
-<br />
-</p>
-<%if @group.gamification %>
-<p><b> Gamification is a part of this Group</p></b>
+</p></li>
+<li> <b> Address:</b>
+<div id="myCollapsibleExample"><a href="#demo" data-toggle="collapse"><%= @group.address %>
+<div id="demo" class="collapse"> 
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@group.latitude}%2C#{@group.longitude}" %></a></div>  
+</div></li> 
+
+<li class="nav-header">Group Description</li>
+        <li> <%= @group.description %></li>
+
+       </ul>
+     </div>
+  </div>
+    <div class="span4">  
+      <div class="well sidebar-nav">  
+       <ul class="nav nav-list">  
+        <%if @group.gamification %>
+<li class='nav-header'>Gamification is a part of this Group</p></b></li>
   <p>Gold Badge:<%=@group.gold%> hours.</p>
   <p>Gold Badge:<%=@group.silver%> hours.</p>
   <p>Gold Badge:<%=@group.bronze%> hours.</p>
 <% end %>
-
-<h3>Nearby locations</h3>
-
-</td>
-</section>
-<td>
   <% if @users.any?%>
-   <p><b> Group has <%=@users.count%> members</b></p>
+    <li class='nav-header'>Group Members</li>
+   <li><p><b> Group has <%=@users.count%> members</b></p>
    <ol class="users">
  <%= render @users %>
  </ol>
    <% end %>
-  </td>
-</tr>
-<tr>
-  
-
-    <section>
-  <% if @group.events.any? %>
-   <h3>Group Events (<%= @group.events.count %>)</h3>
-   <h3>Group total voulnteer hours is  (<%= grouphourtracker1(@group.events)%>)</h3>
-  <% end %>
+ </li>
+  </ul>
+   </div>
+  </div>
+</row>
+ <div class="row-fluid">  
+    <div class="span8">  
+      <div class="well sidebar-nav">  
+       <ul class="nav nav-list">  
+        <li class="nav-header"> <%=@group.name%> Events</Li>
   <ol class="users">
    <%= render @events %>
  </ol>
-  </section>
-  
-</aside>
-</tr>
-</table>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

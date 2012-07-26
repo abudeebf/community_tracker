@@ -1,40 +1,32 @@
 <%= form_for(@user) do |f| %>
   <%= render "shared/error_messages"%>
-  <aside class "span5">
-    <section>
+  <div class="well span10">
 
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-    
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %><br />
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %><br />
       <div class="controls" >
    <%= f.label "Gender"  %>
      <% ["Female","Male","Other"].each do |x| %> 
     <label class="radio inline">
       <%= f.radio_button :gender, x %><%= x %>  
       </label> 
-  
     <% end %>
-    </div>
+    </div><br />
      <div class ="field">
     <%= f.check_box :privacy %> <b>Do you want your profile NOT to be searchable in voulnteer hours website</b> 
-    </div> 
-<br>
-    <%= f.label :email  %><br />
-
-    <%= f.text_field :email  %>
+    </div> <br />
+    <%= f.label :email  %>
+    <%= f.text_field :email  %><br />
     <%= f.label  "Password (must be minimum 6 characters, includes 
-                a symbol and a number)" %><br />
-    <%= f.password_field :password %>
+                a symbol and a number)" %>
+    <%= f.password_field :password %><br />
 
-    <%= f.label :password_confirmation, "Confirmation" %><br />
-    <%= f.password_field :password_confirmation %>
+    <%= f.label :password_confirmation, "Confirmation" %>
+    <%= f.password_field :password_confirmation %><br />
   <div class="actions">
-    <%= f.submit "Create my account" ,class: "btn btn-large btn-primay"%>
+    <%= f.submit "Create my account" ,class: "btn btn-large btn-primary"%>
   </div>
 <% end %>
 </div>
-</div>
-</section>
-</aside>

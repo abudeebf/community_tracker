@@ -1,3 +1,4 @@
+<%=render 'users/tabup' %>
 <%= form_for(@pastevent) do |f| %>
   <% if @pastevent.errors.any? %>
     <div id="error_explanation">
@@ -10,34 +11,35 @@
       </ul>
     </div>
   <% end %>
+  <div class="well span8">
 <div class="field">
-    <%= f.label "Organization Name" %><br />
-    <%= f.text_field :orgname %>
+    <%= f.label "Organization Name" %>
+    <%= f.text_field :orgname %><br />
   </div>
   <div class="field">
-    <%= f.label "Location" %><br />
-    <%= f.text_field :location %>
+    <%= f.label "Location" %>
+    <%= f.text_field :location %><br />
   </div>
   <div class="field">
-    <%= f.label "Total Volunteer Hours" %><br />
-    <%= f.text_field :hours %>
+    <%= f.label "Total Volunteer Hours" %>
+    <%= f.text_field :hours %><br />
   </div>
   <div class="field">
-    <%= f.label "Organization Administrator name" %><br />
-    <%= f.text_field :adminname %>
+    <%= f.label "Organization Administrator name" %>
+    <%= f.text_field :adminname %><br />
   </div>
   <div class="field">
-    <%= f.label "Administrator's email" %><br />
-    <%= f.text_field :email %>
+    <%= f.label "Administrator's email" %>
+    <%= f.text_field :email %><br />
   </div>
   <div class="field">
-    <%= f.label "Start Date" %><br />
-    <%= f.date_select(:start_date, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %>
+    <%= f.label "Start Date" %>
+    <%= f.date_select(:start_date, {:use_short_month => 1, :order => [:month, :day, :year]},{:style => 'width: 60px'} ) %><br />
   </div>
   
   <div class="field">
-   <%= f.label "End Date" %><br />
-   <%= f.date_select(:end_date, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %>
+   <%= f.label "End Date" %>
+   <%= f.date_select(:end_date, {:use_short_month => 1, :order => [:month, :day, :year]},{:style => 'width: 60px'} ) %><br />
   </div>
 
   <div class="field">
@@ -49,7 +51,7 @@
   </div>
   <br />
   <div class="actions">
-    <%= f.submit "Add Past Event",class: "btn btn-large btn-primay"%>
+    <%= f.submit "Add Past Event",class: "btn btn-large btn-primary"%>
   </div>
-
+</div>
 <% end %>

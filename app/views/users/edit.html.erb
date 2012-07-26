@@ -1,22 +1,15 @@
 <%= provide(:title,'Edit Profile') %>
-<h1>Update Your Profile</h1>
+<%=render 'users/tabup' %>
 <%= form_for(@user) do |f| %>
   <%= render "shared/error_messages"%>
-  <p> Click to change</p>
-  <div class="row">
-  <aside class "span4">
-    <section>
-  <%= gravatar_for @user,100 %>
-</section>
-</aside>
-    
-</div>
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
+  <div class="well span8">
+  <%= gravatar_for @user,120 %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %><br />
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %><br />
      <div class ="field">
-    <%= f.check_box :privacy %> <b>Do you want your profile NOT to be searchable in voulnteer hours website</b> 
+    <%= f.check_box :privacy %> <b>Do you want your profile NOT to be searchable in voulnteer hours website</b> <br />
   </div>
     <div class="controls" >
    <%= f.label "Gender"  %>
@@ -24,20 +17,16 @@
     <label class="radio inline">
       <%= f.radio_button :gender, x %><%= x %>  
       </label> 
-    
     <% end %>
     </div> 
-<br>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-
-    <%= f.label :password_confirmation, "Password Confirmation" %><br />
-    <%= f.password_field :password_confirmation %>
-  <div class="actions">
-    <%= f.submit "Save changes" ,class: "btn btn-large btn-primay"%>
-    <%= link_to 'cancel', current_user %>
-    
-  </div>
+<br />
+    <%= f.label :email %>
+    <%= f.text_field :email %><br />
+    <%= f.label :password %>
+    <%= f.password_field :password %><br />
+    <%= f.label :password_confirmation, "Password Confirmation" %>
+    <%= f.password_field :password_confirmation %><br />
+    <%= f.submit "Save changes" ,class: "btn btn-large btn-primary"%>
 <% end %>
+</div>
+</row>

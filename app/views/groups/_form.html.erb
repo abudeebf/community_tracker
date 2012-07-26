@@ -1,3 +1,5 @@
+<%=render 'users/tabup' %>
+
 <%= form_for(@group) do |f| %>
   <% if @group.errors.any? %>
     <div id="error_explanation">
@@ -10,41 +12,36 @@
       </ul>
     </div>
   <% end %>
-<aside class "span5">
-    <section>
+<div class="well span8">
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br />
   </div>
   <div class="field">
-    <%= f.label :tags %><br />
-    <%= f.text_field :tags %>
+    <%= f.label :tags %>
+    <%= f.text_field :tags %><br />
   </div>
    <div >
-    <%= f.label :email %><br />
-    <%= f.text_field :email  %>
+    <%= f.label :email %>
+    <%= f.text_field :email  %><br />
   </div>
   <div >
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
+    <%= f.label :address %>
+    <%= f.text_field :address %><br />
   </div>
   <div >
-    <%= f.label :description %><br />
-    <%= f.text_area :description ,rows: 15 %>
+    <%= f.label :description %>
+    <%= f.text_area :description ,rows: 5 ,columns:10%><br />
   </div>
     <div class="field">
     <br />
      <%= f.check_box :gamification%> <font color= "black">Is gamification part of your group?</font> 
-  </div>
+  </div><br />
   <div >
     <%= f.label :gold %>
     <%= f.number_field :gold %>
-  </div>
-<div >
     <%= f.label :silver %>
     <%= f.number_field :silver %>
-  </div>
-  <div >
     <%= f.label :bronze %>
     <%= f.number_field :bronze %>
   </div>
@@ -55,10 +52,8 @@
 
     </div>
   <div class="actions">
-    <%= f.submit "save" ,class: "btn btn-large btn-primay"%>
-   
+    <%= f.submit "save" ,class: "btn btn-large btn-primary"%>
   </div>
-
-</section>
-</aside>
+</div>
 <% end %>
+
