@@ -1,3 +1,5 @@
+<div class="well span8">
+
 <%= form_for([@group, @group.sent_invitations.build]) do |f| %>
   <% if @invitation.errors.any? %>
     <div id="error_explanation">
@@ -10,13 +12,14 @@
       </ul>
     </div>
   <% end %>
-
+  <h4>please insert your members emails here each email in new line</h4><br />
   <div class="field center">
-    <%= f.label "please insert your members emails here" %><br />
-    <%= f.text_area :invited_members, size: "30x20" %>
+   
+    <%= f.text_area :invited_members, size: "50x20" %>
   </div>
   
   <div class="actions center">
-    <%= f.submit " Invite members now" , class: "btn btn-larg btn-primay" %>
+    <%= f.submit " Invite members now" , class: "btn btn-larg btn-primary" %>
   </div>
 <% end %>
+</div>

@@ -37,7 +37,7 @@ class InvitationsController < ApplicationController
     @invitation.sent_at=Time.now
     @invitation.sender_id=@group.id
     @invitation.audit_comment="Send Invitation";
-      if @invitation.save!
+      if @invitation.save
         emails.each {|x| 
     UserMailer.invitation(x,new_signup_invitation_url(@invitation.token),@group).deliver 
     }
@@ -45,6 +45,7 @@ class InvitationsController < ApplicationController
         redirect_to @group
       else
         render :new
+
     end
   end
 

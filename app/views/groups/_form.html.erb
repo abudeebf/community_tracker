@@ -1,5 +1,4 @@
-<%=render 'users/tabup' %>
-
+<div class="well span8">
 <%= form_for(@group) do |f| %>
   <% if @group.errors.any? %>
     <div id="error_explanation">
@@ -12,7 +11,9 @@
       </ul>
     </div>
   <% end %>
-<div class="well span8">
+
+   <h4>Create New Group</h4>
+  <br />
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %><br />

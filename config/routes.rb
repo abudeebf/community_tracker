@@ -1,8 +1,5 @@
 HourTracker::Application.routes.draw do
-  resources :pastevents
-
-  resources :locations
-
+  resources :pastevents ,only:[:new,:creat,:show,:update]
   resources :participations
   resources :reflections
   match 'auth/:provider/callback', to: 'sessions#create' 
@@ -14,7 +11,7 @@ HourTracker::Application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout'
   resources :invitations
   resources :sessions, only:[:new,:create,:destroy]
-  resources :users
+  resources :users 
   match 'groups/:id/join', to: 'groups#join' , as:"new_group_join"
    match '/aboutus', to: 'static_pages#aboutus'
    match '/events/:id/update' ,to: 'events#update',as: "update_event"
@@ -32,10 +29,10 @@ HourTracker::Application.routes.draw do
    match '/newgroup', to: 'groups#new'
    match '/newevent',to:'events#new'
    resources :branchtests
-   resources :events
+   resources :events ,only:[:new,:creat,:show,:update]
    match '/signin', to: 'sessions#new'
    match '/signout' ,to: 'sessions#destroy', via: :delete
-  resources :groups
+  resources :groups,only:[:new,:creat,:show,:update]
   #match '/password_reset',to:'password_rests#new'
   resources :password_resets
   resources :groups do

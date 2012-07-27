@@ -5,6 +5,8 @@
 <% else %>
 <% if (current_user.memberships.where("group_id=? And member=?",@group.id,"Creator")).empty? == false || (current_user.memberships.where("group_id=? And member=?",@group.id,"Admin")).empty? ==false %>
 <li class="active"> 
+	<%= link_to 'my Group <i class="icon-globe"></i>'.html_safe, group_path(@group), class: "btn btn-small btn-primay" %> </li>
+<li>
 <%= link_to 'Edit Group <i class="icon-pencil"></i>'.html_safe, edit_group_path(@group), class: "btn btn-small btn-primay" %> </li>
 <li><%= link_to 'Create Event<i class="icon-plus"></i>'.html_safe, new_group_event_path(@group) ,class: "btn btn-small btn-primay"%> </li>
 <li><%= link_to 'Invite Member <i class="icon-envelope"></i>'.html_safe, new_group_invitation_path(@group), class: "btn btn-small btn-primay" %> </li>
