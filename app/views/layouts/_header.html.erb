@@ -1,41 +1,38 @@
-<header class="navbar navbar-fixed-top">
+<header class="navbar navbar-fixed-top ">
 
-  <div class="navbar-inner">
+  <div class="navbar-inner roundedtop">
     <% if !signed_in?%>
       <%= link_to "Volunteer Hours",root_path, class: "brand" %>
     <% else %>
       <%= link_to "Volunteer Hours",current_user, class: "brand" %>
     <% end %>
-    <div class="container">
-      
-    
-      <ul class ="nav pull-right">
-            <li> <%= form_tag(userserach_path, :class => 'form-search', :method => 'get') do %>
-             <%= select_tag :cat, options_for_select([["People", "People"], ["Groups", "Groups"],["Events", "Events"]],:selected => @cat),{:style => 'width: 65px;font-size:10px'}  %> 
-            <%= text_field_tag :search, params[:search],class:"input-medium search-query" %>
-           <button type="submit" class="btn btn-large btn-primary" name=nil>
-           <i class="icon-search icon-white"></i></button>
-          <% end %>
+    <div class="container" style="width:auto">
+      <nav>
 
-           </li>
+      <ul class ="nav pull-right">
+          <li> <%= form_tag(userserach_path, :class => 'form-search', :method => 'get') do %>
+               <%= select_tag :cat, options_for_select([["People", "People"], ["Groups", "Groups"],["Events", "Events"]],:selected => @cat),{:style => 'width: 70px;font-size:10px'}  %> 
+               <%= text_field_tag :search, params[:search],class:"input-medium search-query" %>
+               <button type="submit" class="btn btn-large btn-primary" name=nil>
+               <i class="icon-search icon-white"></i></button>
+               <% end %>
+          </li>
          
 			      <li><%= link_to "Home", root_path ,class: "links" %></li>
             <li><%= link_to "About us", aboutus_path ,class: "links"%></li>
-            <li><%= link_to "Stories", stories_path ,class: "links"%></li>
             <% if signed_in? %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b>
+               Sign in as <%= current_user.first_name + " " +current_user.last_name %> <b class="caret"></b>
               </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to current_user.first_name+" Profile",current_user %></li>
-                <li><%= link_to "Settings", '#' %></li>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "Sign out", signout_path, method: "delete" %>
-                </li>
-              </ul>
-            </li>
+                      <ul class="dropdown-menu">
+                     <li><%= link_to current_user.first_name+" Profile",current_user %></li>
+                     <li class="divider"></li>
+                     <li>
+                       <%= link_to "Sign out", signout_path, method: "delete" %>
+                     </li>
+                    </ul>
+                   </li>
           <% else %>
              <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -53,13 +50,12 @@
                   <%= link_to " Forget Password!", new_password_reset_path%>
                   <% end %>
                 </div>
-
                </li>
               </ul>
             </li>
           <% end %>
             </ul>
-          
-       
-      
+          </nav>
+            </div>  
+            </div>   
 </header>

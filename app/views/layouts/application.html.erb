@@ -17,9 +17,6 @@
   <div class="container"
 <%= yield %>
 
-
-
-
 </div>
 
 <%= render '/layouts/footer' %>
@@ -38,8 +35,11 @@
 
 </script>
 <script type="text/javascript"> 
-  $('#myCollapsibleExample').click(function() {
-  $('.collapse').collapse('show');
+  $('#myCollapsibleExample').click(function(e) {
+     e.preventDefault();
+      $('.collapse').collapse('toggle');
+        
+   
   }); 
 </script>
 </body>
