@@ -1,8 +1,10 @@
-<div class="well span10">
+<div class="container">  
+<row class="span12">  
+ <div class="well span10">
 <%= form_for(@user) do |f| %>
   <%= render "shared/error_messages"%>
-  
-
+  <h4>Sign up To Volunteer Hours</h4>
+  <br />
     <%= f.label :first_name %>
     <%= f.text_field :first_name %><br />
     <%= f.label :last_name %>
@@ -22,11 +24,12 @@
     <%= f.text_field :email  %><br />
     <%= f.label  "Password (must include a number min: 6 characters, max: 20 characters" %>
     <%= f.password_field :password %><br />
-
     <%= f.label :password_confirmation, "Confirmation" %>
     <%= f.password_field :password_confirmation %><br />
   <div class="actions">
     <%= f.submit "Create my account" ,class: "btn btn-large btn-primary"%>
   </div>
 <% end %>
+</div>
+</div>
 </div>

@@ -45,7 +45,6 @@ class InvitationsController < ApplicationController
         redirect_to @group
       else
         render :new
-
     end
   end
 
