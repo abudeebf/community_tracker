@@ -42,6 +42,7 @@ class PasteventsController < ApplicationController
   def create
     @pastevent = Pastevent.new(params[:pastevent])
     @pastevent.user = current_user
+    @user=current_user
     @pastevent.token = SecureRandom.urlsafe_base64
     respond_to do |format|
       if @pastevent.save

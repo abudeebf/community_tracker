@@ -1,7 +1,7 @@
 ActionMailer::Base.smtp_settings = {    :address              => "smtp.gmail.com", 
    :port                 => 587,  
      :domain               => "communitytracker.com",
-         :user_name            => "faabudeeb",    :password             => "Evilkathy5", 
+         :user_name            => "volunteer.hours.tracker",    :password             => "evilkathy5", 
             :authentication       => "plain",    :enable_starttls_auto => true  } 
 
          if Rails.env.production?

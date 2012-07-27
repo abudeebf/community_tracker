@@ -1,3 +1,4 @@
+<%=render 'groups/tabup' %>
 <%= form_for([@group, @group.events.build]) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -11,49 +12,59 @@
     </div>
   <% end %>
 
+<div class="well span8">
+  <h4>Create New Event</h4>
+  <br />
   <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title , width: "750px"%>
+    <%= f.label :title %>
+    <%= f.text_field :title , width: "750px"%><br />
   </div>
   <div class="field">
-    <%= f.label :category %><br />
+    <%= f.label :category %>
    <%= f.select :category, options_for_select([["Children", "Children"], ["Homeless", "Homeless"],["Elderly", "Elderly"],["Education","Education"],["Environment","Environment"],["Other","Other"]]) %> 
-  </div>
+  </div><br />
   
   
   <div class="field">
-      <%= f.label "Start time" %><br />
-   <%= f.datetime_select(:starttime, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %>
+      <%= f.label "Start time" %>
+      
+   <%= f.datetime_select(:starttime, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => DateTime.now.year},{:style => 'width: 60px'} ) %><br />
   </div>
   <div class="field">
-    <%= f.label "End Time" %><br />
-    <%= f.datetime_select(:endtime, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %>
+    <%= f.label "End Time" %>
+    <%= f.datetime_select(:endtime, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => DateTime.now.year},{:style => 'width: 60px'} ) %>
   </div>
+  <br />
 
   <div class="field">
-    <br />
-     <%= f.check_box :recurring%> <font color= "black">Is this a recurring event(note: recurres every week)?</font> 
+     <%= f.check_box :recurring%> Is this a recurring event(note: recurres every week)?
   </div>
+  <br />
 
   <div class = "field">
     <%= f.label "End Date"%>
-    <%= f.date_select(:recurring_ends, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %> 
+    <%= f.date_select(:recurring_ends, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => DateTime.now.year},{:style => 'width: 60px'} ) %> 
   </div>
+  <br />
 
   <div class="field">
-    <%= f.label :location %><br />
+    <%= f.label :location %>
     <%= f.text_field :location %>
   </div>
-  
+  <br />
+
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %>
     <%= f.text_area :description ,rows: 10 %>
   </div>
+  <br />
   <div class="field">
-    <%= f.label "please add a picture to your event" %><br />
+    <%= f.label "please add a picture to your event" %>
   <%= f.file_field :photo %>
 </div>
+<br />
   <div class="actions">
     <%= f.submit "Save ", class: "btn btn-large btn-primay" %>
   </div>
+</div>
 <% end %>

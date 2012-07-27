@@ -32,12 +32,12 @@
 
 <p>
   <b>Start Date:</b>
-  <%= @pastevent.start_date %>
+  <%= @pastevent.start_date.to_s[0..10] %>
 </p>
 
 <p>
   <b>End Date:</b>
-  <%= @pastevent.end_date %>
+  <%= @pastevent.end_date.to_s[0..10] %>
 </p>
 
 <p>

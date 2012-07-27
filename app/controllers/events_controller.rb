@@ -46,7 +46,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = @group.events.build(params[:event])
-
     eventurl= []
     @event.user = current_user
     @event.audit_comment="Create Event"
