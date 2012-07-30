@@ -2,11 +2,11 @@
 <row class="span12">  
 <ul class="nav nav-tabs">  
 <li class="active">  
- <%= link_to 'my Profile <i class="icon-user"></i>'.html_safe, user_path(current_user),class: "btn btn-small btn-primay" %>   </li> 
- <li><%= link_to 'Edit profile <i class="icon-pencil"></i>'.html_safe, edit_user_path(current_user) ,class: "btn btn-small btn-primay"%></li>
-      <li><%= link_to 'My volunteer Hours <i class="icon-list-alt"></i>'.html_safe, users_hourtracker_path(current_user) ,class: "btn btn-small btn-primay" %></li>
-<li><%= link_to 'Add past voulnteer events <i class="icon-time"></i>'.html_safe, new_user_pastevent_path(current_user),class: "btn btn-small btn-primay"%></li>  
-<li><%= link_to 'Community Karma <i class="icon-gift"></i>'.html_safe, users_communitykarma_path(current_user) ,class: "btn btn-small btn-primay"%> </li>   
+ <%= link_to 'my Profile <i class="icon-user"></i>'.html_safe, user_path(@user),class: "btn btn-small btn-primay" %>   </li> 
+ <li><%= link_to 'Edit profile <i class="icon-pencil"></i>'.html_safe, edit_user_path(@user) ,class: "btn btn-small btn-primay"%></li>
+      <li><%= link_to 'My volunteer Hours <i class="icon-list-alt"></i>'.html_safe, users_hourtracker_path(@user) ,class: "btn btn-small btn-primay" %></li>
+<li><%= link_to 'Add past voulnteer events <i class="icon-time"></i>'.html_safe, new_user_pastevent_path(@user),class: "btn btn-small btn-primay"%></li>  
+<li><%= link_to 'Community Karma <i class="icon-gift"></i>'.html_safe, users_communitykarma_path(@user) ,class: "btn btn-small btn-primay"%> </li>   
 <li><%= link_to 'Create Group <i class="icon-plus"></i>'.html_safe, newgroup_path ,class: "btn btn-small btn-primay"%></li>   
 </ul>  
 <script type="text/javascript">

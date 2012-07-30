@@ -1,5 +1,5 @@
 HourTracker::Application.routes.draw do
-  resources :pastevents ,only:[:new,:creat,:show,:update]
+  resources :pastevents ,only:[:new,:creat,:show,:update,:index]
   resources :participations
   resources :reflections
   match 'auth/:provider/callback', to: 'sessions#create' 

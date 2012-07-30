@@ -2,6 +2,7 @@
 
 
 
+
 .reflection
 {
   padding: 30px 30px 15px 30px;
@@ -77,10 +78,14 @@ aside {
   border-bottom-color:#8c677f;
    border-right-color:#8c677f;
 background-color: #d5b1a2;
+color:#97708A;
+a{
+  color: #AB6361;
+}
 }
 .textcolor
 {
-  color: #8c677f;
+  color: #97708A;
 }
 .navbar-inner {
   min-height: 40px;
@@ -281,7 +286,6 @@ html {
    .links
    {
     &:hover{
-  color: #eee6d9;
   text-decoration: none;
 }
    }
@@ -295,9 +299,11 @@ html {
   font-weight: 400;
   line-height: 1;
   color: #e2ab79;
+ 
   &:hover {
   text-decoration:none;
   background:transparent;
+
 }
 }
 #brand2{
@@ -440,9 +446,8 @@ aside {
   li{
     overflow:auto;
     padding:10px 0;
-    border-top:1px solid #e2ab79 ;
     &:last-child{
-      border-bottom:1px solid #e2ab79;
+      border-bottom:1px solid #fff;
     }
   }
 }
@@ -460,7 +465,7 @@ aside {
   display: block;
 }
 .timestamp {
-  color: $grayLight;
+  color: #fff;
 }
 .gravatar {
   float: left;

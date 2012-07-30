@@ -4,6 +4,7 @@
 <%= form_for(@user) do |f| %>
   <%= render "shared/error_messages"%>
   <h4>Sign up To Volunteer Hours</h4>
+   <%= image_tag("logo.png",alt: "Communiy Tracker",id:"imag")%>
   <br />
     <%= f.label :first_name %>
     <%= f.text_field :first_name %><br />
@@ -22,7 +23,7 @@
     </div> <br />
     <%= f.label :email  %>
     <%= f.text_field :email  %><br />
-    <%= f.label  "Password (must include a number min: 6 characters, max: 20 characters" %>
+    <%= f.label  "Password (must include a number min: 6 characters, max: 20 characters)" %>
     <%= f.password_field :password %><br />
     <%= f.label :password_confirmation, "Confirmation" %>
     <%= f.password_field :password_confirmation %><br />

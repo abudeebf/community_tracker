@@ -26,10 +26,7 @@ class PasteventsController < ApplicationController
   def new
     @pastevent = Pastevent.new
     @user=current_user
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @pastevent }
-    end
+  
   end
 
   # GET /pastevents/1/edit
