@@ -3,24 +3,24 @@
 <ul class="nav nav-tabs">  
 <% if signed_in? &&(current_user.participations.where("event_id=? And user_id=?",@event.id,current_user).empty?)  %>  
   <% if eventExpire?(@event) %>
-     <li><%= link_to "Join this event ",new_event_participation_path(@event), class: "btn btn-small btn-primay" %> </li>
+     <li><%= link_to "Join this event ",new_event_participation_path(@event), class: "btn" %> </li>
   <% else %>  
    <h3> This event already expired </h3>   
    <% end %> 
 <% elsif signed_in?  %> 
   <% if !admin?(@event.group_id)%> 
   <% if eventExpire?(@event) %>
-    <li> <%= link_to "leave this event ",new_event_participation_path(@event), class: "btn btn-small  btn-primay"%> </li>
+    <li> <%= link_to "leave this event ",new_event_participation_path(@event), class: "btn btn-small  btn-"""%> </li>
     <%end%>
     
    <%end%>
-  <li> <%= link_to 'Inspire other by your Reflection',new_event_reflection_path(@event),class: "btn btn-small btn-primay"%></li>
-     <li> <%= link_to 'Participants Reflection',reflections_to_event_path(@event),class: "btn btn-small  btn-primay"%> </li>
+  <li> <%= link_to 'Inspire other by your Reflection',new_event_reflection_path(@event),class: "btn btn-small btn-"""%></li>
+     <li> <%= link_to 'Participants Reflection',reflections_to_event_path(@event),class: "btn btn-small  btn-"""%> </li>
     <% end %> 
         <% if signed_in? %> 
         <% if admin?(@event.group_id)%> 
-        <li><%= link_to "approve participation ",participations_edit_path(@event), class: "btn btn-small  btn-primay" %> </li>
-        <li><%= link_to 'Edit', edit_event_path(@event) ,class: "btn btn-small  btn-primay"%> </li>
+        <li><%= link_to "approve participation ",participations_edit_path(@event), class: "btn btn-small  btn-""" %> </li>
+        <li><%= link_to 'Edit', edit_event_path(@event) ,class: "btn btn-small  btn-"""%> </li>
          <%end%> 
         <% end %>
       </ul>

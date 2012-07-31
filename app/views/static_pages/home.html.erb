@@ -1,6 +1,6 @@
 <% provide(:title,'Home')%>
 <div class="container">
-      <div class="row-fluid">  
+      <div class="row-fluid ">  
         <div class="span4">  
           <div id="myCarousel" class="carousel slide">  
             <!-- Carousel items -->  
@@ -18,16 +18,23 @@
        </div></div>  
         <div class="item"><%= image_tag("4.jpg",alt: "Communiy Tracker" )%>
           <div class="carousel-caption">
-       </div></div> </div>  
+       </div></div> </div>
   <!-- Carousel nav -->  
-  <div class="well ">  
+  <div class="firstp"> 
+  <br/> 
             <ul class="nav nav-list">  
-              <li class="nav-header"><%=link_to "Quick intro to volunteer hours", "http://www.scribd.com/doc/101126828"%>  </li> 
+              <li class="nav-header">Why Volunteer Hours</li>
+
+               <li>  <ol class="users">
+                <%=link_to "Quick intro to volunteer hours", "http://www.scribd.com/doc/101126828"%></ol></li> 
+               <br/>
+               <br />
               <li class="nav-header">Events Happining</li>  
               <ol class="users">
                   <%= render @events %>
                </ol>
-               
+                <br/>
+                <br/>
               <li class="nav-header">Groups</li>  
                 <li> <ol class="users">
                    <%= render @groups %>
@@ -35,14 +42,14 @@
               </ul>  
           </div><!--/.well -->  
          </div><!--/span--> 
-</div>  
-          
-         <div class="row-fluid firstpage center "> 
+</div>
+         <div class="center hero-unit"> 
           <h1>Welcome to Volunteer Hours</h1>
           <center><%= image_tag("dd.png",alt: "Communiy Tracker")%></center>
           <i>The site is currently undergoing a design makeover and will officially be launched in August 2nd</i>
 <p>If you want to leave your mark as communiy Helper , this your chance!</p>
     <%= link_to "Sign up now to help!",signup_path,class: "btn btn-large btn-primary"%>
 </div>  
+</div>
 </div>
 </div>
