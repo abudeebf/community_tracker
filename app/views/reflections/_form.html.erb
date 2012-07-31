@@ -1,3 +1,4 @@
+<%= render '/events/tabup'%>
 <%= form_for(@reflection) do |f| %>
   <% if @reflection.errors.any? %>
     <div id="error_explanation">
@@ -10,16 +11,20 @@
       </ul>
     </div>
   <% end %>
-<h3>Inspire other by your reflection </h3>
+
+  <div class="well span8">
+    <h4>Inspire other by your reflection to <%= @event.title%></h4>
+    <ul class="users">
+    <%=render "users/user" ,user:current_user %>
+ </ul>
 
   <div class="field">
    <br />
     <%= f.text_area :u_reflection, :style => "width:380px"  %>
     <%= f.hidden_field :r_id,:value => @part_id %>
- 
-  
   </div>
   <div class="actions">
-    <%= f.submit "Post your reflection ",class: "btn btn-large btn-primay" %>
+    <%= f.submit "Post your reflection ",class: "btn btn btn-primary" %>
   </div>
 <% end %>
+</div>

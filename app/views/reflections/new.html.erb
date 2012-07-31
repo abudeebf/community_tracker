@@ -1,7 +1,4 @@
 <%= provide(:title,'new reflection') %>
-<h2>post your reflection to <%= @event.title%></h2>
-<%=render "users/user" ,user:current_user %>
- <%= link_to "Is this not you? Logout", signout_path, method: "delete" %>
 <%= render 'form' %>
 
-<%= link_to 'Back', @event%>
+

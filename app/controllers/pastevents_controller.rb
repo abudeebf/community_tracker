@@ -43,8 +43,8 @@ class PasteventsController < ApplicationController
     @pastevent.token = SecureRandom.urlsafe_base64
     respond_to do |format|
       if @pastevent.save
-        format.html { redirect_to @pastevent, notice: 'Past event was successfully created.' }
-        format.json { render json: @pastevent, status: :created, location: @pastevent }
+        format.html { redirect_to @user, notice: 'Past event was successfully created please check your hour tracker' }
+        format.json { render json: @user, status: :created, location: @user }
         UserMailer.pastEventConfirmation(@pastevent).deliver
       else
         format.html { render action: "new" }

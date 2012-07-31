@@ -1,5 +1,5 @@
 <%= provide(:title,'Edit '+ @event.title) %>
-<h1>Editing event</h1>
+<%= render '/events/tabup'%>
 
 <%= form_for(@event ,:url => update_event_path(params[:id])) do |f| %>
   <% if @event.errors.any? %>
@@ -13,39 +13,25 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title , width: "750px"%>
- 
-  </div>
-  <div class="field">
-    <%= f.label :category %><br />
-   <%= f.select :category, options_for_select([["Children", "Children"], ["Homeless", "Homeless"],["Elderly", "Elderly"],["Education","Education"],["Environment","Environment"],["Other","Other"]]) %> 
-  </div>
-  
-  <div class="field">
-      <%= f.label "Start time" %><br />
-   <%= f.datetime_select(:starttime, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %>
-  </div>
-  <div class="field">
-    <%= f.label "End Time" %><br />
-    <%= f.datetime_select(:endtime, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
+<div class="well span8">
+  <h4>Create New Event</h4>
+  <br />
+    <%= f.label :title %>
+    <%= f.text_field :title , width: "750px"%><br />
+    <%= f.label :category %>
+   <%= f.select :category, options_for_select([["Children", "Children"], ["Homeless", "Homeless"],["Elderly", "Elderly"],["Education","Education"],["Environment","Environment"],["Other","Other"]]) %> <br />
+      <%= f.label "Start time" %>
+   <%= f.datetime_select(:starttime, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %><br />
+    <%= f.label "End Time" %>
+    <%= f.datetime_select(:endtime, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 60px'} ) %><br />
+    <%= f.label :location %>
+    <%= f.text_field :location %><br />
+    <%= f.label :description %>
     <%= f.text_area :description ,rows: 10 %>
-  </div>
-  <div class="field">
-    <%= f.label "please add a picutre to your event" %><br />
-  <%= f.file_field :photo %>
-</div>
-  <div class="actions">
-    <%= f.submit "Save ", class: "btn btn-large btn-primay" %>
-  </div>
+ <br />
+    <%= f.label "please add a picutre to your event" %>
+  <%= f.file_field :photo %><br />
+    <%= f.submit "Save ", class: "btn btn-large btn-primary" %>
+ 
 <% end %>
-<%= link_to 'Back', @event %>
+</div>

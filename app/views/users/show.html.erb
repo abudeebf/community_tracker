@@ -10,24 +10,7 @@
          <li><%= @user.email %></li>
        </ul>
      </div>
-  </div>
-
-  <div class="span6 ">
- <div class="well sidebar-nav">  
-            <ul class="nav nav-list">
-               <% if @user.events.any? %>
-   <li class="nav-header">My Events (<%= @user.events.count %>)</li>
-  <ol class="users">
-   <%= render @events %>
-              
-      <% end %>
-    </ul>
-      </div>
-    </div>
-  </div>
-   <div class="row-fluid"> 
-    <div class="span4">
- <div class="well sidebar-nav"> 
+     <div class="well sidebar-nav"> 
   <ul class="nav nav-list">
    <% if @user.groups.any? %>
             <li class="nav-header">My Groups (<%= @user.groups.count %>)</li>
@@ -35,9 +18,31 @@
           <%= render @user.groups  %>
 
       </ol>
-        <% end %>
+      <%else%>
+        <li>You are not a member of any groups yet</li> 
+       <%end%>
       </ul>
   </div>
+  </div>
+
+  <div class="span6 ">
+ <div class="well sidebar-nav">  
+            <ul class="nav nav-list">
+              
+   <li class="nav-header">My Events (<%= @user.events.count %>)</li>
+    <% if @user.events.any? %>
+  <ol class="users">
+   <%= render @events %>
+         </ol>  
+         <%else%>
+         <li>You don't have any events yet</li>   
+      <% end %>
+    </ul>
+      </div>
+    </div>
+  </div>
+   
+ 
     </div> 
      </div>
    </div>

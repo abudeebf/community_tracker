@@ -29,22 +29,30 @@
  </table>
 
    <li><%= @group.email %></li>
-         <li> <b> Creator:</b><p>
-  <% user=User.find(@group.memberships.find_by_member("Creator").user_id) %>
+     <li><h4>Creator:</h4>
+ <div> <% user=User.find(@group.memberships.find_by_member("Creator").user_id) %>
   <%= link_to  user.first_name + " " + user.last_name ,user %>
-</p></li>
-<li> <b> Address:</b>
-<div id="myCollapsibleExample"><button  class="btn btn-danger" data-target="#demo" data-toggle="collapse"><%= @group.address %></button>
+</div> </li>
+<br />
+<li> <h4> Address:</h4>
+<div id="myCollapsibleExample"><a  data-target="#demo" data-toggle="collapse"><%= @group.address %></a>
   <input class="userid" type="hidden"  value="open"/>
 <div id="demo" class="collapse"> 
 <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@group.latitude}%2C#{@group.longitude}" %></div>  
 </div></li> 
-
-<li class="nav-header">Group Description</li>
+<br />
+<li> <h4>Group Description</h4></li>
         <li> <%= @group.description %></li>
 
        </ul>
      </div>
+     <div class="well sidebar-nav">  
+       <ul class="nav nav-list">  
+        <li class="nav-header"> <%=@group.name%> Events</Li>
+  <ol class="users">
+   <%= render @events %>
+ </ol>
+</div>
   </div>
     <div class="span4">  
       <div class="well sidebar-nav">  
@@ -52,8 +60,8 @@
         <%if @group.gamification %>
 <li class='nav-header'>Gamification is a part of this Group</p></b></li>
   <p>Gold Badge:<%=@group.gold%> hours.</p>
-  <p>Gold Badge:<%=@group.silver%> hours.</p>
-  <p>Gold Badge:<%=@group.bronze%> hours.</p>
+  <p>Silver Badge:<%=@group.silver%> hours.</p>
+  <p>Bronze Badge:<%=@group.bronze%> hours.</p>
 <% end %>
   <% if @users.any?%>
     <li class='nav-header'>Group Members</li>
@@ -67,15 +75,9 @@
    </div>
   </div>
 </row>
- <div class="row-fluid">  
-    <div class="span8">  
-      <div class="well sidebar-nav">  
-       <ul class="nav nav-list">  
-        <li class="nav-header"> <%=@group.name%> Events</Li>
-  <ol class="users">
-   <%= render @events %>
- </ol>
-</div>
+  
+    
+      
 </div>
 </div>
 

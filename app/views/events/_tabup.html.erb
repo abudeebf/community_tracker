@@ -1,26 +1,29 @@
 <div class="container">  
 <row class="span12">  
 <ul class="nav nav-tabs">  
+  <% if signed_in? %> 
+   <li class="active"> <%= link_to 'Event profile <i class="icon-info-sign"></i>'.html_safe, event_path(@event), class: "btn btn-small btn-primay" %> </li>
+        <% if admin?(@event.group_id)%> 
+         <li> <%= link_to 'Edit Event <i class="icon-pencil"></i>'.html_safe, edit_event_path(@event) ,class: "btn btn-small  btn-primay"%> </li>
+        <li><%= link_to 'approve participation<i class="icon-ok"></i>'.html_safe,participations_edit_path(@event), class: "btn btn-small  btn-primay" %> </li>
+         <%end%> 
 <% if signed_in? &&(current_user.participations.where("event_id=? And user_id=?",@event.id,current_user).empty?)  %>  
-  <% if eventExpire?(@event) %>
-     <li><%= link_to "Join this event ",new_event_participation_path(@event), class: "btn" %> </li>
+   <% if eventExpire?(@event) %>
+    <li><%= link_to 'Join this event <i class="icon-plus-sign"></i>'.html_safe,new_event_participation_path(@event), class: "btn btn-small btn-primay" %> </li>
   <% else %>  
    <h3> This event already expired </h3>   
    <% end %> 
 <% elsif signed_in?  %> 
   <% if !admin?(@event.group_id)%> 
   <% if eventExpire?(@event) %>
-    <li> <%= link_to "leave this event ",new_event_participation_path(@event), class: "btn btn-small  btn-"""%> </li>
+    <li> <%= link_to 'leave this event <i class= "icon-remove-sign"></i>'.html_safe,new_event_participation_path(@event), class: "btn btn-small  btn-primay"%> </li>
     <%end%>
     
    <%end%>
-  <li> <%= link_to 'Inspire other by your Reflection',new_event_reflection_path(@event),class: "btn btn-small btn-"""%></li>
-     <li> <%= link_to 'Participants Reflection',reflections_to_event_path(@event),class: "btn btn-small  btn-"""%> </li>
+  <li> <%= link_to 'Inspire other by your Reflection<i class="icon-comment"></i>'.html_safe,new_event_reflection_path(@event),class: "btn btn-small btn-primay"%></li>
+      <li><%= link_to 'Participants Reflection <i class="icon-list"></i>'.html_safe,reflections_to_event_path(@event),class: "btn btn-small  btn-primay"%> </li>
+
     <% end %> 
-        <% if signed_in? %> 
-        <% if admin?(@event.group_id)%> 
-        <li><%= link_to "approve participation ",participations_edit_path(@event), class: "btn btn-small  btn-""" %> </li>
-        <li><%= link_to 'Edit', edit_event_path(@event) ,class: "btn btn-small  btn-"""%> </li>
-         <%end%> 
+        
         <% end %>
-      </ul>
+        </ul>

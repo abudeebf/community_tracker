@@ -1,16 +1,21 @@
-<% provide(:title,'Community Tracker users')%>
-<h1> Community Tracker Search result</h1>
-  
-    <ul class="users">
-      <% if @cat=="People"%>
+<% provide(:title,'Volunteer Hours users')%>
+<div class="container">  
+	<row class="span12">  
+		 <div class="well span10">
+			<h4> Volunteer Hours Search result</h4>
+			  <br />
+			    <ul class="users">
+			      <% if @cat=="People"%>
 
-        <%= render @users %>
-       <% elsif @cat== "Groups" %>
-        <%= render @groups %>
-       <% elsif  @cat== "Events" %>
-       <%= render @events %>
-       <% end %>
-    </ul>
-  
+			        <%= render @users %>
+			       <% elsif @cat== "Groups" %>
+			        <%= render @groups %>
+			       <% elsif  @cat== "Events" %>
+			       <%= render @events %>
+			       <% end %>
+			    </ul>
+		</div>
+	</row>
+</div>
 
 

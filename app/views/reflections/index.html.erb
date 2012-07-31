@@ -1,39 +1,30 @@
+<%= render '/events/tabup'%>
 <% provide(:title,'Participant Reflections') %>
 <% if !@reflections.first.nil?%>
-<h2><%= "Participant Reflections" + " " + Event.find(Participation.find(@reflections.first.r_id).event_id).title + " Event" %></h2>
-
-
-
+<div class="well span8">
+  <h4><%= "Participant Reflections" + " " + Event.find(Participation.find(@reflections.first.r_id).event_id).title + " Event" %></h4><br />
 <% @reflections.each do |reflection| %>
   
-    <div class="hero-unit">
-     
+    <div class="reflection">
+     <ul class='users'>
     <%=render "users/user" ,user: User.find(Participation.find(reflection.r_id ).user_id)%></td></tr>
-    
+   
     <%= reflection.u_reflection %>
     <br />
-    
-   <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="" layout="button_count" show_faces="false" width="450" font=""></fb:like>
-
-      <div id="fb-root"></div><!-- required by facebook -->
-       <a name="fb_share" share_url="https://young-frost-4398.herokuapp.com/
- " share_summary="Drawing on Italy’s most famous export – great-tasting" >></a> 
-<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
-        type="text/javascript">
-</script>
-
+     </ul>
    <% if current_user?(User.find(Participation.find(reflection.r_id ).user_id))%>
-    <%= link_to 'Edit', edit_reflection_path(reflection),class: "btn btn-small btn-primay" %>|
-    <%= link_to 'Delete', reflection, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-small btn-primay"%>
+    <%= link_to 'Edit <i class="icon-pencil"></i>'.html_safe, edit_reflection_path(reflection),class: "btn btn-small btn-primary" %>
+    <%= link_to 'Delete <i class="icon-remove"></i>'.html_safe, reflection, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-small btn-primary"%>
    <%end %>
    
 
  </div>
+</div>
 <% end %>
 <% else%>
 <h2>Be the first to inspire other</h2>
 <%= link_to 'Inspire other by your Reflection',new_event_reflection_path(@event),class: "btn btn-small 
- btn-primay"%>
+ btn-primary"%>
 <% end %>
 
 <br />

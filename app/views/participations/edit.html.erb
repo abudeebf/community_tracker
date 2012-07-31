@@ -1,10 +1,12 @@
 <%= provide(:title, @event.title + " Approve participation ") %>
-<h1>Approve participation</h1>
-<h2 class="center"> <%=@event.title%></h2>
+<%= render '/events/tabup'%>
 
+
+<div class="well span10">
+  <h4>Approve participation for  <%=@event.title%> </h4><br/>
  <table class="table table-striped table-bordered table-condensed">
   <tr><th>Participant</th>
-  <th> status</th>
+  <th> attending </th>
    <th> Start Time </th>
    <th> End Time</th>
    </tr>
@@ -21,33 +23,23 @@
         
         </td> 
   <% y=false %>
- <td width= 140px ><div class="controls" >
-   <% ["attend","not attend"].each do |x| %> 
-    <label class="radio inline">
-    <% if x=="attend" %>
-     <% y=true%>
-      <% else %>
-       <% y=false%>
-       <% end %>
-         <%= f.radio_button :attend, y %><%= x %> 
-          <% end %> 
-      </label> 
+ <td> <%= f.check_box :attend %> <b>attend</b> 
 
   </div>
    </td>
-<td width=305px>
-  <%= f.datetime_select(:start_time, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 53px;font-size:10px; height:25Px'} ) %>
+<td width=280px>
+  <%= f.datetime_select(:start_time, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 45px;font-size:8px; height:25Px'} ) %>
  </td>
- <td width=305px>
-<%= f.datetime_select(:end_time, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 53px;font-size:10px; height:25Px'} ) %>
+ <td width=280>
+<%= f.datetime_select(:end_time, {:use_short_month => 1, :order => [:month, :day, :year], :start_year => Time.now.year},{:style => 'width: 45px;font-size:8px; height:25Px'} ) %>
   
  </td>
 </tr>     
     <% end %>   
   <% end %>   
 <tr>
- <td colspan="4" class="cenetr"><%= submit_tag "Approve",class: "btn btn-small btn-primay" %></p>  </td>  
+ <td colspan="4" class="cenetr"><%= submit_tag "Approve",class: "btn btn btn-primary" %></p>  </td>  
 <% end %> 
 </table>
-<%= link_to 'back', @event %> |
+</div>
 
