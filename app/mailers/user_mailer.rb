@@ -28,8 +28,9 @@ def update_hourtracker(user,url)
   mail(:to =>@user.email,:subject => "your volunteer hours have changed")
   end
 
-  def pastEventConfirmation(pastevent)
+  def pastEventConfirmation(pastevent,url)
     @pastevent=pastevent
+    @url=url
     @user = User.find(pastevent.user_id)
     mail(:to =>@pastevent.email,:subject => "Please approve my volunteer hours @ www.volunteerhours.org")
   end
