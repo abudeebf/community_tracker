@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     logger.info(@user.inspect)
     respond_to do |format|
       if @user.save
-         UserMailer.registration_confirmation(@user).deliver 
+         UserMailer.registration_confirmation(@user,user_url(@user.token)).deliver 
          
          if !session[:group_id].nil?
            @user.joingroup!(session[:group_id] ,"Member")  

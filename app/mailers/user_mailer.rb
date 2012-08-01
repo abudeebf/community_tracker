@@ -1,8 +1,9 @@
 class UserMailer < ActionMailer::Base
  default :from => "info@volunteerhours.org"  
   
-  def registration_confirmation(user) 
-     @user = user  
+  def registration_confirmation(user,url) 
+     @user = user 
+     @url= url
     mail(:to => user.email, :subject => "Registered")  
   end  
   def password_reset(user)
