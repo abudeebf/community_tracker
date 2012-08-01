@@ -45,7 +45,7 @@ class PasteventsController < ApplicationController
       if @pastevent.save
         format.html { redirect_to @user, notice: 'Past event was successfully created please check your hour tracker' }
         format.json { render json: @user, status: :created, location: @user }
-        UserMailer.pastEventConfirmation(@pastevent).deliver
+        UserMailer.pastEventConfirmation(@pastevent,edit_pastevent_url(@pastevent.token)).deliver
       else
         format.html { render action: "new" }
         format.json { render json: @pastevent.errors, status: :unprocessable_entity }
