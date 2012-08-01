@@ -116,7 +116,7 @@ end
 
   def eparticipant
      
-     @event=Event.where('user_id=? and title=?',params[:euser],params[:eventtitle])
+     @event=Event.where('user_id=? and id=?',params[:euser],params[:eventtitle])
      @event.each do |event|
       @x=event
     end
