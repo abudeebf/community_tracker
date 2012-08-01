@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     self.password_reset_sent_at=Time.zone.now
     self.audit_comment="Password reset request"
       save!
-      UserMailer.password_reset(edit_password_resets(self.token)).deliver
+      UserMailer.password_reset(self,edit_password_reset_url(@user.password_reset_token)).deliver
   end
   def joingroup!(group,member)
     memberships.create!(user_id:self.id,group_id:group,member:member, audit_comment:"Create memberships")
