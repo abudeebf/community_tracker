@@ -58,11 +58,12 @@
       <div class="well sidebar-nav">  
        <ul class="nav nav-list">  
         <%if @group.gamification %>
-<li class='nav-header'>Gamification is a part of this Group</p></b></li>
-  <p>Gold Badge:<%=@group.gold%> hours.</p>
-  <p>Silver Badge:<%=@group.silver%> hours.</p>
-  <p>Bronze Badge:<%=@group.bronze%> hours.</p>
+<li class='nav-header'>Badges</p></b></li>
+  <p>Gold Badge:     <%=@group.gold%>   hours.</p>
+  <p>Silver Badge: <%=@group.silver%> hours.</p>
+  <p>Bronze Badge: <%=@group.bronze%> hours.</p>
 <% end %>
+<br />
   <% if @users.any?%>
     <li class='nav-header'>Group Members</li>
    <li><p><b> Group has <%=@users.count%> members</b></p>
