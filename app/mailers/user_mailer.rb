@@ -1,11 +1,13 @@
 class UserMailer < ActionMailer::Base
  default :from => "info@volunteerhours.org"  
   
-  def registration_confirmation(user) 
-     @user = user  
+  def registration_confirmation(user,url) 
+     @user = user 
+     @url= url
     mail(:to => user.email, :subject => "Registered")  
   end  
-  def password_reset(user)
+  def password_reset(user,url)
+    @url=url
   	@user=user
   	mail(:to => user.email, :subject => "Password reset")  
 end
@@ -27,8 +29,9 @@ def update_hourtracker(user,url)
   mail(:to =>@user.email,:subject => "your volunteer hours have changed")
   end
 
-  def pastEventConfirmation(pastevent)
+  def pastEventConfirmation(pastevent,url)
     @pastevent=pastevent
+    @url=url
     @user = User.find(pastevent.user_id)
     mail(:to =>@pastevent.email,:subject => "Please approve my volunteer hours @ www.volunteerhours.org")
   end
